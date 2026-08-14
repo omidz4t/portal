@@ -180,7 +180,7 @@
 		},
 		{
 			"id": "install",
-			"label": "Plug in /pair-bot",
+			"label": "Initiate",
 			"group": "Persona mode",
 			"intro": "Persona is the other product. Stay paired, then attach a BotFather bot that’s yours. Do it on a machine you run.",
 			"scenes": [
