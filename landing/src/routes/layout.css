@@ -159,6 +159,8 @@ pre code,
 footer.doodle-bar {
 	border-bottom: 0;
 	border-top: 2px solid var(--color-ink);
+	background: #fff;
+	backdrop-filter: none;
 }
 
 .doodle-card {
@@ -425,7 +427,7 @@ footer.doodle-bar {
 .try-band > footer.doodle-bar {
 	margin-top: auto;
 	border-top: 2.5px solid var(--color-ink);
-	background: transparent;
+	background: #fff;
 	backdrop-filter: none;
 }
 
