@@ -75,13 +75,6 @@ body {
 	line-height: 1.85;
 }
 
-[dir='rtl'] .docs-copy,
-[dir='rtl'] .docs-copy p,
-[dir='rtl'] .docs-copy li {
-	text-align: justify;
-	text-justify: inter-word;
-}
-
 [dir='rtl'] .docs-copy h2,
 [dir='rtl'] .docs-copy h3 {
 	text-align: start;
@@ -150,6 +143,22 @@ pre code,
 	unicode-bidi: isolate;
 }
 
+.docs-copy pre {
+	background-color: #1c1916;
+	color: #f6f1e6;
+	border: 2px solid var(--color-ink);
+	border-radius: 1.15rem 1.4rem 1.05rem 1.35rem;
+	box-shadow: 3px 3px 0 var(--color-ink);
+	padding: 1.15rem 1.25rem;
+	font-size: 0.9rem;
+	line-height: 1.7;
+}
+
+.docs-copy pre code {
+	background-color: transparent;
+	color: #f6f1e6;
+}
+
 .doodle-bar {
 	border-bottom: 2px solid var(--color-ink);
 	background: #fffdf8cc;
@@ -205,6 +214,26 @@ footer.doodle-bar {
 	box-shadow: none;
 }
 
+.self-host-snippet {
+	display: flex;
+	min-width: 0;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 0.75rem;
+}
+
+.self-host-snippet pre,
+.self-host-snippet pre code {
+	overflow-wrap: normal;
+	word-break: normal;
+	white-space: pre;
+}
+
+.self-host-dl {
+	align-self: flex-start;
+	gap: 0.4rem;
+}
+
 .doodle-nav {
 	display: inline-flex;
 	min-height: 2.75rem;
@@ -231,34 +260,30 @@ footer.doodle-bar {
 	padding: 0.25rem;
 }
 
-.site-menu-label-close {
-	display: none;
-}
-
-.site-menu[open] {
+.site-menu {
 	position: fixed;
 	inset: 0;
 	z-index: 80;
 	display: flex;
+	width: 100vw;
+	height: 100dvh;
 	flex-direction: column;
-	background: #fffdf8;
 	padding: 0.85rem 1.25rem 2rem;
+	background-color: var(--color-paper);
+	background-image:
+		radial-gradient(circle at 1px 1px, #d8d0c2 1px, transparent 0),
+		linear-gradient(#f6f1e6, #f6f1e6);
+	background-size:
+		22px 22px,
+		auto;
 }
 
-.site-menu[open] > .site-menu-toggle {
-	align-self: flex-end;
-	z-index: 1;
+.site-menu-toolbar {
+	display: flex;
+	justify-content: flex-end;
 }
 
-.site-menu[open] .site-menu-label-open {
-	display: none;
-}
-
-.site-menu[open] .site-menu-label-close {
-	display: inline;
-}
-
-.site-menu[open] .site-menu-panel {
+.site-menu-panel {
 	display: flex;
 	flex: 1;
 	min-height: 0;
@@ -393,7 +418,7 @@ footer.doodle-bar {
 .persona-band {
 	margin-block: 1rem 2.5rem;
 	border-block: 3px dashed var(--color-ink);
-	background: radial-gradient(circle at 12% 18%, #f3e0b580 0 7rem, transparent 7.2rem), #fff8e6;
+	background: radial-gradient(circle at 6% 8%, #f3e0b580 0 7rem, transparent 7.2rem), #fff8e6;
 	padding-block: 3rem 3.25rem;
 }
 
@@ -462,6 +487,7 @@ footer.doodle-bar {
 }
 
 .try-band {
+	position: relative;
 	display: flex;
 	min-height: 100vh;
 	min-height: 100dvh;
@@ -478,11 +504,53 @@ footer.doodle-bar {
 	scroll-margin-top: 0;
 }
 
+.try-sparkles {
+	position: absolute;
+	inset: 0;
+	z-index: 3;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.try-sparkle {
+	position: absolute;
+	background-color: currentColor;
+	mask: url(/icons/sparkle.svg) center / contain no-repeat;
+	-webkit-mask: url(/icons/sparkle.svg) center / contain no-repeat;
+	transform: translate(-50%, -50%) rotate(var(--rot)) scale(0.4);
+	animation: try-sparkle-pop 0.68s ease-out forwards;
+}
+
+@keyframes try-sparkle-pop {
+	0% {
+		opacity: 0.95;
+		transform: translate(-50%, -50%) rotate(var(--rot)) scale(0.35);
+	}
+	18% {
+		opacity: 1;
+		transform: translate(-50%, -50%) rotate(calc(var(--rot) + 12deg)) scale(1.12);
+	}
+	100% {
+		opacity: 0;
+		transform: translate(-50%, -70%) rotate(calc(var(--rot) + 28deg)) scale(0.2);
+	}
+}
+
 .try-band > footer.doodle-bar {
+	position: relative;
+	z-index: 4;
 	margin-top: auto;
 	border-top: 2.5px solid var(--color-ink);
 	background: #fff;
 	backdrop-filter: none;
+}
+
+.try-sparkle-stage {
+	position: relative;
+	display: flex;
+	min-height: 0;
+	flex: 1 1 auto;
+	flex-direction: column;
 }
 
 .try-cta {
@@ -534,6 +602,26 @@ footer.doodle-bar {
 	padding: 1rem 2rem;
 	font-size: clamp(1.25rem, 3vw, 2rem);
 	font-weight: 700;
+	transition:
+		transform 0.22s ease,
+		box-shadow 0.22s ease,
+		background-color 0.22s ease,
+		color 0.22s ease;
+}
+
+.try-open:hover {
+	transform: translate(-3px, -4px) rotate(-4deg) scale(1.08);
+	background: #6d28d9;
+	color: #fff;
+	box-shadow:
+		5px 6px 0 var(--color-ink),
+		0 0 0 5px #c026d340,
+		0 14px 32px #7c3aed66;
+}
+
+.try-open:focus-visible {
+	outline: 3px solid #c026d3;
+	outline-offset: 4px;
 }
 
 .show-shell {
@@ -572,7 +660,7 @@ footer.doodle-bar {
 .try-page-inner {
 	box-sizing: border-box;
 	display: flex;
-	min-height: 0;
+	min-height: 100%;
 	flex: 1 1 auto;
 	flex-direction: column;
 	margin: 0 auto;
@@ -589,7 +677,10 @@ footer.doodle-bar {
 	justify-content: space-between;
 	width: 100%;
 	gap: 0.85rem 1.25rem;
-	direction: ltr;
+}
+
+[dir='rtl'] .try-story-nav {
+	justify-content: flex-end;
 }
 
 .try-page-bar {
@@ -612,6 +703,7 @@ footer.doodle-bar {
 }
 
 .try-walk {
+	position: relative;
 	display: flex;
 	min-height: 0;
 	flex: 1 1 auto;
@@ -621,10 +713,105 @@ footer.doodle-bar {
 .try-walk-nav {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.5rem;
-	margin-top: auto;
-	margin-left: auto;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem 1rem;
+	width: 100%;
+	flex-shrink: 0;
+	margin-top: 0;
 	padding-top: 1.25rem;
+}
+
+.try-walk-nav-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-inline-start: auto;
+}
+
+.try-walk-step {
+	margin: 0;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--color-mist);
+}
+
+.try-walk-why {
+	display: grid;
+	box-sizing: border-box;
+	align-content: start;
+	flex: 0 0 auto;
+	gap: 0.85rem;
+	margin-top: 1rem;
+	min-height: 0;
+	width: 100%;
+	max-width: none;
+	padding: 1.35rem 1.5rem 1.5rem;
+}
+
+.try-walk-why-measure {
+	position: absolute;
+	inset-inline: 0;
+	top: 0;
+	z-index: -1;
+	overflow: hidden;
+	height: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+.try-walk-why-label {
+	width: fit-content;
+	rotate: -2deg;
+	border: 2px solid var(--color-ink);
+	border-radius: 0.35rem 0.7rem 0.4rem 0.65rem;
+	background: #c4b5fd;
+	padding: 0.22rem 0.75rem 0.28rem;
+	font-size: 1.1rem;
+	font-weight: 700;
+	line-height: 1.2;
+	box-shadow: 2px 2px 0 var(--color-ink);
+}
+
+.try-walk-why-intro,
+.try-walk-why-body {
+	margin: 0;
+	color: var(--color-mist);
+	font-size: clamp(1.2rem, 2.1vw, 1.55rem);
+	line-height: 1.5;
+}
+
+.try-walk-why-caption {
+	margin: 0;
+	font-size: clamp(1.45rem, 2.6vw, 1.9rem);
+	font-weight: 700;
+	line-height: 1.35;
+}
+
+.try-walk-why mark {
+	background: linear-gradient(transparent 58%, #ddd6fe 58%);
+	padding: 0 0.08em;
+	color: inherit;
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+}
+
+.try-walk-why-caption mark:nth-of-type(3n + 1),
+.try-walk-why-intro mark:nth-of-type(3n + 1),
+.try-walk-why-body mark:nth-of-type(3n + 1) {
+	background: linear-gradient(transparent 58%, #c4b5fd 58%);
+}
+
+.try-walk-why-caption mark:nth-of-type(3n + 2),
+.try-walk-why-intro mark:nth-of-type(3n + 2),
+.try-walk-why-body mark:nth-of-type(3n + 2) {
+	background: linear-gradient(transparent 58%, #a5f3fc 58%);
+}
+
+.try-walk-why-caption mark:nth-of-type(3n + 3),
+.try-walk-why-intro mark:nth-of-type(3n + 3),
+.try-walk-why-body mark:nth-of-type(3n + 3) {
+	background: linear-gradient(transparent 58%, #fbcfe8 58%);
 }
 
 .try-page .try-headline {
@@ -651,6 +838,48 @@ footer.doodle-bar {
 	align-items: flex-end;
 	justify-content: flex-start;
 	gap: 1rem 1.5rem;
+}
+
+@media (max-width: 767px) {
+	.try-walk-head {
+		align-items: flex-start;
+		gap: 0.55rem;
+	}
+
+	.try-page-title {
+		font-size: clamp(1.15rem, 5vw, 1.55rem);
+	}
+
+	.try-story-nav {
+		width: 100%;
+		gap: 0.4rem;
+	}
+
+	.try-story-group.has-label {
+		padding: 0.3rem 0.4rem 0.4rem;
+		border-radius: 0.7rem;
+	}
+
+	.try-story-group-label {
+		margin-bottom: 0.25rem;
+		font-size: 0.7rem;
+	}
+
+	.try-story-nav .doodle-btn {
+		min-height: 2rem;
+		padding: 0 0.65rem;
+		font-size: 0.78rem;
+	}
+
+	.try-page .phones {
+		grid-template-columns: 1fr;
+		min-height: 16rem;
+	}
+
+	.phones-show-tg .phone-dc,
+	.phones-show-dc .phone-tg {
+		display: none;
+	}
 }
 
 .try-story-group.has-label {
@@ -721,6 +950,7 @@ footer.doodle-bar {
 
 .phone-avatar {
 	display: inline-flex;
+	box-sizing: border-box;
 	height: 2.4rem;
 	width: 2.4rem;
 	flex-shrink: 0;
@@ -730,11 +960,20 @@ footer.doodle-bar {
 	border: 2px solid var(--color-ink);
 	border-radius: 999px;
 	background: #fffdf8;
+	padding: 0.22rem;
 }
 
 .phone-bar .phone-avatar {
-	height: 2.15rem;
-	width: 2.15rem;
+	height: 2.35rem;
+	width: 2.35rem;
+	padding: 0.28rem;
+	box-sizing: border-box;
+}
+
+.phone-bar .phone-avatar .app-logo {
+	height: 100%;
+	width: 100%;
+	border-radius: 0;
 }
 
 .phone-bar .app-logo {
@@ -803,8 +1042,22 @@ footer.doodle-bar {
 }
 
 .phone-peer {
+	display: flex;
+	align-items: center;
+	gap: 0.28rem;
 	font-weight: 700;
 	line-height: 1.2;
+}
+
+.phone-peer-arrow {
+	height: 0.95em;
+	width: 1.35em;
+	color: var(--color-ink);
+	vertical-align: -0.12em;
+}
+
+.phone-arrow-right {
+	transform: scaleX(-1);
 }
 
 .phone-thread {
@@ -903,7 +1156,8 @@ footer.doodle-bar {
 
 	.doodle-card-tilt,
 	.doodle-card-tilt-r,
-	.doodle-btn:hover {
+	.doodle-btn:hover,
+	.try-open:hover {
 		transform: none;
 	}
 

@@ -25,19 +25,20 @@
 		{ href: repoUrl, label: copy.navSource, id: 'source', external: true }
 	]);
 
-	let menu: HTMLDetailsElement | undefined = $state();
+	let menuOpen = $state(false);
 
 	function setMenuLock(open: boolean) {
 		if (typeof document === 'undefined') return;
 		document.body.style.overflow = open ? 'hidden' : '';
 	}
 
-	function onMenuToggle(event: Event) {
-		setMenuLock((event.currentTarget as HTMLDetailsElement).open);
+	function openMenu() {
+		menuOpen = true;
+		setMenuLock(true);
 	}
 
 	function closeMenu() {
-		if (menu) menu.open = false;
+		menuOpen = false;
 		setMenuLock(false);
 	}
 
@@ -47,7 +48,15 @@
 	}
 
 	$effect(() => {
-		return () => setMenuLock(false);
+		if (!menuOpen) return;
+		function onKey(event: KeyboardEvent) {
+			if (event.key === 'Escape') closeMenu();
+		}
+		window.addEventListener('keydown', onKey);
+		return () => {
+			window.removeEventListener('keydown', onKey);
+			setMenuLock(false);
+		};
 	});
 </script>
 
@@ -91,48 +100,51 @@
 			<a href={botUrl} rel="noreferrer" class="doodle-btn doodle-btn-ink">{copy.openBot}</a>
 		</div>
 
-		<details
-			bind:this={menu}
-			class="site-menu md:hidden"
-			ontoggle={onMenuToggle}
-		>
-			<summary class="doodle-btn min-w-11 site-menu-toggle">
-				<span class="site-menu-label-open">{copy.navMenu}</span>
-				<span class="site-menu-label-close">{copy.navClose}</span>
-			</summary>
-			<div class="site-menu-panel">
-				<nav class="site-menu-nav" aria-label="Mobile" onclick={onMenuNavClick}>
-					{#each links as link}
-						<a
-							href={link.href}
-							class="site-menu-link"
-							class:is-current={current === link.id}
-							aria-current={current === link.id ? 'page' : undefined}
-							rel={link.external ? 'noreferrer' : undefined}
-						>
-							{link.label}
-						</a>
-					{/each}
-					<div class="site-menu-langs">
-						<a
-							class="doodle-lang"
-							class:is-current={locale === 'en'}
-							href={twinPath(pathname, 'en')}
-							hreflang="en">{copy.langEn}</a
-						>
-						<span aria-hidden="true">·</span>
-						<a
-							class="doodle-lang"
-							class:is-current={locale === 'fa'}
-							href={twinPath(pathname, 'fa')}
-							hreflang="fa">{copy.langFa}</a
-						>
-					</div>
-					<a href={botUrl} rel="noreferrer" class="doodle-btn doodle-btn-ink site-menu-bot">
-						{copy.openBot}
-					</a>
-				</nav>
-			</div>
-		</details>
+		<button type="button" class="doodle-btn min-w-11 md:hidden" onclick={openMenu}>
+			{copy.navMenu}
+		</button>
 	</div>
 </header>
+
+{#if menuOpen}
+	<div class="site-menu" role="dialog" aria-modal="true" aria-label={copy.navMenu}>
+		<div class="site-menu-toolbar">
+			<button type="button" class="doodle-btn min-w-11 site-menu-toggle" onclick={closeMenu}>
+				{copy.navClose}
+			</button>
+		</div>
+		<div class="site-menu-panel">
+			<nav class="site-menu-nav" aria-label="Mobile" onclick={onMenuNavClick}>
+				{#each links as link}
+					<a
+						href={link.href}
+						class="site-menu-link"
+						class:is-current={current === link.id}
+						aria-current={current === link.id ? 'page' : undefined}
+						rel={link.external ? 'noreferrer' : undefined}
+					>
+						{link.label}
+					</a>
+				{/each}
+				<div class="site-menu-langs">
+					<a
+						class="doodle-lang"
+						class:is-current={locale === 'en'}
+						href={twinPath(pathname, 'en')}
+						hreflang="en">{copy.langEn}</a
+					>
+					<span aria-hidden="true">·</span>
+					<a
+						class="doodle-lang"
+						class:is-current={locale === 'fa'}
+						href={twinPath(pathname, 'fa')}
+						hreflang="fa">{copy.langFa}</a
+					>
+				</div>
+				<a href={botUrl} rel="noreferrer" class="doodle-btn doodle-btn-ink site-menu-bot">
+					{copy.openBot}
+				</a>
+			</nav>
+		</div>
+	</div>
+{/if}
