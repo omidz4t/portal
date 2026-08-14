@@ -6,6 +6,7 @@
 
 	let storyId = $state<string | null>(null);
 	let step = $state(0);
+	let dialog = $state<HTMLDialogElement | null>(null);
 
 	const story = $derived(
 		tutorial.stories.find((s) => s.id === (storyId ?? tutorial.stories[0].id)) ??
@@ -34,6 +35,18 @@
 
 	function restart() {
 		step = 0;
+	}
+
+	function openShow() {
+		dialog?.showModal();
+	}
+
+	function closeShow() {
+		dialog?.close();
+	}
+
+	function onDialogClick(e: MouseEvent) {
+		if (e.target === dialog) closeShow();
 	}
 
 	function bubbleKey(b: TutorialScene['bubbles'][number]) {
@@ -77,10 +90,24 @@
 </script>
 
 <section id="try" class="try-band">
-	<div class="try-inner mx-auto w-full max-w-6xl px-5">
-		<h2 class="text-2xl font-semibold sm:text-3xl">{tutorial.title}</h2>
+	<div class="try-cta mx-auto flex w-full max-w-5xl flex-col items-start justify-center px-5">
+		<h2 class="try-headline">
+			{tutorial.title}
+		</h2>
+		<button type="button" class="try-open doodle-btn doodle-btn-ink" onclick={openShow}>
+			{tutorial.open}
+		</button>
+	</div>
+</section>
 
-		<div class="mt-6 flex flex-wrap gap-2" role="tablist" aria-label={tutorial.title}>
+<dialog class="try-modal" bind:this={dialog} onclick={onDialogClick} aria-labelledby="try-modal-title">
+	<div class="try-modal-inner">
+		<div class="try-modal-bar">
+			<h3 id="try-modal-title" class="text-lg font-semibold sm:text-xl">{tutorial.title}</h3>
+			<button type="button" class="doodle-btn" onclick={closeShow}>{tutorial.close}</button>
+		</div>
+
+		<div class="mt-4 flex flex-wrap gap-2" role="tablist" aria-label={tutorial.title}>
 			{#each tutorial.stories as s}
 				<button
 					type="button"
@@ -96,15 +123,15 @@
 		</div>
 
 		{#if story.intro}
-			<p class="mt-5 max-w-3xl text-mist">{story.intro}</p>
+			<p class="mt-4 max-w-3xl text-mist">{story.intro}</p>
 		{/if}
 
-		<p class="mt-6 max-w-3xl text-lg leading-relaxed font-semibold" aria-live="polite">
+		<p class="mt-4 max-w-3xl text-lg leading-relaxed font-semibold" aria-live="polite">
 			{scene.caption}
 		</p>
 		<p class="mt-1 font-mono text-xs text-mist">{stepLabel}</p>
 
-		<div class="phones mt-6">
+		<div class="phones mt-5">
 			<ChatPhone
 				variant="tg"
 				app={tutorial.telegram}
@@ -130,13 +157,13 @@
 		</div>
 
 		{#if scene.why}
-			<aside class="doodle-card mt-6 max-w-3xl p-5" aria-label={tutorial.whyLabel}>
+			<aside class="doodle-card mt-5 max-w-3xl p-5" aria-label={tutorial.whyLabel}>
 				<p class="font-mono text-xs uppercase">{tutorial.whyLabel}</p>
 				<p class="mt-2 leading-relaxed">{scene.why}</p>
 			</aside>
 		{/if}
 
-		<div class="mt-6 flex flex-wrap gap-2">
+		<div class="mt-5 flex flex-wrap gap-2">
 			<button type="button" class="doodle-btn" onclick={back} disabled={step === 0}
 				>{tutorial.back}</button
 			>
@@ -151,4 +178,4 @@
 			>
 		</div>
 	</div>
-</section>
+</dialog>

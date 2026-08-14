@@ -370,11 +370,52 @@ footer.doodle-bar {
 	scroll-margin-top: 0;
 }
 
-.try-inner {
-	display: flex;
-	min-height: 0;
+.try-cta {
 	flex: 1 1 auto;
-	flex-direction: column;
+	gap: 2rem;
+	padding-block: 3rem;
+}
+
+.try-headline {
+	max-width: 18ch;
+	font-size: clamp(2.4rem, 7vw, 5.4rem);
+	font-weight: 700;
+	line-height: 1.05;
+	text-wrap: balance;
+}
+
+.try-open {
+	min-height: 4.2rem;
+	padding: 1rem 2rem;
+	font-size: clamp(1.25rem, 3vw, 2rem);
+	font-weight: 700;
+}
+
+.try-modal {
+	width: min(96vw, 72rem);
+	max-height: 94vh;
+	margin: auto;
+	overflow: auto;
+	border: 2.5px solid var(--color-ink);
+	border-radius: 1.2rem;
+	background: #fffdf8;
+	padding: 0;
+	box-shadow: 8px 8px 0 var(--color-ink);
+}
+
+.try-modal::backdrop {
+	background: #1c1c1ccc;
+}
+
+.try-modal-inner {
+	padding: 1.25rem 1.25rem 1.75rem;
+}
+
+.try-modal-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
 }
 
 .try-band .phones {

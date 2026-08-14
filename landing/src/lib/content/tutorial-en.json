@@ -1,6 +1,8 @@
 {
 	"title": "Was that a lot? Let me just show you.",
 	"lead": "",
+	"open": "Click on me",
+	"close": "Close",
 	"next": "Next",
 	"back": "Back",
 	"restart": "From the top",
