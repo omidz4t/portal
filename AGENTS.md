@@ -100,6 +100,7 @@ The **`Makefile` is the canonical entrypoint** for build, config bootstrap, and 
 | `make minor` | Force minor: VERSION + changelog + commit + tag |
 | `make major` | Force major: VERSION + changelog + commit + tag |
 | `make release-tag` | Same, bump chosen from conventional commits |
+| `make pack-linux` | `.deb` / `.rpm` / `.apk` in `dist/` (needs `nfpm`) |
 | `make pack-linux` | `.deb`, `.rpm`, and `.apk` under `dist/` (needs `nfpm`) |
 | `make run-landing` | SvelteKit landing in `./landing` (`npm run dev` on port 5173) |
 
