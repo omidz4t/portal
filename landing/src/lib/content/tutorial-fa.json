@@ -1,0 +1,182 @@
+{
+	"title": "در دو چت امتحان کنید",
+	"lead": "بعدی را بزنید. گوشی چپ تلگرام است. گوشی راست دلتا چت. همان لحظه در هر دو طرف.",
+	"next": "بعدی",
+	"back": "قبلی",
+	"restart": "از اول",
+	"stepOf": "گام {n} از {total}",
+	"telegram": "تلگرام",
+	"delta": "دلتا چت",
+	"you": "شما",
+	"emptyTg": "هنوز پیامی نیست.",
+	"emptyDc": "هنوز چتی نیست.",
+	"stories": [
+		{
+			"id": "pair",
+			"label": "جفت‌سازی (شخصی)",
+			"scenes": [
+				{
+					"caption": "ربات پورتال را در چت خصوصی تلگرام باز کنید و /start بفرستید.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "—",
+					"bubbles": [{ "side": "tg", "who": "you", "text": "/start" }]
+				},
+				{
+					"caption": "ربات دعوت دلتا چت و یک کد کوتاه (حدود ۳۰ دقیقه) می‌فرستد.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "—",
+					"bubbles": [
+						{ "side": "tg", "who": "you", "text": "/start" },
+						{
+							"side": "tg",
+							"who": "bot",
+							"text": "این دعوت دلتا چت را باز کنید، بعد فقط این کد را بفرستید:\nK7H2MQNP"
+						}
+					]
+				},
+				{
+					"caption": "دعوت را در Delta Chat / ArcaneChat باز کنید. حالا یک دونفره با ربات TGPORTAL دارید.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{ "side": "tg", "who": "you", "text": "/start" },
+						{
+							"side": "tg",
+							"who": "bot",
+							"text": "این دعوت دلتا چت را باز کنید، بعد فقط این کد را بفرستید:\nK7H2MQNP"
+						},
+						{ "side": "dc", "who": "sys", "text": "چت پذیرفته شد. کد جفت را بفرستید." }
+					]
+				},
+				{
+					"caption": "در همان دلتا چت فقط کد را بفرستید. جفت فعال می‌شود.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{ "side": "tg", "who": "bot", "text": "جفت شد. استیکر و متن حالا دو طرفه است." },
+						{ "side": "dc", "who": "you", "text": "K7H2MQNP" },
+						{ "side": "dc", "who": "bot", "text": "با حساب تلگرام شما جفت شد." }
+					]
+				},
+				{
+					"caption": "در تلگرام استیکر بفرستید. بدون نام‌فایل شلوغ در همان دلتا چت می‌نشیند.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{ "side": "tg", "who": "you", "text": "sticker", "kind": "sticker" },
+						{ "side": "dc", "who": "bot", "text": "sticker", "kind": "sticker" }
+					]
+				}
+			]
+		},
+		{
+			"id": "install",
+			"label": "نصب /pair-bot",
+			"scenes": [
+				{
+					"caption": "پرسونا اول جفت شخصی می‌خواهد (داستان ۱). بعد با BotFather ربات بسازید و توکن را کپی کنید. در چت عمومی نگذارید.",
+					"tgTitle": "@BotFather",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{ "side": "tg", "who": "you", "text": "/newbot" },
+						{
+							"side": "tg",
+							"who": "bot",
+							"text": "انجام شد. توکن:\n123456:AA…secret\nمحرمانه نگه دارید."
+						},
+						{ "side": "dc", "who": "sys", "text": "شما جفت هستید. روح‌ها می‌توانند به شما برسند." }
+					]
+				},
+				{
+					"caption": "در ربات پورتال (چت خصوصی) توکن را ثبت کنید. این /pair-bot است — با /pair فرق دارد.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{
+							"side": "tg",
+							"who": "you",
+							"text": "/pair-bot 123456:AA…secret https://t.me/YourBot"
+						}
+					]
+				},
+				{
+					"caption": "TGPORTAL ربات شما را poll می‌کند. توکن در SQLite زیر ./data روی میزبان می‌ماند.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{
+							"side": "tg",
+							"who": "you",
+							"text": "/pair-bot 123456:AA…secret https://t.me/YourBot"
+						},
+						{
+							"side": "tg",
+							"who": "bot",
+							"text": "ربات پرسونا @YourBot در حال polling است. هر کس DM بدهد یک روح می‌گیرد."
+						},
+						{
+							"side": "dc",
+							"who": "sys",
+							"text": "دعوت اضافه لازم نیست. کلید عمومی شما ذخیره است."
+						}
+					]
+				},
+				{
+					"caption": "روی سرور PERSONA_ACCOUNT_QR را هم بگذارید تا روح جدید ساخته شود. mode: persona یا both.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{
+							"side": "tg",
+							"who": "bot",
+							"text": "/bots → ۱ ربات (@YourBot)\n/unpair-bot برای توقف."
+						},
+						{ "side": "dc", "who": "sys", "text": ".env میزبان: PERSONA_ACCOUNT_QR=dcaccount:…" }
+					]
+				}
+			]
+		},
+		{
+			"id": "create",
+			"label": "کسی ربات شما را به کار می‌برد",
+			"scenes": [
+				{
+					"caption": "آلیس دلتا چت را باز نمی‌کند. فقط به ربات BotFather شما DM می‌دهد.",
+					"tgTitle": "@YourBot ← Alice",
+					"dcTitle": "You",
+					"bubbles": [{ "side": "tg", "who": "alice", "text": "سلام، استیکر داری؟" }]
+				},
+				{
+					"caption": "TGPORTAL روح دلتا چت با نام و عکس آلیس می‌سازد (یا دوباره استفاده می‌کند) و مثل یک دونفره عادی به شما می‌نویسد.",
+					"tgTitle": "@YourBot ← Alice",
+					"dcTitle": "Alice",
+					"bubbles": [
+						{ "side": "tg", "who": "alice", "text": "سلام، استیکر داری؟" },
+						{ "side": "dc", "who": "alice", "text": "سلام، استیکر داری؟" }
+					]
+				},
+				{
+					"caption": "در دلتا چت مثل همیشه جواب می‌دهید. بدون برچسب «از تلگرام».",
+					"tgTitle": "@YourBot ← Alice",
+					"dcTitle": "Alice",
+					"bubbles": [
+						{ "side": "tg", "who": "alice", "text": "سلام، استیکر داری؟" },
+						{ "side": "dc", "who": "alice", "text": "سلام، استیکر داری؟" },
+						{ "side": "dc", "who": "you", "text": "sticker", "kind": "sticker" }
+					]
+				},
+				{
+					"caption": "جواب از تلگرام به‌عنوان ربات شما می‌رود. تلگرام آلیس را عروسک نمی‌کند. باب روح و چت دیگری است.",
+					"tgTitle": "@YourBot ← Alice",
+					"dcTitle": "Alice",
+					"bubbles": [
+						{ "side": "tg", "who": "alice", "text": "سلام، استیکر داری؟" },
+						{ "side": "tg", "who": "bot", "text": "sticker", "kind": "sticker" },
+						{ "side": "dc", "who": "alice", "text": "سلام، استیکر داری؟" },
+						{ "side": "dc", "who": "you", "text": "sticker", "kind": "sticker" }
+					]
+				}
+			]
+		}
+	]
+}

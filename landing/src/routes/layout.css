@@ -326,6 +326,120 @@ footer.doodle-bar {
 	width: 2.4rem;
 }
 
+.phones {
+	display: grid;
+	direction: ltr;
+	gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+	.phones {
+		grid-template-columns: 1fr 1fr;
+		gap: 1.75rem;
+	}
+}
+
+.phone {
+	display: flex;
+	min-height: 22rem;
+	flex-direction: column;
+	overflow: hidden;
+	border: 2.5px solid var(--color-ink);
+	border-radius: 1.4rem 1.55rem 1.3rem 1.5rem;
+	background: #fffdf8;
+	box-shadow: 4px 4px 0 var(--color-ink);
+}
+
+.phone-tg .phone-bar {
+	background: #d7ebf7;
+}
+
+.phone-dc .phone-bar {
+	background: #dcefdc;
+}
+
+.phone-bar {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	border-bottom: 2px solid var(--color-ink);
+	padding: 0.65rem 0.85rem;
+}
+
+.phone-app {
+	font-size: 0.7rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.phone-peer {
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.phone-thread {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 0.55rem;
+	padding: 0.85rem;
+	background: radial-gradient(#e8e0d2 0.8px, transparent 0.9px), #f4efe4;
+	background-size: 12px 12px;
+}
+
+.phone-empty {
+	margin: auto;
+	color: var(--color-mist);
+	font-size: 0.9rem;
+}
+
+.bubble {
+	max-width: 88%;
+	border: 2px solid var(--color-ink);
+	border-radius: 0.9rem;
+	padding: 0.45rem 0.7rem;
+	font-size: 0.95rem;
+	line-height: 1.4;
+}
+
+.bubble-you {
+	align-self: flex-end;
+	background: #fff3b0;
+	border-radius: 0.95rem 0.95rem 0.25rem 0.95rem;
+}
+
+.bubble-them {
+	align-self: flex-start;
+	background: #fffdf8;
+	border-radius: 0.95rem 0.95rem 0.95rem 0.25rem;
+}
+
+.bubble-sys {
+	align-self: center;
+	max-width: 95%;
+	background: #eee8dc;
+	font-size: 0.8rem;
+	text-align: center;
+}
+
+.bubble-who {
+	display: block;
+	margin-bottom: 0.15rem;
+	font-size: 0.72rem;
+	font-weight: 700;
+}
+
+.sticker-chip {
+	display: inline-flex;
+	padding: 0.2rem;
+}
+
+.doodle-btn:disabled {
+	cursor: not-allowed;
+	opacity: 0.45;
+	box-shadow: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;

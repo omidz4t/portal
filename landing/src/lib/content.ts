@@ -2,13 +2,17 @@ import en from './content/en.json';
 import fa from './content/fa.json';
 import docsEn from './content/docs-en.json';
 import docsFa from './content/docs-fa.json';
+import tutorialEn from './content/tutorial-en.json';
+import tutorialFa from './content/tutorial-fa.json';
 
 export type Copy = typeof en;
 export type DocsCopy = typeof docsEn;
+export type TutorialCopy = typeof tutorialEn;
 export type Locale = 'en' | 'fa';
 
 export const copies: Record<Locale, Copy> = { en, fa };
 export const docsCopies: Record<Locale, DocsCopy> = { en: docsEn, fa: docsFa };
+export const tutorialCopies: Record<Locale, TutorialCopy> = { en: tutorialEn, fa: tutorialFa };
 
 export function localeFromPath(pathname: string): Locale {
 	return pathname === '/fa' || pathname.startsWith('/fa/') ? 'fa' : 'en';

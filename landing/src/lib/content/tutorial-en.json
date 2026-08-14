@@ -1,0 +1,190 @@
+{
+	"title": "Try it in two chats",
+	"lead": "Tap Next. The left phone is Telegram. The right phone is Delta Chat. Same moment on both sides.",
+	"next": "Next",
+	"back": "Back",
+	"restart": "Start over",
+	"stepOf": "Step {n} of {total}",
+	"telegram": "Telegram",
+	"delta": "Delta Chat",
+	"you": "You",
+	"emptyTg": "No messages yet.",
+	"emptyDc": "No chat yet.",
+	"stories": [
+		{
+			"id": "pair",
+			"label": "Pair (personal)",
+			"scenes": [
+				{
+					"caption": "Open the portal bot in a private Telegram chat and send /start.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "—",
+					"bubbles": [{ "side": "tg", "who": "you", "text": "/start" }]
+				},
+				{
+					"caption": "The bot answers with a Delta Chat invite and a short pairing code (about 30 minutes).",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "—",
+					"bubbles": [
+						{ "side": "tg", "who": "you", "text": "/start" },
+						{
+							"side": "tg",
+							"who": "bot",
+							"text": "Open this Delta Chat invite, then send only this code:\nK7H2MQNP"
+						}
+					]
+				},
+				{
+					"caption": "Open the invite in Delta Chat / ArcaneChat. You now have a 1:1 with the TGPORTAL bot.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{ "side": "tg", "who": "you", "text": "/start" },
+						{
+							"side": "tg",
+							"who": "bot",
+							"text": "Open this Delta Chat invite, then send only this code:\nK7H2MQNP"
+						},
+						{ "side": "dc", "who": "sys", "text": "Chat accepted. Send the pairing code." }
+					]
+				},
+				{
+					"caption": "In that Delta Chat, send only the code. The pair becomes active.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{
+							"side": "tg",
+							"who": "bot",
+							"text": "Paired. Stickers and text now go both ways."
+						},
+						{ "side": "dc", "who": "you", "text": "K7H2MQNP" },
+						{ "side": "dc", "who": "bot", "text": "Paired with your Telegram account." }
+					]
+				},
+				{
+					"caption": "Send a sticker on Telegram. It lands in the same Delta Chat, no noisy filename.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{ "side": "tg", "who": "you", "text": "sticker", "kind": "sticker" },
+						{ "side": "dc", "who": "bot", "text": "sticker", "kind": "sticker" }
+					]
+				}
+			]
+		},
+		{
+			"id": "install",
+			"label": "Install /pair-bot",
+			"scenes": [
+				{
+					"caption": "Persona needs you already paired (story 1). Then create a bot with BotFather and copy the token. Never paste it in public chats.",
+					"tgTitle": "@BotFather",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{ "side": "tg", "who": "you", "text": "/newbot" },
+						{
+							"side": "tg",
+							"who": "bot",
+							"text": "Done. Token:\n123456:AA…secret\nKeep this private."
+						},
+						{ "side": "dc", "who": "sys", "text": "You are already paired. Ghosts can reach you." }
+					]
+				},
+				{
+					"caption": "On the portal bot (private chat), register that token. This is /pair-bot — not the same as /pair.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{
+							"side": "tg",
+							"who": "you",
+							"text": "/pair-bot 123456:AA…secret https://t.me/YourBot"
+						}
+					]
+				},
+				{
+					"caption": "TGPORTAL starts polling your bot. The token stays in SQLite under ./data on the host.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{
+							"side": "tg",
+							"who": "you",
+							"text": "/pair-bot 123456:AA…secret https://t.me/YourBot"
+						},
+						{
+							"side": "tg",
+							"who": "bot",
+							"text": "Persona bot @YourBot is polling. Anyone who DMs it gets a ghost."
+						},
+						{
+							"side": "dc",
+							"who": "sys",
+							"text": "No extra invite. Your public key is already stored."
+						}
+					]
+				},
+				{
+					"caption": "On the server you also set PERSONA_ACCOUNT_QR so new ghosts can be created. mode: persona or both.",
+					"tgTitle": "@tgdeltabridgebot",
+					"dcTitle": "TGPORTAL",
+					"bubbles": [
+						{
+							"side": "tg",
+							"who": "bot",
+							"text": "/bots → 1 bot (@YourBot)\n/unpair-bot to stop."
+						},
+						{
+							"side": "dc",
+							"who": "sys",
+							"text": "Host .env: PERSONA_ACCOUNT_QR=dcaccount:…"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "create",
+			"label": "Someone uses your bot",
+			"scenes": [
+				{
+					"caption": "Alice never opens Delta Chat. She only DMs your BotFather bot.",
+					"tgTitle": "@YourBot ← Alice",
+					"dcTitle": "You",
+					"bubbles": [{ "side": "tg", "who": "alice", "text": "hey, got a sticker?" }]
+				},
+				{
+					"caption": "TGPORTAL creates (or reuses) a ghost Delta Chat account with Alice’s name and photo. It messages you as a normal 1:1.",
+					"tgTitle": "@YourBot ← Alice",
+					"dcTitle": "Alice",
+					"bubbles": [
+						{ "side": "tg", "who": "alice", "text": "hey, got a sticker?" },
+						{ "side": "dc", "who": "alice", "text": "hey, got a sticker?" }
+					]
+				},
+				{
+					"caption": "You reply in Delta Chat as you always do. No “via Telegram” label.",
+					"tgTitle": "@YourBot ← Alice",
+					"dcTitle": "Alice",
+					"bubbles": [
+						{ "side": "tg", "who": "alice", "text": "hey, got a sticker?" },
+						{ "side": "dc", "who": "alice", "text": "hey, got a sticker?" },
+						{ "side": "dc", "who": "you", "text": "sticker", "kind": "sticker" }
+					]
+				},
+				{
+					"caption": "The reply leaves Telegram as your bot. Telegram cannot puppet Alice. Bob would be a different ghost, a different chat.",
+					"tgTitle": "@YourBot ← Alice",
+					"dcTitle": "Alice",
+					"bubbles": [
+						{ "side": "tg", "who": "alice", "text": "hey, got a sticker?" },
+						{ "side": "tg", "who": "bot", "text": "sticker", "kind": "sticker" },
+						{ "side": "dc", "who": "alice", "text": "hey, got a sticker?" },
+						{ "side": "dc", "who": "you", "text": "sticker", "kind": "sticker" }
+					]
+				}
+			]
+		}
+	]
+}

@@ -2,7 +2,8 @@
 	import { botUrl, repoUrl } from '$lib/links';
 	import KoboyoIcon from '$lib/KoboyoIcon.svelte';
 	import type { Copy, Locale } from '$lib/content';
-	import { docsPath } from '$lib/content';
+	import { docsPath, tutorialCopies } from '$lib/content';
+	import MessengerTutorial from '$lib/MessengerTutorial.svelte';
 
 	let { copy, locale = 'en' }: { copy: Copy; locale?: Locale } = $props();
 
@@ -112,6 +113,10 @@
 			{/each}
 		</ol>
 	</section>
+
+	{#key locale}
+		<MessengerTutorial tutorial={tutorialCopies[locale]} />
+	{/key}
 
 	<section id="persona" class="persona-band" aria-labelledby="persona-heading">
 		<div class="mx-auto max-w-6xl px-5">

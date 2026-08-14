@@ -18,6 +18,7 @@
 	const base = $derived(basePath(locale));
 	const links = $derived([
 		{ href: `${base}#how`, label: copy.navHow, id: 'how' },
+		{ href: `${base}#try`, label: copy.navTry, id: 'try' },
 		{ href: `${base}#persona`, label: copy.navPersona, id: 'persona' },
 		{ href: docsPath(locale), label: copy.navDocs, id: 'docs' },
 		{ href: repoUrl, label: copy.navSource, id: 'source', external: true }
