@@ -29,20 +29,6 @@
 </svelte:head>
 
 <div>
-	<aside class="doodle-warn" role="note" aria-label={copy.warnTitle}>
-		<div class="mx-auto flex max-w-6xl gap-3 px-5 py-4 text-sm leading-relaxed text-warn">
-			<KoboyoIcon name="warning" class="mt-0.5 h-6 w-6" />
-			<p>
-				<strong class="font-semibold text-ink">{copy.warnTitle}</strong>
-				{copy.warnBody}
-				<a class="font-semibold underline underline-offset-2" href={docsPath(locale, 'self-host')}
-					>{copy.ctaHost}</a
-				>.
-				<a class="underline underline-offset-2" href={docsPath(locale, 'trust')}>{copy.warnWhy}</a>
-			</p>
-		</div>
-	</aside>
-
 	<section class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 lg:grid-cols-2 lg:py-20">
 		<div>
 			<p class="font-mono text-xs tracking-[0.18em] uppercase">{copy.heroEyebrow}</p>
@@ -67,7 +53,26 @@
 		</figure>
 	</section>
 
-	<section class="mx-auto max-w-6xl px-5 pb-16">
+	<section id="hold-on" class="doodle-warn" aria-labelledby="hold-on-heading">
+		<div class="mx-auto max-w-6xl px-5 py-12">
+			<p class="feature-stamp">
+				<KoboyoIcon name="warning" class="h-5 w-5" />
+				{copy.warnTitle}
+			</p>
+			<h2
+				id="hold-on-heading"
+				class="mt-6 max-w-3xl text-2xl font-semibold text-balance sm:text-3xl"
+			>
+				{copy.warnBody}
+			</h2>
+			<div class="mt-6 flex flex-wrap gap-3">
+				<a href={docsPath(locale, 'self-host')} class="doodle-btn doodle-btn-ink">{copy.ctaHost}</a>
+				<a href={docsPath(locale, 'trust')} class="doodle-btn">{copy.warnWhy}</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-5 py-16">
 		<h2 class="text-2xl font-semibold">{copy.bridgeTitle}</h2>
 		<p class="mt-2 max-w-2xl text-mist">{copy.bridgeLead}</p>
 		<div class="doodle-card mt-8 overflow-x-auto">
