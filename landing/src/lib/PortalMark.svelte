@@ -43,10 +43,11 @@
 
 <style>
 	.portal-mark {
+		--portal-pad: 1.2rem;
 		display: inline-flex;
 		flex-wrap: nowrap;
 		align-items: center;
-		gap: 0.2rem;
+		gap: 0;
 	}
 
 	.portal-mark-name {
@@ -65,11 +66,13 @@
 	}
 
 	.portal-window-left {
-		margin-inline-end: -0.2rem;
+		padding-inline-end: var(--portal-pad);
+		margin-inline-end: calc(var(--portal-pad) * -0.9);
 	}
 
 	.portal-window-right {
-		margin-inline-start: -0.2rem;
+		padding-inline-start: var(--portal-pad);
+		margin-inline-start: calc(var(--portal-pad) * -0.9);
 	}
 
 	.portal-sizers {
@@ -100,10 +103,14 @@
 	}
 
 	.portal-window-left .portal-rider {
+		right: var(--portal-pad);
+		left: 0;
 		text-align: end;
 	}
 
 	.portal-window-right .portal-rider {
+		left: var(--portal-pad);
+		right: 0;
 		text-align: start;
 	}
 
