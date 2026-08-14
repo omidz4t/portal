@@ -176,6 +176,67 @@
 			"intro": "Persona is the other product. Stay paired, then attach a BotFather bot that’s yours. Do it on a machine you run.",
 			"scenes": [
 				{
+					"caption": "Same Telegram as always. Portal is already in the list — you paired in the first story. BotFather is sitting there too. You haven’t opened either yet.",
+					"why": "Persona starts from a pair that already exists. The right phone is still just your normal Delta Chat. No ghost chats yet.",
+					"view": "inbox",
+					"tgTitle": "Chats",
+					"dcTitle": "Chats",
+					"inboxTg": [
+						{
+							"name": "Nima",
+							"preview": "ok see you at 8",
+							"when": "12:04",
+							"icon": "glasses"
+						},
+						{
+							"name": "Portal",
+							"preview": "Paired. Stickers go both ways.",
+							"when": "Yesterday",
+							"icon": "robot-face",
+							"focus": true
+						},
+						{
+							"name": "BotFather",
+							"preview": "What can I help you with?",
+							"when": "Mon",
+							"icon": "bot"
+						},
+						{
+							"name": "Work",
+							"preview": "Sara: deck is in the drive",
+							"when": "Sun",
+							"icon": "coffee"
+						},
+						{
+							"name": "Pizza night",
+							"preview": "who’s bringing drinks",
+							"when": "Sat",
+							"icon": "pizza"
+						}
+					],
+					"inboxDc": [
+						{
+							"name": "Portal",
+							"preview": "Paired. This chat is now your Telegram.",
+							"when": "Yesterday",
+							"icon": "robot-face"
+						},
+						{
+							"name": "Ada",
+							"preview": "sent you a file",
+							"when": "10:12",
+							"icon": "owl"
+						},
+						{
+							"name": "Family",
+							"preview": "mom: call later",
+							"when": "Sun",
+							"icon": "bear"
+						}
+					],
+					"bubbles": []
+				},
+				{
 					"caption": "Finish story 1 first. A ghost has to know how to write to you. That comes from when you /pair.",
 					"why": "No second invite. When you paired, the program saved your Delta Chat identity. New ghosts use that to open a chat with you. Skip /pair and /pair-bot just fails.",
 					"tgTitle": "Portal",
@@ -274,6 +335,61 @@
 			"intro": "After /pair-bot, each person who DMs you becomes a ghost on Delta Chat — their name, their photo, same account next time.",
 			"scenes": [
 				{
+					"caption": "This is Alice’s Telegram — her mess, not yours. @YourBot is just another row. Your Delta Chat still has no Alice.",
+					"why": "She never installed Delta Chat. She doesn’t see Portal. Your side is still the same chat list as after /pair-bot: Portal, friends, no ghosts.",
+					"view": "inbox",
+					"tgTitle": "Chats",
+					"dcTitle": "Chats",
+					"inboxTg": [
+						{
+							"name": "Nima",
+							"preview": "lol wait",
+							"when": "9:02",
+							"icon": "glasses"
+						},
+						{
+							"name": "@YourBot",
+							"preview": "Tap to start",
+							"when": "",
+							"icon": "robot-face",
+							"focus": true
+						},
+						{
+							"name": "Sticker dump",
+							"preview": "that cat one",
+							"when": "Yesterday",
+							"icon": "cat"
+						},
+						{
+							"name": "Pizza night",
+							"preview": "who’s bringing drinks",
+							"when": "Mon",
+							"icon": "pizza"
+						}
+					],
+					"inboxDc": [
+						{
+							"name": "Portal",
+							"preview": "Persona bot @YourBot is on.",
+							"when": "Yesterday",
+							"icon": "robot-face"
+						},
+						{
+							"name": "Ada",
+							"preview": "sent you a file",
+							"when": "10:12",
+							"icon": "owl"
+						},
+						{
+							"name": "Family",
+							"preview": "mom: call later",
+							"when": "Sun",
+							"icon": "bear"
+						}
+					],
+					"bubbles": []
+				},
+				{
 					"caption": "Alice never installs Delta Chat. She only opens @YourBot and writes a DM.",
 					"why": "From Alice’s point of view this is a normal Telegram bot. She does not see Portal, pairing codes, or your chatmail provider.",
 					"tgTitle": "@YourBot ← Alice",
@@ -326,6 +442,56 @@
 						{ "side": "dc", "who": "alice", "text": "hey, got a sticker?" },
 						{ "side": "dc", "who": "you", "text": "sticker", "kind": "sticker" }
 					]
+				},
+				{
+					"caption": "Flip back to the lists. Alice’s Telegram still looks like a bot chat. Yours now has a real row: Alice, her face, her last line.",
+					"why": "That new row is the ghost. Next time she writes, same chat. If Bob DMs @YourBot, a second row appears — Bob, not mixed into Alice.",
+					"view": "inbox",
+					"tgTitle": "Chats",
+					"dcTitle": "Chats",
+					"inboxTg": [
+						{
+							"name": "@YourBot",
+							"preview": "sticker",
+							"when": "now",
+							"icon": "robot-face",
+							"focus": true
+						},
+						{
+							"name": "Nima",
+							"preview": "lol wait",
+							"when": "9:02",
+							"icon": "glasses"
+						},
+						{
+							"name": "Sticker dump",
+							"preview": "that cat one",
+							"when": "Yesterday",
+							"icon": "cat"
+						}
+					],
+					"inboxDc": [
+						{
+							"name": "Alice",
+							"preview": "hey, got a sticker?",
+							"when": "now",
+							"icon": "fox",
+							"focus": true
+						},
+						{
+							"name": "Portal",
+							"preview": "Persona bot @YourBot is on.",
+							"when": "Yesterday",
+							"icon": "robot-face"
+						},
+						{
+							"name": "Ada",
+							"preview": "sent you a file",
+							"when": "10:12",
+							"icon": "owl"
+						}
+					],
+					"bubbles": []
 				}
 			]
 		}
