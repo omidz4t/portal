@@ -9,6 +9,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   test:
     name: Test
@@ -84,3 +88,76 @@ jobs:
           path: tgportal-*
           if-no-files-found: error
           retention-days: 14
+
+  # On main only: bump VERSION from conventional commits, then tag.
+  # The tag workflow publishes binaries. Skips chore(release) commits.
+  release:
+    name: Version bump
+    needs: test
+    if: >
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      !contains(github.event.head_commit.message, 'chore(release):')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config commit.gpgsign false
+          git config tag.gpgsign false
+
+      - name: Bump from conventional commits
+        id: version
+        run: bash scripts/bump-version.sh --commit --tag --changelog --skip-ci
+
+      - name: Push commit and tag
+        if: steps.version.outputs.bumped == 'true'
+        run: |
+          git push origin HEAD:main
+          git push origin "${{ steps.version.outputs.tag }}"
+
+      # GITHUB_TOKEN tag pushes do not start other workflows — publish here.
+      - name: Set up Go
+        if: steps.version.outputs.bumped == 'true'
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Build release archives
+        if: steps.version.outputs.bumped == 'true'
+        env:
+          CGO_ENABLED: "0"
+        run: make build-release-all VERSION="${{ steps.version.outputs.tag }}"
+
+      - name: Create GitHub Release
+        if: steps.version.outputs.bumped == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: TGPORTAL ${{ steps.version.outputs.tag }}
+          generate_release_notes: true
+          files: |
+            dist/*
+          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          {
+            echo "### Version"
+            echo ""
+            echo "- bump: \`${{ steps.version.outputs.bumped }}\`"
+            echo "- version: \`${{ steps.version.outputs.version }}\`"
+            echo "- tag: \`${{ steps.version.outputs.tag }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"

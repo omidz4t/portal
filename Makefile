@@ -125,9 +125,9 @@ minor:
 major:
 	@bash scripts/bump-version.sh --bump major
 
-# Bump from commits, commit VERSION, create tag vX.Y.Z (push yourself)
+# Bump from commits, changelog, commit VERSION, tag vX.Y.Z (push yourself)
 release-tag:
-	@bash scripts/bump-version.sh --commit --tag
+	@bash scripts/bump-version.sh --commit --tag --changelog
 
 clean:
 	rm -f $(BINARY)
