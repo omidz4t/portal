@@ -235,17 +235,30 @@
 					<a class="underline underline-offset-2" href={repoUrl}>GitHub</a>
 				</p>
 			</div>
-			<pre
-				class="code-ltr doodle-card overflow-x-auto p-5 font-mono text-sm leading-7"
-				dir="ltr"
-			><code>./tgportal --version
+			<div class="self-host-snippet">
+				<pre
+					class="code-ltr doodle-card overflow-x-auto p-5 font-mono text-sm leading-7"
+					dir="ltr"
+				><code>tar -xzf tgportal_*.tar.gz
+chmod +x tgportal
+./tgportal --version
 
-# config.yml from config.example.yml
-# .env → TELEGRAM_BOT_TOKEN=…
-#        PERSONA_ACCOUNT_QR=…
+# config.yml ← config.example.yml
+# .env  TELEGRAM_BOT_TOKEN=…
+#       PERSONA_ACCOUNT_QR=…
 
-./tgportal --config config.yml init dcaccount:nine.testrun.org
+./tgportal --config config.yml init \
+  dcaccount:nine.testrun.org
 ./tgportal --config config.yml serve</code></pre>
+				<a
+					class="doodle-btn doodle-btn-ink self-host-dl"
+					href="{repoUrl}/releases/latest"
+					rel="noreferrer"
+				>
+					<KoboyoIcon name="arrow-down" class="h-5 w-5" />
+					{copy.selfDownload}
+				</a>
+			</div>
 		</div>
 	</section>
 

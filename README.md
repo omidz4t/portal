@@ -11,7 +11,7 @@ Public bot: [@tgdeltabridgebot](https://t.me/tgdeltabridgebot)
 Requires Go 1.22+, [`deltachat-rpc-server`](https://github.com/chatmail/core/tree/main/deltachat-rpc-server) on `PATH`, and a [BotFather](https://t.me/BotFather) token.
 
 ```bash
-git clone https://github.com/themadorg/tgportal.git
+git clone https://github.com/omidz4t/portal.git
 cd tgportal
 make config          # then set TELEGRAM_BOT_TOKEN in .env
 make init QR=dcaccount:nine.testrun.org

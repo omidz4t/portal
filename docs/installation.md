@@ -49,7 +49,7 @@ If neither is installed, TGS is still bridged as a file attachment.
 ### A) Build the binary from source
 
 ```bash
-git clone https://github.com/themadorg/tgportal.git
+git clone https://github.com/omidz4t/portal.git
 cd tgportal
 make build          # → ./tgportal
 # or
@@ -60,7 +60,7 @@ Needs Go 1.22+. Then continue with First-time setup (`make config`, `make init`,
 
 ### B) Download a release binary
 
-No Go toolchain. Assets on each `v*` tag: [releases](https://github.com/themadorg/tgportal/releases).
+No Go toolchain. Assets on each `v*` tag: [releases](https://github.com/omidz4t/portal/releases).
 
 Names: `tgportal_<tag>_<os>_<arch>.tar.gz` (Windows `.zip`) and `checksums.txt`.
 

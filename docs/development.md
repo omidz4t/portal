@@ -141,7 +141,7 @@ sqlite3 data/tgportal.db 'SELECT id, code, telegram_user_id, status, dc_chat_id 
 ## Module path
 
 ```text
-github.com/themadorg/tgportal
+github.com/omidz4t/portal
 ```
 
 Adjust `go.mod` / import paths if you fork under another module path.

@@ -11,7 +11,7 @@
 	"stepOf": "Step {n} of {total}",
 	"whyLabel": "What’s actually happening",
 	"telegram": "Telegram",
-	"delta": "Delta Chat",
+	"delta": "Your Delta Chat",
 	"you": "You",
 	"emptyTg": "No messages yet.",
 	"emptyDc": "No chat yet.",
@@ -343,6 +343,7 @@
 			"id": "create",
 			"label": "A friend writes your bot",
 			"group": "Persona mode",
+			"telegram": "Alice’s Telegram",
 			"intro": "After /pair-bot, each person who DMs you becomes a ghost on Delta Chat — their name, their photo, same account next time.",
 			"scenes": [
 				{
@@ -449,7 +450,7 @@
 					"dcTitle": "Alice",
 					"bubbles": [
 						{ "side": "tg", "who": "alice", "text": "hey, got a sticker?" },
-						{ "side": "tg", "who": "bot", "text": "sticker", "kind": "sticker" },
+						{ "side": "tg", "who": "you", "text": "sticker", "kind": "sticker" },
 						{ "side": "dc", "who": "alice", "text": "hey, got a sticker?" },
 						{ "side": "dc", "who": "you", "text": "sticker", "kind": "sticker" }
 					]
@@ -458,7 +459,7 @@
 					"caption": "Flip back to the lists. Alice’s Telegram still looks like a bot chat. Yours now has a real row: Alice, her face, her last line.",
 					"why": "That new row is the ghost. Next time she writes, same chat. If Bob DMs @YourBot, a second row appears — Bob, not mixed into Alice.",
 					"view": "inbox",
-					"tgTitle": "Chats",
+					"tgTitle": "@YourBot ← Alice",
 					"dcTitle": "Chats",
 					"inboxTg": [
 						{
@@ -486,7 +487,7 @@
 							"name": "Alice",
 							"preview": "hey, got a sticker?",
 							"when": "now",
-							"icon": "fox",
+							"icon": "face-sunglasses-head",
 							"focus": true
 						},
 						{

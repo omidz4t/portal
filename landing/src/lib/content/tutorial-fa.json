@@ -11,7 +11,7 @@
 	"stepOf": "گام {n} از {total}",
 	"whyLabel": "یعنی چی؟",
 	"telegram": "تلگرام",
-	"delta": "دلتا چت",
+	"delta": "دلتا چت تو",
 	"you": "تو",
 	"emptyTg": "هنوز چیزی نیست.",
 	"emptyDc": "هنوز چتی باز نشده.",
@@ -325,6 +325,7 @@
 			"id": "create",
 			"label": "یکی به رباتت پیام می‌ده",
 			"group": "حالت پرسونا",
+			"telegram": "تلگرام آلیس",
 			"intro": "بعد از /pair-bot هر کی به رباتت DM بده تو دلتا چت یه روح می‌شه — اسمش، عکسش، دفعهٔ بعد همون حساب.",
 			"scenes": [
 				{
@@ -431,7 +432,7 @@
 					"dcTitle": "Alice",
 					"bubbles": [
 						{ "side": "tg", "who": "alice", "text": "سلام، استیکر داری؟" },
-						{ "side": "tg", "who": "bot", "text": "sticker", "kind": "sticker" },
+						{ "side": "tg", "who": "you", "text": "sticker", "kind": "sticker" },
 						{ "side": "dc", "who": "alice", "text": "سلام، استیکر داری؟" },
 						{ "side": "dc", "who": "you", "text": "sticker", "kind": "sticker" }
 					]
@@ -440,7 +441,7 @@
 					"caption": "برگرد به لیست. تلگرام آلیس هنوز یه چت رباته. سمت تو یه ردیف واقعی اومده: آلیس، صورتش، آخرین خطش.",
 					"why": "اون ردیف جدیده همون روحه. دفعهٔ بعد که بنویسه همون چته. اگه باب به @YourBot پیام بده، ردیف دوم می‌آد — باب، قاطی آلیس نمی‌شه.",
 					"view": "inbox",
-					"tgTitle": "چت‌ها",
+					"tgTitle": "@YourBot ← Alice",
 					"dcTitle": "چت‌ها",
 					"inboxTg": [
 						{
@@ -468,7 +469,7 @@
 							"name": "آلیس",
 							"preview": "سلام، استیکر داری؟",
 							"when": "الان",
-							"icon": "fox",
+							"icon": "face-sunglasses-head",
 							"focus": true
 						},
 						{

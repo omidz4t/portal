@@ -328,7 +328,7 @@ The TGPORTAL / Delta ↔️ TG source code may be released under an open-source 
 | **Developer** | [Your name or legal entity] |
 | **Privacy requests** | [privacy@example.com] |
 | **Telegram bot** | [@tgdeltabridgebot](https://t.me/tgdeltabridgebot) |
-| **Source / project** | [https://github.com/themadorg/tgportal] *(or your fork)* |
+| **Source / project** | [https://github.com/omidz4t/portal] *(or your fork)* |
 
 ---
 

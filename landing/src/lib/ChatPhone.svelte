@@ -43,6 +43,43 @@
 		return name.toLowerCase().includes('botfather');
 	}
 
+	function isAlice(name: string) {
+		return (
+			name === 'Alice' ||
+			name.startsWith('creating Alice') ||
+			name.includes('ساخت Alice') ||
+			name === 'آلیس'
+		);
+	}
+
+	const aliceFace = 'https://koboyo.com/icons/svg/face-sunglasses-head.svg';
+
+	const showAliceFace = $derived(
+		variant === 'dc' &&
+			!inbox &&
+			(isAlice(peer) || peer.includes('Alice') || peer.includes('آلیس'))
+	);
+
+	function isOutgoing(b: Bubble) {
+		if (b.who === 'you') return true;
+		if (variant === 'tg' && b.kind === 'sticker' && b.who === 'bot') return true;
+		return false;
+	}
+
+	function arrowParts(text: string) {
+		const parts: { t?: string; dir?: 'left' | 'right' }[] = [];
+		const re = /(←|→)/g;
+		let last = 0;
+		for (const m of text.matchAll(re)) {
+			const i = m.index ?? 0;
+			if (i > last) parts.push({ t: text.slice(last, i) });
+			parts.push({ dir: m[0] === '←' ? 'left' : 'right' });
+			last = i + m[0].length;
+		}
+		if (last < text.length) parts.push({ t: text.slice(last) });
+		return parts;
+	}
+
 	$effect(() => {
 		void bubbles.length;
 		void inbox;
@@ -54,17 +91,34 @@
 
 <article class="phone {variant === 'tg' ? 'phone-tg' : 'phone-dc'}" aria-label={app}>
 	<header class="phone-bar">
-		<img
-			class="app-logo"
-			class:logo-tg-dark={!inbox && isPortal(peer)}
-			src={logo}
-			alt=""
-			width="28"
-			height="28"
-		/>
+		{#if showAliceFace}
+			<span class="phone-avatar">
+				<img class="app-logo" src={aliceFace} alt="" width="28" height="28" />
+			</span>
+		{:else}
+			<img
+				class="app-logo"
+				class:logo-tg-dark={!inbox && isPortal(peer)}
+				src={logo}
+				alt=""
+				width="28"
+				height="28"
+			/>
+		{/if}
 		<div>
 			<p class="phone-app">{app}</p>
-			<p class="phone-peer">{peer}</p>
+			<p class="phone-peer">
+				{#each arrowParts(peer) as p}
+					{#if p.dir}
+						<KoboyoIcon
+							name="move-left"
+							class="phone-peer-arrow{p.dir === 'right' ? ' phone-arrow-right' : ''}"
+						/>
+					{:else}
+						{p.t}
+					{/if}
+				{/each}
+			</p>
 		</div>
 	</header>
 	<div class="phone-thread h-full" class:phone-inbox={inbox} bind:this={thread}>
@@ -72,7 +126,9 @@
 			{#each rows as row}
 				<div class="inbox-row" class:is-focus={row.focus}>
 					<span class="phone-avatar">
-						{#if isPortal(row.name) || isBotFather(row.name)}
+						{#if isAlice(row.name)}
+							<img class="app-logo" src={aliceFace} alt="" width="28" height="28" />
+						{:else if isPortal(row.name) || isBotFather(row.name)}
 							<img
 								class="app-logo"
 								class:logo-tg-dark={isPortal(row.name)}
@@ -96,12 +152,12 @@
 			{/each}
 		{:else if bubbles.length === 0}
 			<p class="phone-empty">{empty}</p>
-		{/if}
+		{:else}
 		{#each bubbles as b}
 			<div
 				class="bubble"
-				class:bubble-you={b.who === 'you'}
-				class:bubble-them={variant === 'tg' ? b.who !== 'you' : b.who !== 'you' && b.who !== 'sys'}
+				class:bubble-you={isOutgoing(b)}
+				class:bubble-them={variant === 'tg' ? !isOutgoing(b) : !isOutgoing(b) && b.who !== 'sys'}
 				class:bubble-sys={b.who === 'sys'}
 			>
 				{#if b.kind === 'sticker'}
@@ -118,15 +174,38 @@
 							height="120"
 						/>
 						<a class="invite-link" href={b.link} rel="nofollow noopener">{b.link}</a>
-						<p class="whitespace-pre-wrap">{b.text}</p>
+						<p class="whitespace-pre-wrap">
+							{#each arrowParts(b.text) as p}
+								{#if p.dir}
+									<KoboyoIcon
+										name="move-left"
+										class="phone-peer-arrow{p.dir === 'right' ? ' phone-arrow-right' : ''}"
+									/>
+								{:else}
+									{p.t}
+								{/if}
+							{/each}
+						</p>
 					</div>
 				{:else}
 					{#if whoLabel(b.who) && b.who !== 'you'}
 						<span class="bubble-who">{whoLabel(b.who)}</span>
 					{/if}
-					<p class="whitespace-pre-wrap">{b.text}</p>
+					<p class="whitespace-pre-wrap">
+						{#each arrowParts(b.text) as p}
+							{#if p.dir}
+								<KoboyoIcon
+									name="move-left"
+									class="phone-peer-arrow{p.dir === 'right' ? ' phone-arrow-right' : ''}"
+								/>
+							{:else}
+								{p.t}
+							{/if}
+						{/each}
+					</p>
 				{/if}
 			</div>
 		{/each}
+		{/if}
 	</div>
 </article>

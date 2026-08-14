@@ -43,7 +43,7 @@
 
 <style>
 	.portal-mark {
-		--portal-pad: 1.2rem;
+		--portal-pad: 1.55rem;
 		display: inline-flex;
 		flex-wrap: nowrap;
 		align-items: center;
@@ -67,12 +67,12 @@
 
 	.portal-window-left {
 		padding-inline-end: var(--portal-pad);
-		margin-inline-end: calc(var(--portal-pad) * -0.9);
+		margin-inline-end: calc(var(--portal-pad) * -1.05);
 	}
 
 	.portal-window-right {
 		padding-inline-start: var(--portal-pad);
-		margin-inline-start: calc(var(--portal-pad) * -0.9);
+		margin-inline-start: calc(var(--portal-pad) * -1.05);
 	}
 
 	.portal-sizers {
@@ -148,7 +148,7 @@
 		}
 		42%,
 		58% {
-			transform: translateX(115%);
+			transform: translateX(128%);
 		}
 		84%,
 		100% {
@@ -159,7 +159,7 @@
 	@keyframes in-east {
 		0%,
 		16% {
-			transform: translateX(115%);
+			transform: translateX(128%);
 		}
 		42%,
 		58% {
@@ -167,7 +167,7 @@
 		}
 		84%,
 		100% {
-			transform: translateX(115%);
+			transform: translateX(128%);
 		}
 	}
 
@@ -178,7 +178,7 @@
 		}
 		42%,
 		58% {
-			transform: translateX(-115%);
+			transform: translateX(-128%);
 		}
 		84%,
 		100% {
@@ -189,7 +189,7 @@
 	@keyframes in-west {
 		0%,
 		16% {
-			transform: translateX(-115%);
+			transform: translateX(-128%);
 		}
 		42%,
 		58% {
@@ -197,7 +197,7 @@
 		}
 		84%,
 		100% {
-			transform: translateX(-115%);
+			transform: translateX(-128%);
 		}
 	}
 

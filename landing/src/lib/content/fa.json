@@ -8,7 +8,7 @@
 	"navTry": "نشون بده",
 	"navPersona": "پرسونا",
 	"navDocs": "راهنما",
-	"navSource": "سورس",
+	"navSource": "کد منبع",
 	"navMenu": "منو",
 	"navClose": "بستن",
 	"openBot": "ربات تلگرام",
@@ -131,7 +131,8 @@
 		"پراکسی SOCKS5 / HTTP اختیاری"
 	],
 	"selfWalk": "راهنمای خودمیزبانی",
-	"footerCredit": "پورتال · MIT · themadorg · آیکون‌ها",
+	"selfDownload": "دانلود آخرین نسخه",
+	"footerCredit": "پورتال · MIT · omidz4t · آیکون‌ها",
 	"footerIcons": "Koboyo",
 	"navTrust": "اعتماد",
 	"navPersonaShort": "پرسونا",

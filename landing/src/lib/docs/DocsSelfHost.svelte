@@ -23,7 +23,7 @@
 		<h2>{docs.selfWay1}</h2>
 		<p>{docs.selfWay1P}</p>
 		<pre dir="ltr"><code
-				>git clone https://github.com/themadorg/tgportal.git
+				>git clone https://github.com/omidz4t/portal.git
 cd tgportal
 make config
 # edit .env: TELEGRAM_BOT_TOKEN=…
@@ -60,7 +60,7 @@ make serve
 		<pre dir="ltr"><code
 				># example: Linux x86_64
 curl -fsSL -o tgportal.tgz \
-  https://github.com/themadorg/tgportal/releases/latest/download/tgportal_VERSION_linux_amd64.tar.gz
+  https://github.com/omidz4t/portal/releases/latest/download/tgportal_VERSION_linux_amd64.tar.gz
 tar -tzf tgportal.tgz
 tar -xzf tgportal.tgz
 chmod +x tgportal

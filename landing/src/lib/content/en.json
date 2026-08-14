@@ -131,7 +131,8 @@
 		"Optional SOCKS5 / HTTP proxies"
 	],
 	"selfWalk": "Self-host walkthrough",
-	"footerCredit": "Portal · MIT · themadorg · icons",
+	"selfDownload": "Download latest",
+	"footerCredit": "Portal · MIT · omidz4t · icons",
 	"footerIcons": "Koboyo",
 	"navTrust": "Trust",
 	"navPersonaShort": "Persona",

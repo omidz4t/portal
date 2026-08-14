@@ -5,7 +5,7 @@ These rules apply to every coding agent and human working in this repository.
 **User-facing docs:** [README.md](README.md) and [docs/](docs/). Keep them updated when behavior or config changes.
 
 **Project name:** TGPORTAL  
-**Module:** `github.com/themadorg/tgportal`  
+**Module:** `github.com/omidz4t/portal`  
 **Binary / CLI app name:** `tgportal`  
 **Data directory default:** `./data` (set via `folder` in `config.yml` or `--folder`)
 
