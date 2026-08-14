@@ -231,6 +231,76 @@ footer.doodle-bar {
 	padding: 0.25rem;
 }
 
+.site-menu-label-close {
+	display: none;
+}
+
+.site-menu[open] {
+	position: fixed;
+	inset: 0;
+	z-index: 80;
+	display: flex;
+	flex-direction: column;
+	background: #fffdf8;
+	padding: 0.85rem 1.25rem 2rem;
+}
+
+.site-menu[open] > .site-menu-toggle {
+	align-self: flex-end;
+	z-index: 1;
+}
+
+.site-menu[open] .site-menu-label-open {
+	display: none;
+}
+
+.site-menu[open] .site-menu-label-close {
+	display: inline;
+}
+
+.site-menu[open] .site-menu-panel {
+	display: flex;
+	flex: 1;
+	min-height: 0;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.site-menu-nav {
+	display: flex;
+	flex-direction: column;
+	gap: 0.15rem;
+}
+
+.site-menu-link {
+	display: inline-flex;
+	min-height: 3.25rem;
+	align-items: center;
+	border-radius: 0.75rem;
+	padding-inline: 0.35rem;
+	font-size: 1.65rem;
+	font-weight: 600;
+	line-height: 1.15;
+}
+
+.site-menu-link.is-current {
+	text-decoration: underline;
+	text-underline-offset: 6px;
+}
+
+.site-menu-langs {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding-block: 1rem 0.75rem;
+	font-size: 1.1rem;
+}
+
+.site-menu-bot {
+	align-self: flex-start;
+	margin-top: 0.25rem;
+}
+
 .flow-track {
 	margin-inline: auto;
 	margin-top: 2.5rem;
