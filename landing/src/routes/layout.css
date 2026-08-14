@@ -623,7 +623,7 @@ footer.doodle-bar {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-end;
-	justify-content: space-between;
+	justify-content: flex-start;
 	width: 100%;
 	gap: 1rem 1.5rem;
 }
