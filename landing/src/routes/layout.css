@@ -378,13 +378,15 @@ footer.doodle-bar {
 }
 
 .try-band .phones {
+	display: grid;
 	min-height: 0;
 	flex: 1 1 auto;
+	align-items: stretch;
 }
 
 .try-band .phone {
-	min-height: 0;
 	height: 100%;
+	min-height: 24rem;
 }
 
 .phones {
@@ -402,7 +404,8 @@ footer.doodle-bar {
 
 .phone {
 	display: flex;
-	min-height: 22rem;
+	height: 100%;
+	min-height: 24rem;
 	flex-direction: column;
 	overflow: hidden;
 	border: 2.5px solid var(--color-ink);
@@ -515,10 +518,9 @@ footer.doodle-bar {
 
 .phone-thread {
 	display: flex;
-	height: 22rem;
-	min-height: 22rem;
-	max-height: 22rem;
-	flex: none;
+	height: 100%;
+	min-height: 0;
+	flex: 1 1 auto;
 	flex-direction: column;
 	gap: 0.55rem;
 	overflow-x: hidden;

@@ -51,7 +51,7 @@
 			<p class="phone-peer">{peer}</p>
 		</div>
 	</header>
-	<div class="phone-thread" class:phone-inbox={inbox} bind:this={thread}>
+	<div class="phone-thread h-full" class:phone-inbox={inbox} bind:this={thread}>
 		{#if inbox}
 			{#each rows as row}
 				<div class="inbox-row" class:is-focus={row.focus}>
