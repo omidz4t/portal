@@ -116,15 +116,6 @@
 		{/each}
 	</div>
 
-	{#if story.intro}
-		<p class="mt-4 max-w-3xl text-mist">{story.intro}</p>
-	{/if}
-
-	<p class="mt-4 max-w-3xl text-lg leading-relaxed font-semibold" aria-live="polite">
-		{scene.caption}
-	</p>
-	<p class="mt-1 text-xs text-mist">{stepLabel}</p>
-
 	<div class="phones mt-5">
 		<ChatPhone
 			variant="tg"
@@ -150,12 +141,17 @@
 		/>
 	</div>
 
-	{#if scene.why}
-		<aside class="doodle-card mt-5 max-w-3xl p-5" aria-label={tutorial.whyLabel}>
-			<p class="text-sm font-semibold">{tutorial.whyLabel}</p>
+	<aside class="doodle-card try-walk-why mt-5 p-5" aria-label={tutorial.whyLabel} aria-live="polite">
+		<p class="text-sm font-semibold">{tutorial.whyLabel}</p>
+		{#if story.intro && step === 0}
+			<p class="mt-2 text-mist">{story.intro}</p>
+		{/if}
+		<p class="mt-2 text-lg leading-relaxed font-semibold">{scene.caption}</p>
+		{#if scene.why}
 			<p class="mt-2 leading-relaxed">{scene.why}</p>
-		</aside>
-	{/if}
+		{/if}
+		<p class="mt-2 text-xs text-mist">{stepLabel}</p>
+	</aside>
 
 	<div class="try-walk-nav">
 		<button type="button" class="doodle-btn" onclick={back} disabled={step === 0}
