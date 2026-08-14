@@ -1,6 +1,6 @@
 {
 	"brandName": "Portal",
-	"metaTitle": "Portal — Telegram ↔ Delta Chat media bridge",
+	"metaTitle": "Portal — Telegram and Delta Chat media bridge",
 	"metaDescription": "Pair once, then stickers, GIFs, Lottie, and short video move both ways. Prefer self-hosting: you trust whoever runs the bot.",
 	"skip": "Skip to main content",
 	"heroDown": "Scroll down",
@@ -16,7 +16,7 @@
 	"warnTitle": "Hold on.",
 	"warnBody": "A public bot means you trust whoever runs the box. They can see pairing data and whatever you bridge. Delta Chat encryption does not hide that from tgportal. Better to run your own.",
 	"warnWhy": "Why?",
-	"heroEyebrow": "Telegram ↔ Delta Chat",
+	"heroEyebrow": "Telegram and Delta Chat",
 	"heroTitle": "Stickers and GIFs that survive the jump to Delta Chat.",
 	"heroLead": "Pair once with a short code. Then send a sticker on Telegram — it shows up in Delta Chat. Send it back the other way. No ugly filenames. No “from Telegram” caption.",
 	"ctaHost": "Run it yourself",
@@ -72,7 +72,7 @@
 		{
 			"n": "03",
 			"title": "Send the code on Delta Chat",
-			"body": "Accept the chat, send only the code. The pair becomes active: your Telegram user ↔ that DC chat."
+			"body": "Accept the chat, send only the code. The pair becomes active: your Telegram user and that Delta Chat."
 		},
 		{
 			"n": "04",
