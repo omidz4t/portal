@@ -65,7 +65,6 @@
 <section id="try" class="try-band">
 	<div class="try-inner mx-auto w-full max-w-6xl px-5">
 		<h2 class="text-2xl font-semibold sm:text-3xl">{tutorial.title}</h2>
-		<p class="mt-2 max-w-2xl text-mist">{tutorial.lead}</p>
 
 		<div class="mt-6 flex flex-wrap gap-2" role="tablist" aria-label={tutorial.title}>
 			{#each tutorial.stories as s}
