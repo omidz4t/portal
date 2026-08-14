@@ -326,6 +326,40 @@ footer.doodle-bar {
 	width: 2.4rem;
 }
 
+.try-band {
+	display: flex;
+	min-height: 100vh;
+	min-height: 100dvh;
+	flex-direction: column;
+	border-block: 3px solid var(--color-ink);
+	background-color: #dce8e2;
+	background-image:
+		radial-gradient(circle at 1px 1px, #a8bfb4 1.15px, transparent 1.2px),
+		linear-gradient(#dce8e2, #dce8e2);
+	background-size:
+		20px 20px,
+		auto;
+	padding-block: 2rem 2.5rem;
+	scroll-margin-top: 0;
+}
+
+.try-inner {
+	display: flex;
+	min-height: 0;
+	flex: 1 1 auto;
+	flex-direction: column;
+}
+
+.try-band .phones {
+	min-height: 0;
+	flex: 1 1 auto;
+}
+
+.try-band .phone {
+	min-height: 0;
+	height: 100%;
+}
+
 .phones {
 	display: grid;
 	direction: ltr;
