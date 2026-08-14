@@ -56,7 +56,6 @@
 		<a href={base} class="flex min-h-11 items-center gap-1.5 rounded-lg px-1">
 			<KoboyoIcon name="cartoon-portal-render" class="h-8 w-8" />
 			<span class="text-sm font-semibold tracking-wide">{copy.brandName}</span>
-			<KoboyoIcon name="cartoon-portal-render" class="h-8 w-8 -scale-x-100" />
 		</a>
 
 		<nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
