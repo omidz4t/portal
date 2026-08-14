@@ -384,7 +384,8 @@ footer.doodle-bar {
 }
 
 .try-headline {
-	max-width: 14ch;
+	width: 100%;
+	max-width: none;
 	font-size: clamp(2.4rem, 7vw, 5.4rem);
 	font-weight: 700;
 	line-height: 1.05;
