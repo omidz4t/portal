@@ -452,9 +452,13 @@ footer.doodle-bar {
 
 .try-modal-bar {
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	flex-direction: column;
+	align-items: flex-start;
 	gap: 1rem;
+}
+
+.try-modal-bar .try-headline {
+	font-size: clamp(1.6rem, 4vw, 2.75rem);
 }
 
 .try-band .phones {

@@ -93,12 +93,12 @@
 <section id="try" class="try-band">
 	<div class="try-cta mx-auto flex w-full max-w-6xl flex-col items-start justify-center px-5">
 		<div class="try-cta-row">
-			<span class="try-beam-wrap">
-				<KoboyoIcon name="very-happy-beaming" class="try-beam" />
-			</span>
 			<h2 class="try-headline whitespace-pre-line">
 				{tutorial.title}
 			</h2>
+			<span class="try-beam-wrap">
+				<KoboyoIcon name="very-happy-beaming" class="try-beam" />
+			</span>
 		</div>
 		<button type="button" class="try-open doodle-btn doodle-btn-ink" onclick={openShow}>
 			{tutorial.open}
@@ -109,7 +109,7 @@
 <dialog class="try-modal" bind:this={dialog} onclick={onDialogClick} aria-labelledby="try-modal-title">
 	<div class="try-modal-inner">
 		<div class="try-modal-bar">
-			<h3 id="try-modal-title" class="text-lg font-semibold sm:text-xl">{tutorial.title}</h3>
+			<h3 id="try-modal-title" class="try-headline whitespace-pre-line">{tutorial.title}</h3>
 			<button type="button" class="doodle-btn" onclick={closeShow}>{tutorial.close}</button>
 		</div>
 
