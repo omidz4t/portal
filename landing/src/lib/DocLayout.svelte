@@ -41,10 +41,10 @@
 	<p class="font-mono text-xs tracking-[0.2em] uppercase">Docs</p>
 	<h1 class="mt-2 text-3xl font-semibold tracking-tight text-balance text-ink">{title}</h1>
 	{#if lede}
-		<p class="max-w-prose text-lg text-mist">{lede}</p>
+		<p class="docs-copy max-w-prose text-lg text-mist">{lede}</p>
 	{/if}
 	<div
-		class="max-w-prose text-mist [&_a]:text-sky [&_a]:underline-offset-2 [&_a]:hover:underline [&_code]:text-ink [&_pre]:overflow-x-auto [&_strong]:text-ink"
+		class="docs-copy max-w-prose text-mist [&_a]:text-sky [&_a]:underline-offset-2 [&_a]:hover:underline [&_code]:text-ink [&_pre]:overflow-x-auto [&_strong]:text-ink"
 	>
 		{@render children()}
 	</div>
