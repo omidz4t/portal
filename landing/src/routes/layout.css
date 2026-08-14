@@ -370,6 +370,23 @@ footer.doodle-bar {
 	align-self: center;
 	margin-top: 1.5rem;
 	color: var(--color-ink);
+	animation: hero-down-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes hero-down-bounce {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(0.55rem);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-down {
+		animation: none;
+	}
 }
 
 .try-band {
