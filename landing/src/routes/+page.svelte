@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { botUrl, repoUrl } from '$lib/links';
+	import KoboyoIcon from '$lib/KoboyoIcon.svelte';
 
 	const media = [
 		{ tg: 'Static WEBP stickers', dc: 'Sticker / image' },
@@ -37,20 +38,7 @@
 <div>
 	<aside class="border-b border-warn/40 bg-warn-bg" role="note" aria-label="Trust warning">
 		<div class="mx-auto flex max-w-6xl gap-3 px-5 py-4 text-sm leading-relaxed text-warn">
-			<svg
-				class="mt-0.5 h-5 w-5 shrink-0"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2"
-				aria-hidden="true"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"
-				/>
-			</svg>
+			<KoboyoIcon name="warning" class="mt-0.5 h-6 w-6" />
 			<p>
 				<strong class="font-semibold text-paper">Warning.</strong>
 				A public bot is a relay. Whoever runs
@@ -165,52 +153,123 @@
 	<section id="persona" class="border-y border-line/80 bg-panel/40">
 		<div class="mx-auto max-w-6xl px-5 py-16">
 			<p class="font-mono text-xs tracking-[0.2em] text-sky uppercase">Persona</p>
-			<h2 class="mt-2 text-2xl font-semibold">Your Telegram bot, their faces on Delta Chat</h2>
-			<p class="mt-3 max-w-3xl leading-relaxed text-mist">
-				Persona is a second product in the same binary. You keep a normal portal pair (so TGPORTAL
-				knows <em>your</em> Delta Chat identity), then register a BotFather bot you own. People who
-				message <em>that</em> bot are not dumped into one shared chat. Each Telegram user gets a
-				<strong class="text-paper">ghost Delta Chat account</strong> — name and photo copied from Telegram
-				— that writes to you as a normal 1:1. No “from Telegram” prefix. Replies you send in that 1:1
-				go back out through your bot.
+			<h2 class="mt-2 text-2xl font-semibold text-balance sm:text-3xl">
+				Persona: they message your Telegram bot. You see them as people on Delta Chat.
+			</h2>
+			<p class="mt-4 max-w-3xl text-lg leading-relaxed text-mist">
+				Personal mode is one public portal bot and one chat. Persona is different: you plug in a bot <em
+					>you</em
+				>
+				created with BotFather. Friends never join a shared dump. Each Telegram user becomes a
+				<strong class="text-paper">ghost</strong> — a real Delta Chat account with their name and photo
+				— that opens a normal 1:1 with you. Replies you type there leave as your bot.
 			</p>
-			<div class="mt-8 grid gap-5 md:grid-cols-3">
-				<article class="rounded-2xl border border-line bg-ink/50 p-6">
-					<p class="font-mono text-xs text-sky">01 · owner</p>
-					<h3 class="mt-2 text-lg font-semibold">Pair, then /pair-bot</h3>
-					<p class="mt-2 text-sm leading-relaxed text-mist">
-						<code class="font-mono text-paper">/pair</code> on the portal bot first (stores your DC
-						vcard/public key). Create a bot with BotFather. In a private chat with the portal:
-						<code class="font-mono text-paper">/pair-bot &lt;TOKEN&gt;</code>. Tokens stay in SQLite
-						under <code class="font-mono text-paper">./data</code> — never in logs or git.
+
+			<div class="mt-10 grid gap-4 md:grid-cols-2">
+				<article class="rounded-2xl border border-line bg-ink/40 p-6">
+					<div class="flex items-center gap-3 text-mist">
+						<KoboyoIcon name="message" class="h-10 w-10" />
+						<h3 class="text-lg font-semibold text-paper">Personal pairing</h3>
+					</div>
+					<p class="mt-3 text-sm leading-relaxed text-mist">
+						You talk to the portal bot. Stickers and text land in <em>one</em> Delta Chat conversation
+						with that bot. Fine for “my media, my chat.”
 					</p>
 				</article>
-				<article class="rounded-2xl border border-line bg-ink/50 p-6">
-					<p class="font-mono text-xs text-sky">02 · ghosts</p>
-					<h3 class="mt-2 text-lg font-semibold">One account per Telegram id</h3>
-					<p class="mt-2 text-sm leading-relaxed text-mist">
-						Alice DMs your bot → ghost A messages you. Bob DMs → ghost B, separate chat. Same person
-						later? Same ghost, reused forever. These accounts are created with
-						<code class="font-mono text-paper">PERSONA_ACCOUNT_QR</code> and are independent of personal-mode
-						pairings.
-					</p>
-				</article>
-				<article class="rounded-2xl border border-line bg-ink/50 p-6">
-					<p class="font-mono text-xs text-sky">03 · groups</p>
-					<h3 class="mt-2 text-lg font-semibold">Optional TG group mirror</h3>
-					<p class="mt-2 text-sm leading-relaxed text-mist">
-						If <code class="font-mono text-paper">persona.allow_groups</code> is on, add the bot to
-						a Telegram group and turn <strong class="text-paper">Group Privacy off</strong> in
-						BotFather. Posts become a Delta Chat group
-						<code class="font-mono text-paper">TG: …</code> with each speaker as their ghost. Your replies
-						leave as the bot (Telegram cannot puppet users).
+				<article class="rounded-2xl border border-sky/40 bg-ink/60 p-6">
+					<div class="flex items-center gap-3 text-sky">
+						<KoboyoIcon name="ghost" class="h-10 w-10" />
+						<h3 class="text-lg font-semibold text-paper">Persona</h3>
+					</div>
+					<p class="mt-3 text-sm leading-relaxed text-mist">
+						They talk to <em>your</em> bot. On Delta Chat, Alice looks like Alice, Bob looks like Bob
+						— separate chats, reused forever for the same Telegram id.
 					</p>
 				</article>
 			</div>
+
+			<h3 class="mt-14 text-xl font-semibold">How a message travels</h3>
+			<p class="mt-2 max-w-2xl text-mist">
+				Read left to right on a wide screen, or top to bottom on a phone. Same story.
+			</p>
+			<ol class="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+				<li class="rounded-2xl border border-line bg-ink/50 p-5">
+					<KoboyoIcon name="telegram" class="h-14 w-14 text-sky" />
+					<p class="mt-4 font-mono text-xs text-sky">1 · they write</p>
+					<h4 class="mt-1 text-lg font-semibold">Alice DMs your bot</h4>
+					<p class="mt-2 text-sm leading-relaxed text-mist">
+						She never opens Delta Chat. She only knows the Telegram bot you published.
+					</p>
+				</li>
+				<li class="rounded-2xl border border-line bg-ink/50 p-5">
+					<KoboyoIcon name="bot" class="h-14 w-14 text-teal" />
+					<p class="mt-4 font-mono text-xs text-sky">2 · your bot</p>
+					<h4 class="mt-1 text-lg font-semibold">TGPORTAL is polling it</h4>
+					<p class="mt-2 text-sm leading-relaxed text-mist">
+						You registered the BotFather token with
+						<code class="font-mono text-paper">/pair-bot</code> on the portal (after you
+						<code class="font-mono text-paper">/pair</code>ed yourself).
+					</p>
+				</li>
+				<li class="rounded-2xl border border-line bg-ink/50 p-5">
+					<KoboyoIcon name="ghost" class="h-14 w-14 text-paper" />
+					<p class="mt-4 font-mono text-xs text-sky">3 · a ghost is born</p>
+					<h4 class="mt-1 text-lg font-semibold">One DC account per Telegram id</h4>
+					<p class="mt-2 text-sm leading-relaxed text-mist">
+						Missing? Create with <code class="font-mono text-paper">PERSONA_ACCOUNT_QR</code>, copy
+						name and photo. Exists? Reuse. Not the same table as personal pairs.
+					</p>
+				</li>
+				<li class="rounded-2xl border border-line bg-ink/50 p-5">
+					<KoboyoIcon name="paper-plane" class="h-14 w-14 text-teal" />
+					<p class="mt-4 font-mono text-xs text-sky">4 · you read and reply</p>
+					<h4 class="mt-1 text-lg font-semibold">Normal 1:1 on Delta Chat</h4>
+					<p class="mt-2 text-sm leading-relaxed text-mist">
+						No “via Telegram” label. Your reply goes back out through the bot. Telegram cannot
+						puppet Alice as Alice.
+					</p>
+				</li>
+			</ol>
+
+			<div class="mt-10 grid gap-5 md:grid-cols-3">
+				<article class="rounded-2xl border border-line bg-ink/50 p-6">
+					<KoboyoIcon name="key" class="h-10 w-10 text-sky" />
+					<h3 class="mt-4 text-lg font-semibold">You set it up once</h3>
+					<p class="mt-2 text-sm leading-relaxed text-mist">
+						<code class="font-mono text-paper">mode: persona</code> or
+						<code class="font-mono text-paper">both</code>. Pair the portal so TGPORTAL has your DC
+						public key. Then
+						<code class="font-mono text-paper">/pair-bot &lt;TOKEN&gt;</code> in a private chat.
+						Token stays in SQLite under <code class="font-mono text-paper">./data</code>.
+					</p>
+				</article>
+				<article class="rounded-2xl border border-line bg-ink/50 p-6">
+					<KoboyoIcon name="users" class="h-10 w-10 text-sky" />
+					<h3 class="mt-4 text-lg font-semibold">Groups are optional</h3>
+					<p class="mt-2 text-sm leading-relaxed text-mist">
+						Turn on <code class="font-mono text-paper">persona.allow_groups</code>, add the bot,
+						disable BotFather group privacy. Posts become a Delta Chat group
+						<code class="font-mono text-paper">TG: …</code> with each speaker as their ghost. You are
+						a member; your replies are the bot.
+					</p>
+				</article>
+				<article class="rounded-2xl border border-line bg-ink/50 p-6">
+					<KoboyoIcon name="lock" class="h-10 w-10 text-warn" />
+					<h3 class="mt-4 text-lg font-semibold">The host is the bot</h3>
+					<p class="mt-2 text-sm leading-relaxed text-mist">
+						Whoever runs <code class="font-mono text-paper">tgportal</code> holds the token and the
+						ghost keys. Do not <code class="font-mono text-paper">/pair-bot</code> on a public
+						instance you do not operate.
+						<a class="text-teal underline-offset-2 hover:underline" href="/docs/self-host/"
+							>Host your own</a
+						>.
+					</p>
+				</article>
+			</div>
+
 			<p class="mt-8 text-sm text-mist">
-				Config: <code class="font-mono text-paper">mode: persona</code> or
-				<code class="font-mono text-paper">both</code>. Full operator steps, commands, and failure
-				notes:
+				Commands: <code class="font-mono text-paper">/bots</code>,
+				<code class="font-mono text-paper">/unpair-bot</code>. Full notes:
 				<a class="text-teal underline-offset-2 hover:underline" href="/docs/persona/"
 					>persona docs</a
 				>.
