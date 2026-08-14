@@ -2,7 +2,11 @@
 	import ChatPhone from '$lib/ChatPhone.svelte';
 	import type { TutorialCopy, TutorialScene } from '$lib/content';
 
-	let { tutorial, hideTitle = false }: { tutorial: TutorialCopy; hideTitle?: boolean } = $props();
+	let {
+		tutorial,
+		hideTitle = false,
+		homeHref = ''
+	}: { tutorial: TutorialCopy; hideTitle?: boolean; homeHref?: string } = $props();
 
 	let storyId = $state<string | null>(null);
 	let step = $state(0);
@@ -88,32 +92,38 @@
 </script>
 
 <div class="try-walk">
-	{#if !hideTitle}
-		<h1 class="try-headline whitespace-pre-line">{tutorial.title}</h1>
-	{/if}
-
-	<div class="try-story-nav mt-4">
-		{#each storyGroups as g}
-			<div class="try-story-group" class:has-label={Boolean(g.name)}>
-				{#if g.name}
-					<p class="try-story-group-label">{g.name}</p>
-				{/if}
-				<div class="flex flex-wrap gap-2" role="tablist" aria-label={g.name || tutorial.title}>
-					{#each g.stories as s}
-						<button
-							type="button"
-							class="doodle-btn"
-							class:doodle-btn-ink={s.id === story.id}
-							role="tab"
-							aria-selected={s.id === story.id}
-							onclick={() => pick(s.id)}
-						>
-							{s.label}
-						</button>
-					{/each}
+	<div class="try-walk-head">
+		<div class="try-story-nav">
+			{#each storyGroups as g}
+				<div class="try-story-group" class:has-label={Boolean(g.name)}>
+					{#if g.name}
+						<p class="try-story-group-label">{g.name}</p>
+					{/if}
+					<div class="flex flex-wrap gap-2" role="tablist" aria-label={g.name || tutorial.title}>
+						{#each g.stories as s}
+							<button
+								type="button"
+								class="doodle-btn"
+								class:doodle-btn-ink={s.id === story.id}
+								role="tab"
+								aria-selected={s.id === story.id}
+								onclick={() => pick(s.id)}
+							>
+								{s.label}
+							</button>
+						{/each}
+					</div>
 				</div>
+			{/each}
+		</div>
+		{#if homeHref}
+			<div class="try-page-bar">
+				<a href={homeHref} class="doodle-btn try-page-back">{tutorial.homeBack}</a>
+				<h1 class="try-headline try-page-title">{tutorial.title}</h1>
 			</div>
-		{/each}
+		{:else if !hideTitle}
+			<h1 class="try-headline whitespace-pre-line">{tutorial.title}</h1>
+		{/if}
 	</div>
 
 	<div class="phones mt-5">

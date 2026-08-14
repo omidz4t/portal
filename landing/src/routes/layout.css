@@ -581,6 +581,14 @@ footer.doodle-bar {
 	padding: 0 1.25rem;
 }
 
+.try-walk-head {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.85rem 1.25rem;
+}
+
 .try-page-bar {
 	display: flex;
 	flex-wrap: wrap;
@@ -635,10 +643,10 @@ footer.doodle-bar {
 
 .try-story-nav {
 	display: flex;
+	flex-direction: row;
 	flex-wrap: wrap;
 	align-items: flex-end;
 	justify-content: flex-start;
-	width: 100%;
 	gap: 1rem 1.5rem;
 }
 

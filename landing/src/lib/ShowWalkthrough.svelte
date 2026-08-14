@@ -8,10 +8,6 @@
 
 <div class="try-page">
 	<div class="try-page-inner">
-		<div class="try-page-bar">
-			<a href="{basePath(locale)}#try" class="doodle-btn try-page-back">{tutorial.homeBack}</a>
-			<h1 class="try-headline try-page-title">{tutorial.title}</h1>
-		</div>
-		<Walkthrough {tutorial} hideTitle />
+		<Walkthrough {tutorial} homeHref="{basePath(locale)}#try" />
 	</div>
 </div>
