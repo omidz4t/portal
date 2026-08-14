@@ -20,7 +20,7 @@
 <svelte:head>
 	<title>{copy.metaTitle}</title>
 	<meta name="description" content={copy.metaDescription} />
-	<meta property="og:title" content="Portal" />
+	<meta property="og:title" content={copy.brandName} />
 	<meta property="og:description" content={copy.metaDescription} />
 	<meta property="og:image" content="/poster.jpg" />
 	<link rel="alternate" hreflang="en" href="/" />

@@ -2,7 +2,7 @@
 	import DocLayout from '$lib/DocLayout.svelte';
 	import { repoUrl } from '$lib/links';
 	import type { DocsCopy, Locale } from '$lib/content';
-	import { docsPath } from '$lib/content';
+	import { copies, docsPath } from '$lib/content';
 
 	let { docs, locale }: { docs: DocsCopy; locale: Locale } = $props();
 
@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-	<title>{docs.selfTitle} — Portal</title>
+	<title>{docs.selfTitle} — {copies[locale].brandName}</title>
 </svelte:head>
 
 <div class="mx-auto max-w-3xl px-5 py-16">
