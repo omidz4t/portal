@@ -4,6 +4,7 @@
 	import SiteFooter from '$lib/SiteFooter.svelte';
 	import { page } from '$app/state';
 	import { copies, localeFromPath } from '$lib/content';
+	import { seoFor } from '$lib/seo';
 
 	let { children } = $props();
 
@@ -15,6 +16,7 @@
 		page.url.pathname === '/' || page.url.pathname === '/fa' || page.url.pathname === '/fa/'
 	);
 	const headerCurrent = $derived(onDocs ? 'docs' : onShow ? 'try' : '');
+	const seo = $derived(seoFor(page.url.pathname));
 
 	$effect(() => {
 		document.documentElement.lang = locale === 'fa' ? 'fa' : 'en';
@@ -23,13 +25,26 @@
 </script>
 
 <svelte:head>
-	<title>{copy.metaTitle}</title>
-	<meta name="description" content={copy.metaDescription} />
-	<meta property="og:title" content={copy.brandName} />
-	<meta property="og:description" content={copy.metaDescription} />
-	<meta property="og:image" content="/poster.jpg" />
-	<link rel="alternate" hreflang="en" href="/" />
-	<link rel="alternate" hreflang="fa" href="/fa/" />
+	<title>{seo.title}</title>
+	<meta name="description" content={seo.description} />
+	<link rel="canonical" href={seo.canonical} />
+	<link rel="alternate" hreflang="en" href={seo.alternateEn} />
+	<link rel="alternate" hreflang="fa" href={seo.alternateFa} />
+	<link rel="alternate" hreflang="x-default" href={seo.alternateEn} />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content={seo.siteName} />
+	<meta property="og:locale" content={seo.ogLocale} />
+	<meta property="og:locale:alternate" content={seo.ogLocaleAlt} />
+	<meta property="og:url" content={seo.canonical} />
+	<meta property="og:title" content={seo.title} />
+	<meta property="og:description" content={seo.description} />
+	<meta property="og:image" content={seo.image} />
+	<meta property="og:image:alt" content={seo.imageAlt} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={seo.title} />
+	<meta name="twitter:description" content={seo.description} />
+	<meta name="twitter:image" content={seo.image} />
+	<meta name="twitter:image:alt" content={seo.imageAlt} />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link

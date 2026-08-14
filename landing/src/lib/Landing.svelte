@@ -25,11 +25,6 @@
 	] as const;
 </script>
 
-<svelte:head>
-	<title>{copy.metaTitle}</title>
-	<meta name="description" content={copy.metaDescription} />
-</svelte:head>
-
 <div>
 	<section class="hero-band">
 		<div class="hero-grid mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
