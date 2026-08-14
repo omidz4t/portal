@@ -93,6 +93,14 @@
 
 <div class="try-walk">
 	<div class="try-walk-head">
+		{#if homeHref}
+			<div class="try-page-bar">
+				<a href={homeHref} class="doodle-btn try-page-back">{tutorial.homeBack}</a>
+				<h1 class="try-headline try-page-title">{tutorial.title}</h1>
+			</div>
+		{:else if !hideTitle}
+			<h1 class="try-headline whitespace-pre-line">{tutorial.title}</h1>
+		{/if}
 		<div class="try-story-nav">
 			{#each storyGroups as g}
 				<div class="try-story-group" class:has-label={Boolean(g.name)}>
@@ -116,14 +124,6 @@
 				</div>
 			{/each}
 		</div>
-		{#if homeHref}
-			<div class="try-page-bar">
-				<a href={homeHref} class="doodle-btn try-page-back">{tutorial.homeBack}</a>
-				<h1 class="try-headline try-page-title">{tutorial.title}</h1>
-			</div>
-		{:else if !hideTitle}
-			<h1 class="try-headline whitespace-pre-line">{tutorial.title}</h1>
-		{/if}
 	</div>
 
 	<div class="phones mt-5">
