@@ -17,8 +17,8 @@
 	"stories": [
 		{
 			"id": "pair",
-			"label": "Tunnel mode",
-			"group": "",
+			"label": "Pair",
+			"group": "Tunnel mode",
 			"intro": "Simple mode: you, the portal bot, one Delta Chat. Nothing moves until this pair is on.",
 			"scenes": [
 				{
