@@ -59,13 +59,7 @@
 
 <section id="try" class="try-band">
 	<div class="try-inner mx-auto w-full max-w-6xl px-5">
-		<h2 class="flex flex-wrap items-center gap-3 text-2xl font-semibold sm:text-3xl">
-			<span class="inline-flex items-center gap-1.5" aria-hidden="true">
-				<img src="/logos/telegram.svg" alt="" width="32" height="32" class="h-8 w-8" />
-				<img src="/logos/deltachat.svg" alt="" width="32" height="32" class="h-8 w-8" />
-			</span>
-			{tutorial.title}
-		</h2>
+		<h2 class="text-2xl font-semibold sm:text-3xl">{tutorial.title}</h2>
 
 		<div class="mt-6 flex flex-wrap gap-2" role="tablist" aria-label={tutorial.title}>
 			{#each tutorial.stories as s}
