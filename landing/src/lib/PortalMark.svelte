@@ -16,11 +16,28 @@
 	let root: HTMLElement | undefined = $state();
 	let leftSlot: HTMLElement | undefined = $state();
 	let rightSlot: HTMLElement | undefined = $state();
-	let span = $state(0);
+	let leftGate: HTMLElement | undefined = $state();
+	let rightGate: HTMLElement | undefined = $state();
+
+	let tgPath = $state({ enter: '0px', exitStart: '0px', exitEnd: '0px' });
+	let dcPath = $state({ enter: '0px', exitStart: '0px', exitEnd: '0px' });
+
+	function deltaX(from: HTMLElement, to: HTMLElement) {
+		return `${to.offsetLeft + to.offsetWidth / 2 - (from.offsetLeft + from.offsetWidth / 2)}px`;
+	}
 
 	function measure() {
-		if (!leftSlot || !rightSlot) return;
-		span = Math.max(0, rightSlot.offsetLeft - leftSlot.offsetLeft);
+		if (!leftSlot || !rightSlot || !leftGate || !rightGate) return;
+		tgPath = {
+			enter: deltaX(leftSlot, leftGate),
+			exitStart: deltaX(leftSlot, rightGate),
+			exitEnd: deltaX(leftSlot, rightSlot)
+		};
+		dcPath = {
+			enter: deltaX(rightSlot, rightGate),
+			exitStart: deltaX(rightSlot, leftGate),
+			exitEnd: deltaX(rightSlot, leftSlot)
+		};
 	}
 
 	$effect(() => {
@@ -32,21 +49,26 @@
 	});
 </script>
 
-<p
-	class="portal-mark"
-	bind:this={root}
-	style="--portal-span: {span}px"
-	dir="ltr"
->
-	<span class="portal-mark-side portal-mark-tg" bind:this={leftSlot}>{telegram}</span>
-	<span class="portal-gate">
+<p class="portal-mark" bind:this={root} dir="ltr">
+	<span
+		class="portal-mark-side portal-mark-tg"
+		bind:this={leftSlot}
+		style="--enter: {tgPath.enter}; --exit-start: {tgPath.exitStart}; --exit-end: {tgPath.exitEnd}"
+		>{telegram}</span
+	>
+	<span class="portal-gate" bind:this={leftGate}>
 		<KoboyoIcon name="mirror-portal" class={iconClass} />
 	</span>
 	<span class="portal-mark-name">{name}</span>
-	<span class="portal-gate portal-mark-flip">
+	<span class="portal-gate portal-mark-flip" bind:this={rightGate}>
 		<KoboyoIcon name="mirror-portal" class={iconClass} />
 	</span>
-	<span class="portal-mark-side portal-mark-dc" bind:this={rightSlot}>{delta}</span>
+	<span
+		class="portal-mark-side portal-mark-dc"
+		bind:this={rightSlot}
+		style="--enter: {dcPath.enter}; --exit-start: {dcPath.exitStart}; --exit-end: {dcPath.exitEnd}"
+		>{delta}</span
+	>
 </p>
 
 <style>
@@ -73,6 +95,7 @@
 		line-height: 1;
 		letter-spacing: 0.02em;
 		white-space: nowrap;
+		animation: portal-swap 6.8s linear infinite;
 	}
 
 	.portal-gate {
@@ -80,7 +103,7 @@
 		z-index: 2;
 		display: inline-flex;
 		flex-shrink: 0;
-		animation: gate-pulse 6.4s ease-in-out infinite;
+		animation: gate-pulse 6.8s ease-in-out infinite;
 	}
 
 	.portal-mark-flip {
@@ -88,98 +111,72 @@
 		animation-name: gate-pulse-flip;
 	}
 
-	.portal-mark-tg {
-		--portal-dir: 1;
-		animation: portal-swap 6.4s ease-in-out infinite;
-	}
-
-	.portal-mark-dc {
-		--portal-dir: -1;
-		animation: portal-swap 6.4s ease-in-out infinite;
-	}
-
 	@keyframes portal-swap {
 		0%,
-		10% {
-			transform: translateX(0) scale(1);
+		12% {
+			transform: translateX(0);
 			opacity: 1;
-			filter: blur(0);
 		}
-		20% {
-			transform: translateX(calc(var(--portal-dir) * 0.7rem)) scale(0.2);
+		28% {
+			transform: translateX(var(--enter));
 			opacity: 0;
-			filter: blur(3px);
 		}
-		21%,
-		24% {
-			transform: translateX(
-				calc(var(--portal-dir) * var(--portal-span) - var(--portal-dir) * 0.7rem)
-			)
-				scale(0.2);
+		28.01% {
+			transform: translateX(var(--exit-start));
 			opacity: 0;
-			filter: blur(4px);
 		}
-		34%,
-		52% {
-			transform: translateX(calc(var(--portal-dir) * var(--portal-span))) scale(1);
+		44%,
+		56% {
+			transform: translateX(var(--exit-end));
 			opacity: 1;
-			filter: blur(0);
 		}
-		62% {
-			transform: translateX(
-				calc(var(--portal-dir) * var(--portal-span) - var(--portal-dir) * 0.7rem)
-			)
-				scale(0.2);
+		72% {
+			transform: translateX(var(--exit-start));
 			opacity: 0;
-			filter: blur(3px);
 		}
-		63%,
-		66% {
-			transform: translateX(calc(var(--portal-dir) * 0.7rem)) scale(0.2);
+		72.01% {
+			transform: translateX(var(--enter));
 			opacity: 0;
-			filter: blur(4px);
 		}
-		76%,
+		88%,
 		100% {
-			transform: translateX(0) scale(1);
+			transform: translateX(0);
 			opacity: 1;
-			filter: blur(0);
 		}
 	}
 
 	@keyframes gate-pulse {
 		0%,
-		16%,
-		28%,
-		58%,
-		70%,
+		22%,
+		34%,
+		66%,
+		78%,
 		100% {
 			transform: scale(1);
 		}
-		20%,
-		62% {
-			transform: scale(1.14);
+		28%,
+		72% {
+			transform: scale(1.12);
 		}
 	}
 
 	@keyframes gate-pulse-flip {
 		0%,
-		16%,
-		28%,
-		58%,
-		70%,
+		22%,
+		34%,
+		66%,
+		78%,
 		100% {
 			transform: scaleX(-1) scale(1);
 		}
-		20%,
-		62% {
-			transform: scaleX(-1) scale(1.14);
+		28%,
+		72% {
+			transform: scaleX(-1) scale(1.12);
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.portal-mark-tg,
-		.portal-mark-dc,
+		.portal-mark-side,
 		.portal-gate {
 			animation: none;
 		}
