@@ -76,7 +76,7 @@ sha256sum tgportal
 			{docs.selfMore}
 			<a href="{repoUrl}/blob/main/docs/installation.md">installation</a>
 			·
-			<a href="{repoUrl}/blob/main/docs/configuration.md">configuration</a>
+			<a href={docsPath(locale, 'config')}>{docs.selfLinkConfig}</a>
 			·
 			<a href="{repoUrl}/blob/main/docs/security.md">security</a>
 			·

@@ -24,6 +24,11 @@
 			"slug": "self-host",
 			"title": "Self-host",
 			"body": "Build the binary, or download one from a release. Then config, init, serve."
+		},
+		{
+			"slug": "config",
+			"title": "Config file",
+			"body": "config.yml keys, .env secrets, proxies, bridge toggles, and what wins when both are set."
 		}
 	],
 	"trustTitle": "You are trusting whoever runs the bot",
@@ -117,5 +122,98 @@
 	"selfList": "releases list",
 	"selfWay2Note": "Replace VERSION with the tag without the leading v if the asset name uses that form (see the release notes). You still need deltachat-rpc-server on PATH; the release is only the Go bot.",
 	"selfPreview": "Landing preview while developing: make run-landing → http://127.0.0.1:5173.",
-	"selfMore": "More: installation, configuration, security, trust."
+	"selfMore": "More: installation, configuration, security, trust.",
+	"selfLinkConfig": "configuration",
+	"cfgTitle": "Config file",
+	"cfgLede": "Secrets stay in .env. Behavior stays in config.yml. Copy the examples; never commit the locals or ./data.",
+	"cfgFilesLead": "TGPORTAL splits two files on purpose:",
+	"cfgFilesItems": [
+		"config.yml — mode, profile, storage, logging, proxies, Telegram UI, bridge toggles. Gitignored.",
+		"config.example.yml — tracked template. Copy it with make config.",
+		".env — TELEGRAM_BOT_TOKEN, optional PERSONA_ACCOUNT_QR, INVITE_URL, TGPORTAL_DB_KEY, allow-list, proxy URLs. Gitignored.",
+		".env.example — tracked template for secrets."
+	],
+	"cfgMake": "Create locals if they are missing:",
+	"cfgEnvTitle": "Environment (.env)",
+	"cfgEnvLead": "Never put BotFather tokens in YAML. User-owned tokens from /pair-bot live only in SQLite under folder.",
+	"cfgEnvItems": [
+		"TELEGRAM_BOT_TOKEN — required for the Telegram bridge",
+		"PERSONA_ACCOUNT_QR — dcaccount: / dclogin: URI to provision ghost accounts (persona / both)",
+		"INVITE_URL — optional admin Delta Chat invite for the boot message",
+		"TGPORTAL_DB_KEY — 32-byte hex key (openssl rand -hex 32) when database_encrypt is true",
+		"TELEGRAM_ALLOWED_USER_IDS — comma-separated IDs; overrides telegram.allowed_user_ids when set",
+		"PROXY_URL, TELEGRAM_PROXY_URL, DELTACHAT_PROXY_URL, PROXY_ENABLED — optional proxy overrides"
+	],
+	"cfgYamlTitle": "YAML (config.yml)",
+	"cfgProfileTitle": "Profile (Delta Chat)",
+	"cfgProfileItems": [
+		"name — display name (displayname). Default: Delta ↔️ TG",
+		"image — avatar path (selfavatar). Empty string skips the avatar update",
+		"reply — leftover unpaired reply (pairing offer usually replaces it)",
+		"boot_message — optional text sent to INVITE_URL when serve starts"
+	],
+	"cfgModeTitle": "Mode",
+	"cfgModeLead": "mode is personal, persona, or both. personal is the classic one-to-one portal pair. persona registers owner bots with /pair-bot and gives each Telegram person a ghost Delta Chat account. both runs the two together.",
+	"cfgPersonaItems": [
+		"persona.account_qr — override with PERSONA_ACCOUNT_QR in .env",
+		"persona.max_ghosts / max_ghosts_per_bot — caps on ghost accounts",
+		"persona.max_bots / max_bots_per_owner — caps on registered owner bots",
+		"persona.allow_register_from_tg — allow /pair-bot on the portal bot (default true)",
+		"persona.allow_groups — mirror Telegram groups as Delta Chat groups (default false)"
+	],
+	"cfgPairTitle": "Pairing",
+	"cfgPairItems": [
+		"pairing.code_length — 4–12 characters (default 8)",
+		"pairing.pending_ttl_sec — how long a unused code lasts (default 1800 = 30 minutes)"
+	],
+	"cfgStoreTitle": "Storage and encryption",
+	"cfgStoreItems": [
+		"folder — data directory (same as --folder). Default ./data",
+		"database — SQLite file name, relative to folder unless absolute. Default tgportal.db",
+		"account — limit CLI ops to one Delta Chat account id; 0 = all",
+		"database_encrypt — if true, serve refuses to open the store without a key (set this on a public host)",
+		"database_key — do not put this in YAML; use TGPORTAL_DB_KEY"
+	],
+	"cfgLogTitle": "Logging",
+	"cfgLogLead": "log defaults to false (off). Set stderr, stdout, or a file path such as ./data/tgportal.log. log_level is debug, info, warn, or error. Delta Chat core may still print its own lines; this only controls TGPORTAL / bridge logs.",
+	"cfgProxyTitle": "Proxy",
+	"cfgProxyLead": "Shared proxy applies to Telegram and Delta Chat. telegram.proxy and deltachat.proxy override it. Schemes: socks5://, socks5h://, http://, https://.",
+	"cfgTgTitle": "Telegram",
+	"cfgTgItems": [
+		"telegram.enabled — start long-poll when a token is set",
+		"telegram.bot_url — shown in messages (e.g. https://t.me/tgdeltabridgebot)",
+		"telegram.logo — photo on /start and /help",
+		"telegram.start_animation — animation on /start (caption = instructions)",
+		"telegram.reaction — emoji after a successful bridge; off, none, or - to disable",
+		"telegram.allowed_user_ids — empty list = anyone may /pair; set IDs for a private host"
+	],
+	"cfgBridgeTitle": "Bridge toggles",
+	"cfgBridgeLead": "Each flag is on by default. Turn one off to stop forwarding that kind both ways when a pair is active.",
+	"cfgBridgeItems": [
+		"bridge.text, images, videos",
+		"bridge.stickers, lottie, video_stickers, gif, custom_emoji",
+		"bridge.sticker_packs — /send_pack from a quoted sticker"
+	],
+	"cfgLimitsTitle": "Limits",
+	"cfgLimitsLead": "Leaving a limit at 0 applies the built-in default. Use -1 where supported for unlimited.",
+	"cfgLimitsItems": [
+		"bridge.limits.video_max_duration_sec — default 60",
+		"bridge.limits.video_max_bytes — default 20 MiB",
+		"bridge.limits.image_max_bytes — default 10 MiB",
+		"bridge.limits.file_max_bytes — default 20 MiB",
+		"bridge.limits.sticker_pack_max — default 120 stickers per /send_pack"
+	],
+	"cfgPrecTitle": "What wins",
+	"cfgPrecFolder": "Data directory: CLI --folder / -f, then folder in config.yml, then ./data.",
+	"cfgPrecAllow": "Telegram allow-list: TELEGRAM_ALLOWED_USER_IDS if set, then telegram.allowed_user_ids, then unrestricted.",
+	"cfgPrecPath": "Config path: CLI --config / -c (default config.yml). Makefile: make serve CONFIG=path/to.yml.",
+	"cfgAssetsTitle": "Assets and runtime files",
+	"cfgAssetsItems": [
+		"assets/logo.jpg — Telegram branding and default Delta Chat avatar",
+		"assets/start_black_hole.mp4 — /start animation",
+		"folder/accounts/ — Delta Chat account databases",
+		"folder/tgportal.db — pairing and persona store",
+		"folder/tg-cache/ — temporary Telegram downloads"
+	],
+	"cfgRepo": "Operator notes in the repo:"
 }

@@ -24,6 +24,11 @@
 			"slug": "self-host",
 			"title": "خودمیزبانی",
 			"body": "باینری را بسازید، یا از انتشار دانلود کنید. بعد پیکربندی، init و serve."
+		},
+		{
+			"slug": "config",
+			"title": "فایل تنظیمات",
+			"body": "کلیدهای config.yml، اسرار .env، پروکسی‌ها، کلیدهای پل، و اینکه وقتی هر دو تنظیم شوند کدام مقدم است."
 		}
 	],
 	"trustTitle": "شما به هرکسی که ربات را اجرا می‌کند اعتماد می‌کنید",
@@ -117,5 +122,98 @@
 	"selfList": "فهرست انتشارها",
 	"selfWay2Note": "اگر نام فایل آن شکل است، VERSION را تگ بدون v اول بگذارید (یادداشت انتشار را ببینید). هنوز deltachat-rpc-server روی PATH لازم است؛ انتشار فقط ربات Go است.",
 	"selfPreview": "پیش‌نمایش لندینگ در توسعه: make run-landing → http://127.0.0.1:5173.",
-	"selfMore": "بیشتر: نصب، پیکربندی، امنیت، اعتماد."
+	"selfMore": "بیشتر: نصب، پیکربندی، امنیت، اعتماد.",
+	"selfLinkConfig": "پیکربندی",
+	"cfgTitle": "فایل تنظیمات",
+	"cfgLede": "اسرار در .env می‌مانند. رفتار در config.yml است. نمونه‌ها را کپی کنید؛ هرگز فایل‌های محلی یا ./data را commit نکنید.",
+	"cfgFilesLead": "TGPORTAL عمداً دو فایل را جدا می‌کند:",
+	"cfgFilesItems": [
+		"config.yml — حالت، پروفایل، ذخیره‌سازی، لاگ، پروکسی‌ها، رابط تلگرام، کلیدهای پل. در git نادیده گرفته می‌شود.",
+		"config.example.yml — قالب ردیابی‌شده. با make config کپی کنید.",
+		".env — TELEGRAM_BOT_TOKEN، اختیاری PERSONA_ACCOUNT_QR، INVITE_URL، TGPORTAL_DB_KEY، لیست مجاز، آدرس پروکسی. در git نادیده گرفته می‌شود.",
+		".env.example — قالب ردیابی‌شده برای اسرار."
+	],
+	"cfgMake": "اگر فایل‌های محلی نیستند بسازید:",
+	"cfgEnvTitle": "محیط (.env)",
+	"cfgEnvLead": "هرگز توکن‌های BotFather را در YAML نگذارید. توکن‌های کاربر از /pair-bot فقط در SQLite زیر folder می‌مانند.",
+	"cfgEnvItems": [
+		"TELEGRAM_BOT_TOKEN — برای پل تلگرام لازم است",
+		"PERSONA_ACCOUNT_QR — URI از نوع dcaccount: / dclogin: برای ساخت حساب روح (پرسونا / both)",
+		"INVITE_URL — دعوت اختیاری ادمین دلتا چت برای پیام boot",
+		"TGPORTAL_DB_KEY — کلید hex ۳۲ بایتی (openssl rand -hex 32) وقتی database_encrypt برابر true است",
+		"TELEGRAM_ALLOWED_USER_IDS — شناسه‌ها با کاما؛ اگر تنظیم شود telegram.allowed_user_ids را بازنویسی می‌کند",
+		"PROXY_URL, TELEGRAM_PROXY_URL, DELTACHAT_PROXY_URL, PROXY_ENABLED — بازنویسی اختیاری پروکسی"
+	],
+	"cfgYamlTitle": "YAML (config.yml)",
+	"cfgProfileTitle": "پروفایل (دلتا چت)",
+	"cfgProfileItems": [
+		"name — نام نمایشی (displayname). پیش‌فرض: Delta ↔️ TG",
+		"image — مسیر آواتار (selfavatar). رشتهٔ خالی به‌روزرسانی آواتار را رد می‌کند",
+		"reply — پاسخ جفت‌نشدهٔ قدیمی (معمولاً پیشنهاد جفت‌سازی جایگزینش می‌شود)",
+		"boot_message — متن اختیاری به INVITE_URL هنگام شروع serve"
+	],
+	"cfgModeTitle": "حالت",
+	"cfgModeLead": "mode برابر personal، persona یا both است. personal جفت کلاسیک یک‌به‌یک پورتال است. persona ربات‌های مالک را با /pair-bot ثبت می‌کند و به هر شخص تلگرام یک حساب روح دلتا چت می‌دهد. both هر دو را با هم اجرا می‌کند.",
+	"cfgPersonaItems": [
+		"persona.account_qr — بازنویسی با PERSONA_ACCOUNT_QR در .env",
+		"persona.max_ghosts / max_ghosts_per_bot — سقف حساب‌های روح",
+		"persona.max_bots / max_bots_per_owner — سقف ربات‌های مالک ثبت‌شده",
+		"persona.allow_register_from_tg — اجازهٔ /pair-bot روی ربات پورتال (پیش‌فرض true)",
+		"persona.allow_groups — آینهٔ گروه‌های تلگرام به‌صورت گروه دلتا چت (پیش‌فرض false)"
+	],
+	"cfgPairTitle": "جفت‌سازی",
+	"cfgPairItems": [
+		"pairing.code_length — ۴ تا ۱۲ نویسه (پیش‌فرض ۸)",
+		"pairing.pending_ttl_sec — عمر کد استفاده‌نشده (پیش‌فرض ۱۸۰۰ = ۳۰ دقیقه)"
+	],
+	"cfgStoreTitle": "ذخیره و رمزنگاری",
+	"cfgStoreItems": [
+		"folder — پوشهٔ داده (همان --folder). پیش‌فرض ./data",
+		"database — نام فایل SQLite، نسبت به folder مگر مسیر مطلق. پیش‌فرض tgportal.db",
+		"account — محدود کردن CLI به یک شناسهٔ حساب دلتا چت؛ ۰ = همه",
+		"database_encrypt — اگر true باشد، serve بدون کلید فروشگاه را باز نمی‌کند (روی میزبان عمومی بگذارید)",
+		"database_key — در YAML نگذارید؛ از TGPORTAL_DB_KEY استفاده کنید"
+	],
+	"cfgLogTitle": "لاگ",
+	"cfgLogLead": "پیش‌فرض log برابر false است (خاموش). stderr، stdout یا مسیری مثل ./data/tgportal.log بگذارید. log_level یکی از debug، info، warn یا error است. هستهٔ دلتا چت ممکن است هنوز خط خودش را چاپ کند؛ این فقط لاگ TGPORTAL / پل را کنترل می‌کند.",
+	"cfgProxyTitle": "پروکسی",
+	"cfgProxyLead": "پروکسی مشترک روی تلگرام و دلتا چت اعمال می‌شود. telegram.proxy و deltachat.proxy آن را بازنویسی می‌کنند. طرح‌ها: socks5://، socks5h://، http://، https://.",
+	"cfgTgTitle": "تلگرام",
+	"cfgTgItems": [
+		"telegram.enabled — شروع long-poll وقتی توکن هست",
+		"telegram.bot_url — در پیام‌ها نشان داده می‌شود (مثلاً https://t.me/tgdeltabridgebot)",
+		"telegram.logo — عکس روی /start و /help",
+		"telegram.start_animation — انیمیشن /start (کپشن = دستورالعمل)",
+		"telegram.reaction — ایموجی بعد از پل موفق؛ off، none یا - برای خاموش کردن",
+		"telegram.allowed_user_ids — لیست خالی = هرکسی می‌تواند /pair کند؛ برای میزبان خصوصی شناسه بگذارید"
+	],
+	"cfgBridgeTitle": "کلیدهای پل",
+	"cfgBridgeLead": "هر پرچم پیش‌فرض روشن است. یکی را خاموش کنید تا آن نوع در جفت فعال دوطرفه فرستاده نشود.",
+	"cfgBridgeItems": [
+		"bridge.text, images, videos",
+		"bridge.stickers, lottie, video_stickers, gif, custom_emoji",
+		"bridge.sticker_packs — /send_pack از استیکر نقل‌قول‌شده"
+	],
+	"cfgLimitsTitle": "محدودیت‌ها",
+	"cfgLimitsLead": "اگر محدودیت ۰ بماند مقدار پیش‌فرض داخلی اعمال می‌شود. جایی که پشتیبانی شود برای نامحدود از -1 استفاده کنید.",
+	"cfgLimitsItems": [
+		"bridge.limits.video_max_duration_sec — پیش‌فرض ۶۰",
+		"bridge.limits.video_max_bytes — پیش‌فرض ۲۰ MiB",
+		"bridge.limits.image_max_bytes — پیش‌فرض ۱۰ MiB",
+		"bridge.limits.file_max_bytes — پیش‌فرض ۲۰ MiB",
+		"bridge.limits.sticker_pack_max — پیش‌فرض ۱۲۰ استیکر در هر /send_pack"
+	],
+	"cfgPrecTitle": "کدام مقدم است",
+	"cfgPrecFolder": "پوشهٔ داده: CLI --folder / -f، بعد folder در config.yml، بعد ./data.",
+	"cfgPrecAllow": "لیست مجاز تلگرام: TELEGRAM_ALLOWED_USER_IDS اگر تنظیم شده، بعد telegram.allowed_user_ids، بعد بدون محدودیت.",
+	"cfgPrecPath": "مسیر تنظیمات: CLI --config / -c (پیش‌فرض config.yml). Makefile: make serve CONFIG=path/to.yml.",
+	"cfgAssetsTitle": "دارایی‌ها و فایل‌های زمان اجرا",
+	"cfgAssetsItems": [
+		"assets/logo.jpg — برند تلگرام و آواتار پیش‌فرض دلتا چت",
+		"assets/start_black_hole.mp4 — انیمیشن /start",
+		"folder/accounts/ — پایگاه‌دادهٔ حساب‌های دلتا چت",
+		"folder/tgportal.db — فروشگاه جفت‌سازی و پرسونا",
+		"folder/tg-cache/ — دانلود موقت تلگرام"
+	],
+	"cfgRepo": "یادداشت اپراتور در ریپو:"
 }
