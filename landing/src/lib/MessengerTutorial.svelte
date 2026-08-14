@@ -1,5 +1,5 @@
 <script lang="ts">
-	import KoboyoIcon from '$lib/KoboyoIcon.svelte';
+	import ChatPhone from '$lib/ChatPhone.svelte';
 	import type { TutorialCopy, TutorialScene } from '$lib/content';
 
 	let { tutorial }: { tutorial: TutorialCopy } = $props();
@@ -55,12 +55,6 @@
 		return out;
 	}
 
-	function whoLabel(who: string) {
-		if (who === 'you') return tutorial.you;
-		if (who === 'alice') return 'Alice';
-		return '';
-	}
-
 	function listTitle(title: string) {
 		return title === 'Chats' || title === 'چت‌ها' || title === '—';
 	}
@@ -80,23 +74,6 @@
 		if (!listTitle(title) && scene.view !== 'inbox') return false;
 		return lastInbox(side).length > 0;
 	}
-
-	function inboxRows(side: 'tg' | 'dc') {
-		return lastInbox(side);
-	}
-
-	let tgThread = $state<HTMLElement | null>(null);
-	let dcThread = $state<HTMLElement | null>(null);
-
-	$effect(() => {
-		void step;
-		void story.id;
-		queueMicrotask(() => {
-			for (const el of [tgThread, dcThread]) {
-				if (el) el.scrollTop = el.scrollHeight;
-			}
-		});
-	});
 </script>
 
 <section id="try" class="try-band">
@@ -128,151 +105,28 @@
 		<p class="mt-1 font-mono text-xs text-mist">{stepLabel}</p>
 
 		<div class="phones mt-6">
-			<article class="phone phone-tg" aria-label={tutorial.telegram}>
-				<header class="phone-bar">
-					<img
-						class="app-logo"
-						src="/logos/telegram.svg"
-						alt=""
-						width="28"
-						height="28"
-					/>
-					<div>
-						<p class="phone-app">{tutorial.telegram}</p>
-						<p class="phone-peer">{scene.tgTitle}</p>
-					</div>
-				</header>
-				<div
-					class="phone-thread"
-					class:phone-inbox={isInbox('tg')}
-					bind:this={tgThread}
-				>
-					{#if isInbox('tg')}
-						{#each inboxRows('tg') as row}
-							<div class="inbox-row" class:is-focus={row.focus}>
-								<span class="phone-avatar">
-									<KoboyoIcon name={row.icon} class="h-8 w-8" />
-								</span>
-								<div class="inbox-copy">
-									<div class="inbox-top">
-										<p class="inbox-name">{row.name}</p>
-										<p class="inbox-when">{row.when}</p>
-									</div>
-									<p class="inbox-preview">{row.preview}</p>
-								</div>
-							</div>
-						{/each}
-					{:else if bubbles('tg').length === 0}
-						<p class="phone-empty">{tutorial.emptyTg}</p>
-					{/if}
-					{#each bubbles('tg') as b}
-						<div
-							class="bubble"
-							class:bubble-you={b.who === 'you'}
-							class:bubble-them={b.who !== 'you'}
-							class:bubble-sys={b.who === 'sys'}
-						>
-							{#if b.kind === 'sticker'}
-								<span class="sticker-chip">
-									<KoboyoIcon name="sticker" class="h-8 w-8" />
-								</span>
-							{:else if b.kind === 'invite'}
-								<div class="invite-card">
-									<img
-										class="invite-qr"
-										src="/logos/invite-example.svg"
-										alt=""
-										width="120"
-										height="120"
-									/>
-									<a class="invite-link" href={b.link} rel="nofollow noopener"
-										>{b.link}</a
-									>
-									<p class="whitespace-pre-wrap">{b.text}</p>
-								</div>
-							{:else}
-								{#if whoLabel(b.who) && b.who !== 'you'}
-									<span class="bubble-who">{whoLabel(b.who)}</span>
-								{/if}
-								<p class="whitespace-pre-wrap">{b.text}</p>
-							{/if}
-						</div>
-					{/each}
-				</div>
-			</article>
-
-			<article class="phone phone-dc" aria-label={tutorial.delta}>
-				<header class="phone-bar">
-					<img
-						class="app-logo"
-						src="/logos/deltachat.svg"
-						alt=""
-						width="28"
-						height="28"
-					/>
-					<div>
-						<p class="phone-app">{tutorial.delta}</p>
-						<p class="phone-peer">{scene.dcTitle}</p>
-					</div>
-				</header>
-				<div
-					class="phone-thread"
-					class:phone-inbox={isInbox('dc')}
-					bind:this={dcThread}
-				>
-					{#if isInbox('dc')}
-						{#each inboxRows('dc') as row}
-							<div class="inbox-row" class:is-focus={row.focus}>
-								<span class="phone-avatar">
-									<KoboyoIcon name={row.icon} class="h-8 w-8" />
-								</span>
-								<div class="inbox-copy">
-									<div class="inbox-top">
-										<p class="inbox-name">{row.name}</p>
-										<p class="inbox-when">{row.when}</p>
-									</div>
-									<p class="inbox-preview">{row.preview}</p>
-								</div>
-							</div>
-						{/each}
-					{:else if bubbles('dc').length === 0}
-						<p class="phone-empty">{tutorial.emptyDc}</p>
-					{/if}
-					{#each bubbles('dc') as b}
-						<div
-							class="bubble"
-							class:bubble-you={b.who === 'you'}
-							class:bubble-them={b.who !== 'you' && b.who !== 'sys'}
-							class:bubble-sys={b.who === 'sys'}
-						>
-							{#if b.kind === 'sticker'}
-								<span class="sticker-chip">
-									<KoboyoIcon name="sticker" class="h-8 w-8" />
-								</span>
-							{:else if b.kind === 'invite'}
-								<div class="invite-card">
-									<img
-										class="invite-qr"
-										src="/logos/invite-example.svg"
-										alt=""
-										width="120"
-										height="120"
-									/>
-									<a class="invite-link" href={b.link} rel="nofollow noopener"
-										>{b.link}</a
-									>
-									<p class="whitespace-pre-wrap">{b.text}</p>
-								</div>
-							{:else}
-								{#if whoLabel(b.who) && b.who !== 'you'}
-									<span class="bubble-who">{whoLabel(b.who)}</span>
-								{/if}
-								<p class="whitespace-pre-wrap">{b.text}</p>
-							{/if}
-						</div>
-					{/each}
-				</div>
-			</article>
+			<ChatPhone
+				variant="tg"
+				app={tutorial.telegram}
+				peer={scene.tgTitle}
+				logo="/logos/telegram.svg"
+				inbox={isInbox('tg')}
+				rows={lastInbox('tg')}
+				bubbles={bubbles('tg')}
+				empty={tutorial.emptyTg}
+				you={tutorial.you}
+			/>
+			<ChatPhone
+				variant="dc"
+				app={tutorial.delta}
+				peer={scene.dcTitle}
+				logo="/logos/deltachat.svg"
+				inbox={isInbox('dc')}
+				rows={lastInbox('dc')}
+				bubbles={bubbles('dc')}
+				empty={tutorial.emptyDc}
+				you={tutorial.you}
+			/>
 		</div>
 
 		{#if scene.why}
