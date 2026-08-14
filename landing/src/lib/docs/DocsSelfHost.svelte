@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-	<title>{docs.selfTitle} — TGPORTAL</title>
+	<title>{docs.selfTitle} — Portal</title>
 </svelte:head>
 
 <div class="mx-auto max-w-3xl px-5 py-16">

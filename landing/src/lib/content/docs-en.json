@@ -27,7 +27,7 @@
 		}
 	],
 	"trustTitle": "You are trusting whoever runs the bot",
-	"trustLede": "TGPORTAL is not an end-to-end tunnel past the operator. It is better to host one yourself.",
+	"trustLede": "Portal is not an end-to-end tunnel past the operator. It is better to host one yourself.",
 	"trustP1": "Messages you send a Telegram bot land on the computer running the program. It downloads files and sends them into Delta Chat there. Anyone who can read that machine can read what you bridged.",
 	"trustIncludes": "That includes:",
 	"trustItems": [
@@ -48,7 +48,7 @@
 	"personaWhyP2": "Persona mode is for people who already have (or want) a Telegram bot of their own. Friends and groups message your bot. On Delta Chat you should see them, not a labeled dump from a shared bridge account.",
 	"personaGhosts": "How ghosts work",
 	"personaGhostsP1": "For each person who messages your bot, it makes a real Delta Chat account (name and photo from Telegram). Next time it’s the same account.",
-	"personaGhostsP2": "That ghost delivers the person’s message to you as a normal 1:1 — no prefix, no “via TGPORTAL.” When you reply, the program sends it out through your BotFather bot.",
+	"personaGhostsP2": "That ghost delivers the person’s message to you as a normal 1:1 — no prefix, no “via Portal.” When you reply, the program sends it out through your BotFather bot.",
 	"personaGhostsP3": "Ghost tables are separate from personal-mode pairs. Alice pairing the public portal bot does not reuse Alice’s persona ghost.",
 	"personaSetup": "Owner setup",
 	"personaSetupItems": [
@@ -67,7 +67,7 @@
 		"Your replies in that DC group go to Telegram as the bot, not as the original users."
 	],
 	"personaTrust": "Trust",
-	"personaTrustP1": "The instance that stores the BotFather token is your Telegram bot. Ghost account keys live under ./data. If you give /pair-bot to someone else’s public TGPORTAL, you are handing them the bot and every conversation it will carry. Prefer self-hosting. See trust.",
+	"personaTrustP1": "The instance that stores the BotFather token is your Telegram bot. Ghost account keys live under ./data. If you give /pair-bot to someone else’s public Portal, you are handing them the bot and every conversation it will carry. Prefer self-hosting. See trust.",
 	"personaRepo": "Repo operator notes: docs/persona.md, design: persona-design.md.",
 	"pairingTitle": "Personal pairing",
 	"pairingLede": "Nothing is forwarded until a Telegram user is linked to a Delta Chat chat.",

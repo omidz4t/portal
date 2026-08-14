@@ -1,5 +1,5 @@
 {
-	"metaTitle": "TGPORTAL — Telegram ↔ Delta Chat media bridge",
+	"metaTitle": "Portal — Telegram ↔ Delta Chat media bridge",
 	"metaDescription": "Pair once, then stickers, GIFs, Lottie, and short video move both ways. Prefer self-hosting: you trust whoever runs the bot.",
 	"skip": "Skip to main content",
 	"navHow": "How it works",
@@ -20,7 +20,7 @@
 	"ctaHost": "Run it yourself",
 	"ctaPublic": "Public bot — you trust the host",
 	"ctaDocs": "Docs",
-	"posterAlt": "TGPORTAL branding poster: dark void with the product mark",
+	"posterAlt": "Portal branding poster: dark void with the product mark",
 	"bridgeTitle": "What you can send",
 	"bridgeLead": "After you pair, this goes both ways. We keep filenames boring on purpose — no “from Telegram.”",
 	"bridgeBoth": "Both ways",
@@ -127,7 +127,7 @@
 		"Makefile is the supported entrypoint"
 	],
 	"selfWalk": "Self-host walkthrough",
-	"footerCredit": "TGPORTAL · MIT · themadorg · icons",
+	"footerCredit": "Portal · MIT · themadorg · icons",
 	"footerIcons": "Koboyo",
 	"navTrust": "Trust",
 	"navPersonaShort": "Persona",

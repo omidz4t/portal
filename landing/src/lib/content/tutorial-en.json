@@ -39,10 +39,10 @@
 					]
 				},
 				{
-					"caption": "Open the invite in Delta Chat or ArcaneChat and accept the chat. Right phone lights up: you are talking to TGPORTAL.",
+					"caption": "Open the invite in Delta Chat or ArcaneChat and accept the chat. Right phone lights up: you are talking to Portal.",
 					"why": "Until you accept, there is no Delta Chat conversation to attach the pair to. You are not paired yet — you only opened the door. Anyone else with the same invite would also get a chat with the bot, but they cannot steal your pair without the code.",
 					"tgTitle": "@tgdeltabridgebot",
-					"dcTitle": "TGPORTAL",
+					"dcTitle": "Portal",
 					"bubbles": [
 						{ "side": "tg", "who": "you", "text": "/start" },
 						{
@@ -57,7 +57,7 @@
 					"caption": "In that Delta Chat, send only the code. Case does not matter. Do not add extra words.",
 					"why": "The bot looks up that code in the database. If it’s still fresh, your Telegram is tied to that Delta Chat. After you’re paired, a message that just looks like a code is only text — it won’t steal the link.",
 					"tgTitle": "@tgdeltabridgebot",
-					"dcTitle": "TGPORTAL",
+					"dcTitle": "Portal",
 					"bubbles": [
 						{ "side": "dc", "who": "you", "text": "K7H2MQNP" },
 						{ "side": "dc", "who": "bot", "text": "Paired. This chat is now your Telegram." },
@@ -68,7 +68,7 @@
 					"caption": "Send a sticker on Telegram. It appears in the same Delta Chat with a neutral filename and no “from Telegram” caption.",
 					"why": "The program downloads the file from Telegram and sends it into Delta Chat. While that’s happening, the computer running it can see the file. It renames it so extra Telegram info doesn’t leak.",
 					"tgTitle": "@tgdeltabridgebot",
-					"dcTitle": "TGPORTAL",
+					"dcTitle": "Portal",
 					"bubbles": [
 						{ "side": "tg", "who": "you", "text": "sticker", "kind": "sticker" },
 						{ "side": "dc", "who": "bot", "text": "sticker", "kind": "sticker" }
@@ -76,9 +76,9 @@
 				},
 				{
 					"caption": "Reply from Delta Chat. The same sticker or text comes back to your private Telegram chat with the portal bot.",
-					"why": "Personal mode is one dump chat: everything you bridge lives in this single 1:1 with TGPORTAL. Friends do not get their own faces here. That is what persona mode is for (next two stories).",
+					"why": "Personal mode is one dump chat: everything you bridge lives in this single 1:1 with Portal. Friends do not get their own faces here. That is what persona mode is for (next two stories).",
 					"tgTitle": "@tgdeltabridgebot",
-					"dcTitle": "TGPORTAL",
+					"dcTitle": "Portal",
 					"bubbles": [
 						{ "side": "dc", "who": "you", "text": "nice" },
 						{ "side": "tg", "who": "bot", "text": "nice" }
@@ -95,7 +95,7 @@
 					"caption": "Finish story 1 first. A ghost has to know how to write to you. That comes from when you /pair.",
 					"why": "No second invite. When you paired, the program saved your Delta Chat identity. New ghosts use that to open a chat with you. Skip /pair and /pair-bot just fails.",
 					"tgTitle": "@tgdeltabridgebot",
-					"dcTitle": "TGPORTAL",
+					"dcTitle": "Portal",
 					"bubbles": [
 						{ "side": "tg", "who": "sys", "text": "Already paired (story 1)." },
 						{
@@ -107,9 +107,9 @@
 				},
 				{
 					"caption": "Talk to @BotFather — Telegram’s official bot maker — and create a new bot. Copy the token.",
-					"why": "The token is the password for that bot. Whoever has it can read every update and send as the bot. Never put it in a GitHub issue, group chat, or someone else’s public TGPORTAL.",
+					"why": "The token is the password for that bot. Whoever has it can read every update and send as the bot. Never put it in a GitHub issue, group chat, or someone else’s public Portal.",
 					"tgTitle": "@BotFather",
-					"dcTitle": "TGPORTAL",
+					"dcTitle": "Portal",
 					"bubbles": [
 						{ "side": "tg", "who": "you", "text": "/newbot" },
 						{
@@ -124,7 +124,7 @@
 					"caption": "Back on the portal bot, in private, send /pair-bot and the token. Optional: the t.me link.",
 					"why": "/pair links you. /pair-bot registers a bot you own. Different commands. Groups are refused so the token isn’t leaked. The token is stored in the database on that computer, and the program starts listening for messages on your bot.",
 					"tgTitle": "@tgdeltabridgebot",
-					"dcTitle": "TGPORTAL",
+					"dcTitle": "Portal",
 					"bubbles": [
 						{
 							"side": "tg",
@@ -137,7 +137,7 @@
 					"caption": "The portal says your bot is on. Anyone who DMs @YourBot can get a ghost.",
 					"why": "The program keeps asking Telegram “any new messages?” and passes them on. Your friends never see @tgdeltabridgebot. They only know @YourBot.",
 					"tgTitle": "@tgdeltabridgebot",
-					"dcTitle": "TGPORTAL",
+					"dcTitle": "Portal",
 					"bubbles": [
 						{
 							"side": "tg",
@@ -160,7 +160,7 @@
 					"caption": "On the machine that runs tgportal, set PERSONA_ACCOUNT_QR and mode: persona or both.",
 					"why": "A ghost is a real Delta Chat account. To create one you tell the program which Delta Chat provider to use (PERSONA_ACCOUNT_QR). You can cap how many. List: /bots. Stop: /unpair-bot.",
 					"tgTitle": "@tgdeltabridgebot",
-					"dcTitle": "TGPORTAL",
+					"dcTitle": "Portal",
 					"bubbles": [
 						{
 							"side": "tg",
@@ -183,7 +183,7 @@
 			"scenes": [
 				{
 					"caption": "Alice never installs Delta Chat. She only opens @YourBot and writes a DM.",
-					"why": "From Alice’s point of view this is a normal Telegram bot. She does not see TGPORTAL, pairing codes, or your chatmail provider.",
+					"why": "From Alice’s point of view this is a normal Telegram bot. She does not see Portal, pairing codes, or your chatmail provider.",
 					"tgTitle": "@YourBot ← Alice",
 					"dcTitle": "—",
 					"bubbles": [{ "side": "tg", "who": "alice", "text": "hey, got a sticker?" }]

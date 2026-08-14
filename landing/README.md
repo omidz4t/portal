@@ -1,4 +1,4 @@
-# TGPORTAL landing
+# Portal landing
 
 SvelteKit (Svelte 5, static adapter, Tailwind) marketing site for the Telegram ↔ Delta Chat bridge.
 

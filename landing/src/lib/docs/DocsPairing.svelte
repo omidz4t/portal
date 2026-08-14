@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>{docs.pairingTitle} — TGPORTAL</title>
+	<title>{docs.pairingTitle} — Portal</title>
 </svelte:head>
 
 <div class="mx-auto max-w-3xl px-5 py-16">

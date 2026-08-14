@@ -36,7 +36,7 @@
 				class="h-9 w-9 rounded-full border-2 border-ink"
 				aria-hidden="true"
 			/>
-			<span class="text-sm font-semibold tracking-wide">TGPORTAL</span>
+			<span class="text-sm font-semibold tracking-wide">Portal</span>
 		</a>
 
 		<nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
