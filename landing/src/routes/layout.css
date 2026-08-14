@@ -643,7 +643,7 @@ footer.doodle-bar {
 }
 
 .try-story-group.has-label {
-	border: 2px solid var(--color-ink);
+	border: 2px dashed var(--color-ink);
 	border-radius: 1rem;
 	background: transparent;
 	padding: 0.65rem 0.75rem 0.75rem;
