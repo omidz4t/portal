@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ChatPhone from '$lib/ChatPhone.svelte';
+	import KoboyoIcon from '$lib/KoboyoIcon.svelte';
 	import type { TutorialCopy, TutorialScene } from '$lib/content';
 
 	let { tutorial }: { tutorial: TutorialCopy } = $props();
@@ -90,10 +91,13 @@
 </script>
 
 <section id="try" class="try-band">
-	<div class="try-cta mx-auto flex w-full max-w-5xl flex-col items-start justify-center px-5">
-		<h2 class="try-headline">
-			{tutorial.title}
-		</h2>
+	<div class="try-cta mx-auto flex w-full max-w-6xl flex-col items-start justify-center px-5">
+		<div class="try-cta-row">
+			<h2 class="try-headline">
+				{tutorial.title}
+			</h2>
+			<KoboyoIcon name="smile" class="try-beam" />
+		</div>
 		<button type="button" class="try-open doodle-btn doodle-btn-ink" onclick={openShow}>
 			{tutorial.open}
 		</button>

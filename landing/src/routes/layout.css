@@ -376,12 +376,26 @@ footer.doodle-bar {
 	padding-block: 3rem;
 }
 
+.try-cta-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1.25rem 2rem;
+}
+
 .try-headline {
-	max-width: 18ch;
+	max-width: 14ch;
 	font-size: clamp(2.4rem, 7vw, 5.4rem);
 	font-weight: 700;
 	line-height: 1.05;
 	text-wrap: balance;
+}
+
+.try-beam {
+	height: clamp(9rem, 28vw, 18rem);
+	width: clamp(9rem, 28vw, 18rem);
+	flex-shrink: 0;
+	color: var(--color-ink);
 }
 
 .try-open {
