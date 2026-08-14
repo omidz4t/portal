@@ -30,7 +30,9 @@
 </svelte:head>
 
 <div>
-	<section class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 lg:grid-cols-2 lg:py-20">
+	<section
+		class="hero-band mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2"
+	>
 		<div>
 			<p class="font-mono text-xs tracking-[0.18em] uppercase">{copy.heroEyebrow}</p>
 			<h1 class="mt-3 text-4xl leading-tight font-semibold text-balance sm:text-5xl">
