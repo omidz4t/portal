@@ -21,3 +21,7 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Built at npm run dev / build
+src/lib/versions-data.ts
+src/lib/generated/

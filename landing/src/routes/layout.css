@@ -154,6 +154,35 @@ pre code,
 	line-height: 1.7;
 }
 
+.version-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.version-list li {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	border-bottom: 1px solid var(--color-line);
+	padding: 0.65rem 0;
+	font-family: var(--font-mono);
+	font-size: 0.95rem;
+}
+
+.version-list a {
+	font-weight: 600;
+	text-underline-offset: 3px;
+}
+
+.version-list a:hover {
+	text-decoration: underline;
+}
+
+.version-list span {
+	color: var(--color-mist);
+}
+
 .docs-copy pre.config-yml {
 	max-height: none;
 	padding: 1.35rem 1.4rem;

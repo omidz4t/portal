@@ -45,6 +45,9 @@ export function seoFor(pathname: string) {
 	} else if (path === `${docsRoot}config/`) {
 		title = `${docs.cfgTitle} — ${brand}`;
 		description = docs.cfgLede;
+	} else if (path === '/versions/' || path === '/fa/versions/') {
+		title = `${copy.versionsTitle} — ${brand}`;
+		description = copy.versionsLead;
 	} else if (path === showPath) {
 		title = `${tutorial.title.replace(/\n/g, ' ')} — ${brand}`;
 		description = tutorial.lead.trim() || copy.heroLead;

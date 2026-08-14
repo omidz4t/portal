@@ -54,6 +54,8 @@ landing/node_modules/
 landing/.svelte-kit/
 landing/build/
 landing/.vite/
+landing/src/lib/versions-data.ts
+landing/src/lib/generated/
 
 # Local reference material (unpacked app sources, zips, etc.)
 /context/

@@ -136,5 +136,8 @@
 	"footerIcons": "Koboyo",
 	"navTrust": "اعتماد",
 	"navPersonaShort": "پرسونا",
-	"navTelegram": "تلگرام"
+	"navTelegram": "تلگرام",
+	"navVersions": "نسخه‌ها",
+	"versionsTitle": "نسخه‌ها",
+	"versionsLead": "انتشارها. تازه‌ترین اول."
 }

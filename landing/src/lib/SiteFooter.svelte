@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { botUrl, repoUrl } from '$lib/links';
 	import type { Copy, Locale } from '$lib/content';
-	import { basePath, docsPath } from '$lib/content';
+	import { basePath, docsPath, versionsPath } from '$lib/content';
+	import versions from '$lib/versions-data';
 
 	let { copy, locale }: { copy: Copy; locale: Locale } = $props();
 	const base = $derived(basePath(locale));
@@ -32,6 +33,10 @@
 				class="inline-flex min-h-11 items-center px-2 hover:text-ink"
 				href={repoUrl}
 				rel="noreferrer">{copy.navSource}</a
+			>
+			<a
+				class="inline-flex min-h-11 items-center px-2 hover:text-ink"
+				href={versionsPath(locale)}>{copy.navVersions} v{versions.current}</a
 			>
 			<a
 				class="inline-flex min-h-11 items-center px-2 hover:text-ink"

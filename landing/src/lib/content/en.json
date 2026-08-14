@@ -136,5 +136,8 @@
 	"footerIcons": "Koboyo",
 	"navTrust": "Trust",
 	"navPersonaShort": "Persona",
-	"navTelegram": "Telegram"
+	"navTelegram": "Telegram",
+	"navVersions": "Versions",
+	"versionsTitle": "Versions",
+	"versionsLead": "Published releases. Newest first."
 }

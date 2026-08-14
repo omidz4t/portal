@@ -62,6 +62,10 @@ export function docsPath(locale: Locale, slug = ''): string {
 	return slug ? `${root}${slug}/` : root;
 }
 
+export function versionsPath(locale: Locale): string {
+	return locale === 'fa' ? `${base}/fa/versions/` : `${base}/versions/`;
+}
+
 /** Same page in the other language (for the EN / فا switch). */
 export function twinPath(pathname: string, target: Locale): string {
 	const rest = appPathname(pathname).replace(/^\/fa(?=\/|$)/, '') || '/';

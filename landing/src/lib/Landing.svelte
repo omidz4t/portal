@@ -3,7 +3,8 @@
 	import KoboyoIcon from '$lib/KoboyoIcon.svelte';
 	import PortalMark from '$lib/PortalMark.svelte';
 	import type { Copy, Locale } from '$lib/content';
-	import { docsPath, tutorialCopies } from '$lib/content';
+	import { docsPath, tutorialCopies, versionsPath } from '$lib/content';
+	import versions from '$lib/versions-data';
 	import MessengerTutorial from '$lib/MessengerTutorial.svelte';
 
 	let { copy, locale = 'en' }: { copy: Copy; locale?: Locale } = $props();
@@ -45,6 +46,11 @@
 					<a href={botUrl} rel="noreferrer" class="doodle-btn">{copy.ctaPublic}</a>
 					<a href={docsPath(locale)} class="doodle-btn doodle-btn-ghost">{copy.ctaDocs}</a>
 				</div>
+				<p class="mt-5 text-sm text-mist">
+					<a class="underline-offset-2 hover:underline" href={versionsPath(locale)}
+						>v{versions.current}</a
+					>
+				</p>
 			</div>
 			<figure class="doodle-card doodle-card-tilt overflow-hidden">
 				<img
