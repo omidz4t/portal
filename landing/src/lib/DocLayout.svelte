@@ -38,7 +38,7 @@
 			<li class="text-ink" aria-current="page">{title}</li>
 		</ol>
 	</nav>
-	<p class="font-mono text-xs tracking-[0.2em] uppercase">Docs</p>
+	<p class="text-sm text-mist">Docs</p>
 	<h1 class="mt-2 text-3xl font-semibold tracking-tight text-balance text-ink">{title}</h1>
 	{#if lede}
 		<p class="docs-copy max-w-prose text-lg text-mist">{lede}</p>

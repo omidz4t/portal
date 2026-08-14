@@ -33,7 +33,7 @@
 	<section class="hero-band">
 		<div class="hero-grid mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
 			<div>
-				<p class="font-mono text-xs tracking-[0.18em] uppercase">{copy.heroEyebrow}</p>
+				<p class="text-sm text-mist">{copy.heroEyebrow}</p>
 				<h1 class="mt-3 text-4xl leading-tight font-semibold text-balance sm:text-5xl">
 					{copy.heroTitle}
 				</h1>
@@ -120,7 +120,7 @@
 					class:doodle-card-tilt-r={i % 2 === 1}
 				>
 					<KoboyoIcon name={stepIcons[i]} class="h-10 w-10" />
-					<p class="mt-3 font-mono text-xs">{step.n}</p>
+					<p class="mt-3 text-xs text-mist">{step.n}</p>
 					<h3 class="mt-2 text-lg font-semibold">{step.title}</h3>
 					<p class="mt-2 text-sm leading-relaxed text-mist">{step.body}</p>
 				</li>
@@ -134,7 +134,7 @@
 				<KoboyoIcon name="puppet" class="h-5 w-5" />
 				{copy.modeTwo}
 			</p>
-			<p class="mt-5 font-mono text-xs tracking-[0.18em] uppercase">{copy.personaEyebrow}</p>
+			<p class="mt-5 text-sm text-mist">{copy.personaEyebrow}</p>
 			<h2 id="persona-heading" class="mt-2 text-2xl font-semibold text-balance sm:text-4xl">
 				{copy.personaTitle}
 			</h2>
@@ -177,7 +177,7 @@
 							{/if}
 						</div>
 						<div class="doodle-card flow-body">
-							<p class="font-mono text-xs">{step.n}</p>
+							<p class="text-xs text-mist">{step.n}</p>
 							<h4 class="mt-2 text-xl font-semibold">{step.title}</h4>
 							<p class="mt-3 max-w-prose text-base leading-relaxed text-mist">{step.body}</p>
 						</div>

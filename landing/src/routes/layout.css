@@ -336,8 +336,6 @@ footer.doodle-bar {
 	padding: 0.2rem 0.65rem 0.25rem;
 	font-size: 0.85rem;
 	font-weight: 700;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
 	box-shadow: 2px 2px 0 var(--color-ink);
 }
 
@@ -489,11 +487,8 @@ footer.doodle-bar {
 
 .try-story-group-label {
 	margin-bottom: 0.45rem;
-	font-family: var(--font-mono);
-	font-size: 0.75rem;
+	font-size: 0.85rem;
 	font-weight: 700;
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
 }
 
 .try-band .phones {
@@ -629,9 +624,7 @@ footer.doodle-bar {
 }
 
 .phone-app {
-	font-size: 0.7rem;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
+	font-size: 0.75rem;
 }
 
 .phone-peer {

@@ -121,7 +121,7 @@
 	<p class="mt-4 max-w-3xl text-lg leading-relaxed font-semibold" aria-live="polite">
 		{scene.caption}
 	</p>
-	<p class="mt-1 font-mono text-xs text-mist">{stepLabel}</p>
+	<p class="mt-1 text-xs text-mist">{stepLabel}</p>
 
 	<div class="phones mt-5">
 		<ChatPhone
@@ -150,7 +150,7 @@
 
 	{#if scene.why}
 		<aside class="doodle-card mt-5 max-w-3xl p-5" aria-label={tutorial.whyLabel}>
-			<p class="font-mono text-xs uppercase">{tutorial.whyLabel}</p>
+			<p class="text-sm font-semibold">{tutorial.whyLabel}</p>
 			<p class="mt-2 leading-relaxed">{scene.why}</p>
 		</aside>
 	{/if}
