@@ -1,11 +1,11 @@
 {
-	"title": "Try it in two chats",
-	"lead": "Three short stories. Left phone = Telegram. Right phone = Delta Chat. Press Next and watch the same second on both sides. Read the yellow note under the phones — that is what the software is doing, not just what you type.",
+	"title": "Was that a lot? Let me just show you.",
+	"lead": "Three tiny stories. Left is Telegram. Right is Delta Chat. Hit Next and watch the same moment on both phones. The card under them is the honest version — what the software is doing, not only what you typed.",
 	"next": "Next",
 	"back": "Back",
-	"restart": "Start over",
+	"restart": "From the top",
 	"stepOf": "Step {n} of {total}",
-	"whyLabel": "What is going on",
+	"whyLabel": "What’s actually happening",
 	"telegram": "Telegram",
 	"delta": "Delta Chat",
 	"you": "You",
@@ -14,8 +14,8 @@
 	"stories": [
 		{
 			"id": "pair",
-			"label": "Pair (personal)",
-			"intro": "Personal mode: one Telegram user ↔ one Delta Chat chat with the portal bot. Nothing is forwarded until this pair is active.",
+			"label": "Just pair me",
+			"intro": "Simple mode: you, the portal bot, one Delta Chat. Nothing moves until this pair is on.",
 			"scenes": [
 				{
 					"caption": "Open the portal bot in a private 1:1 and send /start (or /pair). Groups are refused on purpose.",
@@ -88,8 +88,8 @@
 		},
 		{
 			"id": "install",
-			"label": "Install /pair-bot",
-			"intro": "Persona is a second product. You keep the portal pair, then plug in a BotFather bot you own. Do this on a host you run.",
+			"label": "Plug in /pair-bot",
+			"intro": "Persona is the other product. Stay paired, then attach a BotFather bot that’s yours. Do it on a machine you run.",
 			"scenes": [
 				{
 					"caption": "Finish story 1 first. Persona ghosts must know how to write to you. That knowledge is your Delta Chat public key, captured when you /pair.",
@@ -178,8 +178,8 @@
 		},
 		{
 			"id": "create",
-			"label": "Someone uses your bot",
-			"intro": "After /pair-bot, each remote Telegram user becomes a stable ghost on Delta Chat — name and photo copied, reused forever.",
+			"label": "A friend writes your bot",
+			"intro": "After /pair-bot, each person who DMs you becomes a ghost on Delta Chat — their name, their photo, same account next time.",
 			"scenes": [
 				{
 					"caption": "Alice never installs Delta Chat. She only opens @YourBot and writes a DM.",
