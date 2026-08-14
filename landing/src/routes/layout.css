@@ -432,6 +432,13 @@ footer.doodle-bar {
 	width: 2.15rem;
 }
 
+.phone-bar .app-logo {
+	height: 2.15rem;
+	width: 2.15rem;
+	flex-shrink: 0;
+	border-radius: 999px;
+}
+
 .phone-inbox {
 	gap: 0;
 	padding: 0.35rem 0.4rem;

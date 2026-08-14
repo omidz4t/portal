@@ -46,11 +46,6 @@
 		return '';
 	}
 
-	function sceneIcon(side: 'tg' | 'dc') {
-		if (side === 'tg') return scene.tgIcon ?? 'telegram';
-		return scene.dcIcon ?? 'bridge-2';
-	}
-
 	function isInbox(side: 'tg' | 'dc') {
 		if (scene.view !== 'inbox') return false;
 		const rows = side === 'tg' ? scene.inboxTg : scene.inboxDc;
@@ -64,7 +59,13 @@
 
 <section id="try" class="try-band">
 	<div class="try-inner mx-auto w-full max-w-6xl px-5">
-		<h2 class="text-2xl font-semibold sm:text-3xl">{tutorial.title}</h2>
+		<h2 class="flex flex-wrap items-center gap-3 text-2xl font-semibold sm:text-3xl">
+			<span class="inline-flex items-center gap-1.5" aria-hidden="true">
+				<img src="/logos/telegram.svg" alt="" width="32" height="32" class="h-8 w-8" />
+				<img src="/logos/deltachat.svg" alt="" width="32" height="32" class="h-8 w-8" />
+			</span>
+			{tutorial.title}
+		</h2>
 
 		<div class="mt-6 flex flex-wrap gap-2" role="tablist" aria-label={tutorial.title}>
 			{#each tutorial.stories as s}
@@ -93,9 +94,13 @@
 		<div class="phones mt-6">
 			<article class="phone phone-tg" aria-label={tutorial.telegram}>
 				<header class="phone-bar">
-					<span class="phone-avatar">
-						<KoboyoIcon name={sceneIcon('tg')} class="h-7 w-7" />
-					</span>
+					<img
+						class="app-logo"
+						src="/logos/telegram.svg"
+						alt=""
+						width="28"
+						height="28"
+					/>
 					<div>
 						<p class="phone-app">{tutorial.telegram}</p>
 						<p class="phone-peer">{scene.tgTitle}</p>
@@ -144,9 +149,13 @@
 
 			<article class="phone phone-dc" aria-label={tutorial.delta}>
 				<header class="phone-bar">
-					<span class="phone-avatar">
-						<KoboyoIcon name={sceneIcon('dc')} class="h-7 w-7" />
-					</span>
+					<img
+						class="app-logo"
+						src="/logos/deltachat.svg"
+						alt=""
+						width="28"
+						height="28"
+					/>
 					<div>
 						<p class="phone-app">{tutorial.delta}</p>
 						<p class="phone-peer">{scene.dcTitle}</p>
