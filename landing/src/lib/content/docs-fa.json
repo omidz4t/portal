@@ -41,7 +41,7 @@
 		"استیکر، GIF، تصویر و ویدیو وقتی در کش هستند",
 		"در حالت پرسونا: توکن‌های BotFather و کلید حساب‌های روح دلتا چت"
 	],
-	"trustP2": "دلتا چت هنوز ترافیک را روی سیم تا chatmail رمز می‌کند. این کار متن ساده را از خود tgportal پنهان نمی‌کند. اجراکننده در مسیر است.",
+	"trustP2": "دلتا چت هنوز ترافیک را روی سیم تا chatmail رمز می‌کند. این کار متن ساده را از خود Portal پنهان نمی‌کند. اجراکننده در مسیر است.",
 	"trustP3": "نمونهٔ عمومی مثل @tgdeltabridgebot برای امتحان راحت است. استفاده یعنی دستگاه آن اپراتور را می‌پذیرید. چیزی را پل نزنید که حاضر نیستید به او بدهید.",
 	"trustP4Lead": "خودتان میزبانی کنید.",
 	"trustP4": "آن‌وقت تنها اجراکننده شمایید. خودمیزبانی را ببینید. اپراتورهایی که به دیگران سرویس می‌دهند باید سیاست حریم خصوصی (docs/privacy.md) منتشر کنند و هرگز توکن لاگ نکنند.",
@@ -100,18 +100,18 @@
 	"pairingRepo": "راهنمای کامل در ریپو: docs/pairing.md.",
 	"selfTitle": "خودمیزبانی",
 	"selfLede": "توصیه می‌شود. توکن، پایگاه‌داده و کلید روح پیش شماست. یکی را انتخاب کنید: ساخت باینری، یا دانلود از انتشار.",
-	"selfNeedLead": "هر دو راه بعد از داشتن باینری tgportal به همین قطعات زمان اجرا نیاز دارند:",
+	"selfNeedLead": "هر دو راه بعد از داشتن باینری portal به همین قطعات زمان اجرا نیاز دارند:",
 	"selfNeedItems": [
 		"deltachat-rpc-server روی PATH (هم‌تراز major کلاینت RPC؛ این ریپو APIهای v2.56.x)",
 		"توکن BotFather در .env",
-		"ارائه‌دهندهٔ chatmail / دلتا چت برای make init / tgportal init"
+		"ارائه‌دهندهٔ chatmail / دلتا چت برای make init / portal init"
 	],
 	"selfConfig": "بعد config.example.yml → config.yml و .env.example → .env. دادهٔ پیش‌فرض ./data است. هرگز .env، config.yml یا data/ را commit نکنید.",
 	"selfWay1": "راه ۱ — ساخت باینری",
 	"selfWay1P": "وقتی Go 1.22+ دارید و می‌خواهید از git کامپایل کنید. Makefile نقطهٔ ورود رسمی است.",
 	"selfWay1Release": "باینری استاتیک یک‌تکه (strip و نسخه) در dist/portal:",
 	"selfWay2": "راه ۲ — دانلود باینری از انتشار",
-	"selfWay2P": "وقتی toolchain گولنگ نمی‌خواهید. GitHub Actions روی هر تگ v* آرشیو می‌گذارد: tgportal_<tag>_<os>_<arch>.tar.gz (ویندوز .zip) به‌علاوهٔ checksums.txt.",
+	"selfWay2P": "وقتی toolchain گولنگ نمی‌خواهید. GitHub Actions روی هر تگ v* آرشیو می‌گذارد: portal_<tag>_<os>_<arch>.tar.gz (ویندوز .zip) به‌علاوهٔ checksums.txt.",
 	"selfWay2Items": [
 		"آخرین انتشار یا فهرست انتشارها را باز کنید.",
 		"آرشیو سیستم‌عامل/پردازنده را بگیرید (مثال: linux_amd64، linux_arm64، darwin_arm64، windows_amd64).",

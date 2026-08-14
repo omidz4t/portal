@@ -41,7 +41,7 @@
 		"Sticker, GIF, image, and video files while they sit in cache",
 		"In persona mode: BotFather tokens you register, and the keys of ghost Delta Chat accounts"
 	],
-	"trustP2": "Delta Chat still encrypts traffic on the wire to chatmail. That does not hide plaintext from tgportal itself. The runner is a participant.",
+	"trustP2": "Delta Chat still encrypts traffic on the wire to chatmail. That does not hide plaintext from Portal itself. The runner is a participant.",
 	"trustP3": "A public instance such as @tgdeltabridgebot is convenient for trying the product. Using it means you accept that operator’s machine. Do not bridge anything you would not hand to them.",
 	"trustP4Lead": "Host your own.",
 	"trustP4": "Then the only runner is you. See self-host. Operators who serve other people should publish a privacy policy (repo docs/privacy.md) and never log tokens.",
@@ -100,18 +100,18 @@
 	"pairingRepo": "Full walkthrough in the repo: docs/pairing.md.",
 	"selfTitle": "Self-host",
 	"selfLede": "Recommended. You keep the token, the database, and the ghost keys. Pick one path: build the binary, or download a release.",
-	"selfNeedLead": "Both ways need the same runtime pieces after you have a tgportal binary:",
+	"selfNeedLead": "Both ways need the same runtime pieces after you have a portal binary:",
 	"selfNeedItems": [
 		"deltachat-rpc-server on PATH (match the project’s rpc-client major; this repo uses v2.56.x APIs)",
 		"A BotFather token in .env",
-		"A chatmail / Delta Chat provider for make init / tgportal init"
+		"A chatmail / Delta Chat provider for make init / portal init"
 	],
 	"selfConfig": "Then copy config.example.yml → config.yml and .env.example → .env. Data default is ./data. Never commit .env, config.yml, or data/.",
 	"selfWay1": "Way 1 — build the binary",
 	"selfWay1P": "Use this when you have Go 1.22+ and want to compile from git. The Makefile is the supported entrypoint.",
 	"selfWay1Release": "All-in-one static binary (stripped, version stamped) goes to dist/portal:",
 	"selfWay2": "Way 2 — download the binary from a release",
-	"selfWay2P": "Use this when you do not want a Go toolchain. GitHub Actions publish archives on each tag v*: tgportal_<tag>_<os>_<arch>.tar.gz (Windows .zip) plus checksums.txt.",
+	"selfWay2P": "Use this when you do not want a Go toolchain. GitHub Actions publish archives on each tag v*: portal_<tag>_<os>_<arch>.tar.gz (Windows .zip) plus checksums.txt.",
 	"selfWay2Items": [
 		"Open the latest release or the releases list.",
 		"Download the archive for your OS/CPU (examples: linux_amd64, linux_arm64, darwin_arm64, windows_amd64).",

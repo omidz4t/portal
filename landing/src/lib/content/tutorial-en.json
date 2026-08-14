@@ -318,7 +318,7 @@
 					]
 				},
 				{
-					"caption": "On the machine that runs tgportal, set PERSONA_ACCOUNT_QR and mode: persona or both.",
+					"caption": "On the machine that runs portal, set PERSONA_ACCOUNT_QR and mode: persona or both.",
 					"why": "A ghost is a real Delta Chat account. To create one you tell the program which Delta Chat provider to use (PERSONA_ACCOUNT_QR). You can cap how many. List: /bots. Stop: /unpair-bot.",
 					"tgTitle": "Portal",
 					"dcTitle": "Portal",

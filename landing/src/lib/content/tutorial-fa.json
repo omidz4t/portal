@@ -302,7 +302,7 @@
 					]
 				},
 				{
-					"caption": "روی ماشینی که tgportal را اجرا می‌کند PERSONA_ACCOUNT_QR و mode: persona یا both را بگذارید.",
+					"caption": "روی ماشینی که portal را اجرا می‌کند PERSONA_ACCOUNT_QR و mode: persona یا both را بگذارید.",
 					"why": "روح یه حساب واقعی دلتا چته. برای ساختنش باید تو تنظیمات بگی از کدوم سرویس دلتا چت بسازه (PERSONA_ACCOUNT_QR). سقف تعداد رو هم می‌تونی بذاری. لیست: /bots. توقف: /unpair-bot.",
 					"tgTitle": "@tgdeltabridgebot",
 					"dcTitle": "پورتال",

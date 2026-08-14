@@ -15,7 +15,7 @@
 	"langEn": "EN",
 	"langFa": "فا",
 	"warnTitle": "Hold on.",
-	"warnBody": "A public bot means you trust whoever runs the box. They can see pairing data and whatever you bridge. Delta Chat encryption does not hide that from tgportal. Better to run your own.",
+	"warnBody": "A public bot means you trust whoever runs the box. They can see pairing data and whatever you bridge. Delta Chat encryption does not hide that from Portal. Better to run your own.",
 	"warnWhy": "Why?",
 	"heroEyebrow": "Telegram and Delta Chat",
 	"heroTitle": "Stickers and GIFs that survive the jump to Delta Chat.",
@@ -125,7 +125,7 @@
 	"selfTitle": "Best: run it on your machine",
 	"selfLead": "That’s the version we mean when we say “use this.” One Go binary, deltachat-rpc-server on PATH. You keep the token, the database, the keys.",
 	"selfNeeds": [
-		"The tgportal binary (build it, or download a GitHub release)",
+		"The portal binary (build it, or download a GitHub release)",
 		"deltachat-rpc-server on PATH and a Telegram BotFather token",
 		"Chatmail / Delta Chat provider (e.g. nine.testrun.org for tests)",
 		"Optional SOCKS5 / HTTP proxies"

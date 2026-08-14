@@ -68,7 +68,7 @@ func (l *Limiter) pruneLocked(cut time.Time) {
 	}
 }
 
-// Set holds the named limiters for a single tgportal process.
+// Set holds the named limiters for a single portal process.
 type Set struct {
 	PairTG    *Limiter
 	ClaimTG   *Limiter

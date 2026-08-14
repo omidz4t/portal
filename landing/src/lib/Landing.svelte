@@ -239,8 +239,8 @@
 				<pre
 					class="code-ltr doodle-card overflow-x-auto p-5 font-mono text-sm leading-7"
 					dir="ltr"
-				><code>tar -xzf tgportal_*.tar.gz
-chmod +x tgportal
+				><code>tar -xzf portal_*.tar.gz
+chmod +x portal
 ./portal --version
 
 # config.yml ← config.example.yml
