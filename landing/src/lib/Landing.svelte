@@ -94,7 +94,11 @@
 	</section>
 
 	<section id="how" class="mx-auto max-w-6xl px-5 pb-16">
-		<h2 class="text-2xl font-semibold">{copy.howTitle}</h2>
+		<p class="feature-stamp">
+			<KoboyoIcon name="tunnel" class="h-5 w-5" />
+			{copy.modeOne}
+		</p>
+		<h2 class="mt-5 text-2xl font-semibold">{copy.howTitle}</h2>
 		<p class="mt-2 max-w-2xl text-mist">
 			{copy.howLead}
 			<a class="underline underline-offset-2" href={docsPath(locale, 'pairing')}
@@ -120,8 +124,8 @@
 	<section id="persona" class="persona-band" aria-labelledby="persona-heading">
 		<div class="mx-auto max-w-6xl px-5">
 			<p class="feature-stamp">
-				<KoboyoIcon name="new-badge" class="h-5 w-5" />
-				{copy.personaNew}
+				<KoboyoIcon name="puppet" class="h-5 w-5" />
+				{copy.modeTwo}
 			</p>
 			<p class="mt-5 font-mono text-xs tracking-[0.18em] uppercase">{copy.personaEyebrow}</p>
 			<h2 id="persona-heading" class="mt-2 text-2xl font-semibold text-balance sm:text-4xl">

@@ -53,8 +53,9 @@
 			"note": "Normal chat stuff, same both ways. Long videos stay on their side — we cap duration."
 		}
 	],
-	"howTitle": "First, just pair yourself",
-	"howLead": "This is the simple mode: you, the portal bot, one Delta Chat. Don’t use a public host unless you’re fine with that person seeing what you send. You can also start from Delta Chat with t.me/…?start=CODE.",
+	"modeOne": "Mode 1 — Tunnel",
+	"howTitle": "A tunnel: you and the portal, one chat",
+	"howLead": "Everything you send the portal bot lands in one Delta Chat. Don’t use a public host unless you’re fine with that person seeing what you send. You can also start from Delta Chat with t.me/…?start=CODE.",
 	"pairingDocs": "Pairing docs",
 	"steps": [
 		{
@@ -78,8 +79,8 @@
 			"body": "Stickers, GIFs, text, images, short video. Filenames stay neutral; source captions are stripped."
 		}
 	],
-	"personaNew": "New",
-	"personaNewHint": "New, and different: this is not “pair the public bot.” This is your bot, their faces.",
+	"modeTwo": "Mode 2 — Persona",
+	"personaNewHint": "Mode 1 is the tunnel. Mode 2 is Persona: your bot, their faces.",
 	"personaEyebrow": "Persona",
 	"personaTitle": "They write your Telegram bot. You see them as people in Delta Chat.",
 	"personaLead": "Pairing dumps everything into one chat with the portal. Persona is the other product: you connect a bot you made with BotFather. Friends stay out of a shared pile. Each Telegram person becomes a ghost — a real Delta Chat account with their name and photo — and opens a normal 1:1 with you. What you type there goes out as your bot.",
