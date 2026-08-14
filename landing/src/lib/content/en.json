@@ -77,7 +77,7 @@
 		},
 		{
 			"n": "2 · your bot",
-			"title": "The program is listening on your bot"
+			"title": "The program is listening on your bot",
 			"body": "You registered the BotFather token with /pair-bot on the portal (after you /paired yourself)."
 		},
 		{

@@ -32,7 +32,7 @@
 	"trustIncludes": "That includes:",
 	"trustItems": [
 		"Telegram user ids, names, and message bodies sent to the bot",
-		"Pairing codes and which Telegram is tied to which Delta Chat (in the database)"
+		"Pairing codes and which Telegram is tied to which Delta Chat (in the database)",
 		"Sticker, GIF, image, and video files while they sit in cache",
 		"In persona mode: BotFather tokens you register, and the keys of ghost Delta Chat accounts"
 	],
