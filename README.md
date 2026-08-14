@@ -44,7 +44,7 @@ make test
 | | |
 |---|---|
 | [docs/installation.md](docs/installation.md) | Install |
-| [docs/pairing.md](docs/pairing.md) | Pairing |
+| [docs/pairing.md](docs/pairing.md) | How to pair Telegram and Delta Chat |
 | [docs/persona.md](docs/persona.md) | Persona / ghost accounts |
 | [docs/security.md](docs/security.md) | Operator hardening |
 | [SECURITY.md](SECURITY.md) | Report a vulnerability |
