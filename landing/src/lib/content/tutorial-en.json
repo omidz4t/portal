@@ -1,5 +1,5 @@
 {
-	"title": "Was that a lot?\nLet me just show you.",
+	"title": "Was that a lot?\nLet me just show you!",
 	"lead": "",
 	"open": "Click on me",
 	"close": "Close",
@@ -17,7 +17,7 @@
 	"stories": [
 		{
 			"id": "pair",
-			"label": "Just pair me",
+			"label": "Tunnel mode",
 			"group": "",
 			"intro": "Simple mode: you, the portal bot, one Delta Chat. Nothing moves until this pair is on.",
 			"scenes": [
