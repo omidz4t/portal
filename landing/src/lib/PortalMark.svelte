@@ -17,8 +17,10 @@
 <p class="portal-mark" dir="ltr">
 	<span class="sr-only">{telegram} {name} {delta}</span>
 	<span class="portal-window portal-window-left" aria-hidden="true">
-		<span class="portal-sizer">{telegram}</span>
-		<span class="portal-sizer">{delta}</span>
+		<span class="portal-sizers">
+			<span class="portal-sizer">{telegram}</span>
+			<span class="portal-sizer">{delta}</span>
+		</span>
 		<span class="portal-rider portal-out-east">{telegram}</span>
 		<span class="portal-rider portal-in-east">{delta}</span>
 	</span>
@@ -30,8 +32,10 @@
 		<KoboyoIcon name="mirror-portal" class={iconClass} />
 	</span>
 	<span class="portal-window portal-window-right" aria-hidden="true">
-		<span class="portal-sizer">{telegram}</span>
-		<span class="portal-sizer">{delta}</span>
+		<span class="portal-sizers">
+			<span class="portal-sizer">{telegram}</span>
+			<span class="portal-sizer">{delta}</span>
+		</span>
 		<span class="portal-rider portal-out-west">{delta}</span>
 		<span class="portal-rider portal-in-west">{telegram}</span>
 	</span>
@@ -68,19 +72,19 @@
 		margin-inline-start: -0.2rem;
 	}
 
+	.portal-sizers {
+		display: grid;
+	}
+
 	.portal-sizer {
-		display: block;
+		grid-area: 1 / 1;
 		visibility: hidden;
+		padding-inline: 0.15rem;
 		font-size: clamp(0.7rem, 1.5vw, 0.85rem);
 		font-weight: 700;
 		letter-spacing: 0.02em;
 		line-height: 1.15;
 		white-space: nowrap;
-	}
-
-	.portal-sizer + .portal-sizer {
-		position: absolute;
-		inset: 0;
 	}
 
 	.portal-rider {
