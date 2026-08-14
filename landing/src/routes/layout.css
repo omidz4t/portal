@@ -202,6 +202,90 @@ footer.doodle-bar {
 	padding: 0.25rem;
 }
 
+.flow-track {
+	margin-inline: auto;
+	margin-top: 2.5rem;
+	max-width: 40rem;
+	padding-block: 0.5rem 1rem;
+}
+
+.flow-step {
+	display: grid;
+	grid-template-columns: 3.5rem minmax(0, 1fr);
+	column-gap: 1.75rem;
+}
+
+.flow-rail {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	align-self: stretch;
+}
+
+.flow-node {
+	display: flex;
+	height: 3.5rem;
+	width: 3.5rem;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid var(--color-ink);
+	border-radius: 999px;
+	background: #fffdf8;
+	box-shadow: 2px 2px 0 var(--color-ink);
+}
+
+.flow-line {
+	position: relative;
+	flex: 1 1 auto;
+	min-height: 4.5rem;
+	width: 2px;
+	margin-block: 0.4rem 0.15rem;
+	background-image: repeating-linear-gradient(
+		to bottom,
+		var(--color-ink) 0 7px,
+		transparent 7px 13px
+	);
+}
+
+.flow-line::after {
+	content: '';
+	position: absolute;
+	bottom: -1px;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border-inline-start: 6px solid transparent;
+	border-inline-end: 6px solid transparent;
+	border-top: 9px solid var(--color-ink);
+	translate: -50% 0;
+}
+
+.flow-body {
+	margin-bottom: 2.75rem;
+	padding: 1.5rem 1.6rem 1.7rem;
+}
+
+.flow-step:last-child .flow-body {
+	margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+	.flow-track {
+		max-width: 44rem;
+	}
+
+	.flow-step {
+		grid-template-columns: 4.25rem minmax(0, 1fr);
+		column-gap: 2.25rem;
+	}
+
+	.flow-line {
+		min-height: 5.5rem;
+	}
+}
+
 .doodle-warn {
 	border-bottom: 2px dashed var(--color-ink);
 	background: var(--color-warn-bg);

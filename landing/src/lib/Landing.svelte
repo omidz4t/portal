@@ -120,13 +120,22 @@
 
 		<h3 class="mt-14 text-xl font-semibold">{copy.flowTitle}</h3>
 		<p class="mt-2 max-w-2xl text-mist">{copy.flowLead}</p>
-		<ol class="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+		<ol class="flow-track">
 			{#each copy.flow as step, i}
-				<li class="doodle-card p-5">
-					<KoboyoIcon name={flowIcons[i]} class="h-14 w-14" />
-					<p class="mt-4 font-mono text-xs">{step.n}</p>
-					<h4 class="mt-1 text-lg font-semibold">{step.title}</h4>
-					<p class="mt-2 text-sm leading-relaxed text-mist">{step.body}</p>
+				<li class="flow-step">
+					<div class="flow-rail" aria-hidden="true">
+						<span class="flow-node">
+							<KoboyoIcon name={flowIcons[i]} class="h-8 w-8" />
+						</span>
+						{#if i < copy.flow.length - 1}
+							<span class="flow-line"></span>
+						{/if}
+					</div>
+					<div class="doodle-card flow-body">
+						<p class="font-mono text-xs">{step.n}</p>
+						<h4 class="mt-2 text-xl font-semibold">{step.title}</h4>
+						<p class="mt-3 max-w-prose text-base leading-relaxed text-mist">{step.body}</p>
+					</div>
 				</li>
 			{/each}
 		</ol>

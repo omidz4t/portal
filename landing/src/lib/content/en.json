@@ -65,7 +65,7 @@
 	"personaCardTitle": "Persona",
 	"personaCardBody": "They talk to your bot. On Delta Chat, Alice looks like Alice, Bob looks like Bob — separate chats, reused forever for the same Telegram id.",
 	"flowTitle": "How a message travels",
-	"flowLead": "Read along the row on a wide screen, or top to bottom on a phone. Same story.",
+	"flowLead": "Follow the dashed line from top to bottom. Each stop is one hop the message takes.",
 	"flow": [
 		{
 			"n": "1 · they write",
