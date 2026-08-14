@@ -392,23 +392,36 @@ footer.doodle-bar {
 }
 
 .try-modal {
-	width: min(96vw, 72rem);
-	max-height: 94vh;
-	margin: auto;
+	inset: 0;
+	width: 100%;
+	max-width: none;
+	height: 100%;
+	max-height: none;
+	margin: 0;
 	overflow: auto;
-	border: 2.5px solid var(--color-ink);
-	border-radius: 1.2rem;
-	background: #fffdf8;
+	border: 0;
+	border-radius: 0;
+	background-color: #dce8e2;
+	background-image:
+		radial-gradient(circle at 1px 1px, #a8bfb4 1.15px, transparent 1.2px),
+		linear-gradient(#dce8e2, #dce8e2);
+	background-size:
+		20px 20px,
+		auto;
 	padding: 0;
-	box-shadow: 8px 8px 0 var(--color-ink);
+	box-shadow: none;
 }
 
 .try-modal::backdrop {
-	background: #1c1c1ccc;
+	background: #dce8e2;
 }
 
 .try-modal-inner {
-	padding: 1.25rem 1.25rem 1.75rem;
+	box-sizing: border-box;
+	min-height: 100%;
+	margin: 0 auto;
+	max-width: 72rem;
+	padding: 1.25rem 1.25rem 2rem;
 }
 
 .try-modal-bar {
