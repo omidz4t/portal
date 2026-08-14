@@ -155,7 +155,7 @@
 		</aside>
 	{/if}
 
-	<div class="mt-5 flex flex-wrap gap-2">
+	<div class="try-walk-nav">
 		<button type="button" class="doodle-btn" onclick={back} disabled={step === 0}
 			>{tutorial.back}</button
 		>
