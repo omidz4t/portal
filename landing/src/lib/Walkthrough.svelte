@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ChatPhone from '$lib/ChatPhone.svelte';
 	import type { TutorialCopy, TutorialScene } from '$lib/content';
+	import { asset } from '$lib/links';
 
 	let {
 		tutorial,
@@ -219,7 +220,7 @@
 			variant="tg"
 			app={tgApp}
 			peer={scene.tgTitle}
-			logo="/logos/telegram.svg"
+			logo={asset('/logos/telegram.svg')}
 			inbox={isInbox('tg')}
 			rows={lastInbox('tg')}
 			bubbles={bubbles('tg')}
@@ -230,7 +231,7 @@
 			variant="dc"
 			app={tutorial.delta}
 			peer={scene.dcTitle}
-			logo="/logos/deltachat.svg"
+			logo={asset('/logos/deltachat.svg')}
 			inbox={isInbox('dc')}
 			rows={lastInbox('dc')}
 			bubbles={bubbles('dc')}

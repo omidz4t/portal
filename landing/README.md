@@ -24,6 +24,10 @@ npm run build    # static files in landing/build
 npm run preview
 ```
 
+Production URL: [https://omidz4t.github.io/portal](https://omidz4t.github.io/portal)
+
+CI (`.github/workflows/landing.yml`) rebuilds and deploys to GitHub Pages when `landing/` changes on `main`. Local / webxdc builds leave `BASE_PATH` empty. The Pages job sets `BASE_PATH=/portal`.
+
 Webxdc (share the site in Delta Chat):
 
 ```sh

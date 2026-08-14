@@ -6,7 +6,7 @@
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
-	src: url('/fonts/AradFD-Regular.woff2') format('woff2');
+	src: url('../../static/fonts/AradFD-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -14,7 +14,7 @@
 	font-style: normal;
 	font-weight: 500;
 	font-display: swap;
-	src: url('/fonts/AradFD-Medium.woff2') format('woff2');
+	src: url('../../static/fonts/AradFD-Medium.woff2') format('woff2');
 }
 
 @font-face {
@@ -22,7 +22,7 @@
 	font-style: normal;
 	font-weight: 600;
 	font-display: swap;
-	src: url('/fonts/AradFD-SemiBold.woff2') format('woff2');
+	src: url('../../static/fonts/AradFD-SemiBold.woff2') format('woff2');
 }
 
 @font-face {
@@ -30,7 +30,7 @@
 	font-style: normal;
 	font-weight: 700;
 	font-display: swap;
-	src: url('/fonts/AradFD-Bold.woff2') format('woff2');
+	src: url('../../static/fonts/AradFD-Bold.woff2') format('woff2');
 }
 
 @theme {
@@ -529,8 +529,8 @@ footer.doodle-bar {
 .try-sparkle {
 	position: absolute;
 	background-color: currentColor;
-	mask: url(/icons/sparkle.svg) center / contain no-repeat;
-	-webkit-mask: url(/icons/sparkle.svg) center / contain no-repeat;
+	mask: url('../../static/icons/sparkle.svg') center / contain no-repeat;
+	-webkit-mask: url('../../static/icons/sparkle.svg') center / contain no-repeat;
 	transform: translate(-50%, -50%) rotate(var(--rot)) scale(0.4);
 	animation: try-sparkle-pop 0.68s ease-out forwards;
 }

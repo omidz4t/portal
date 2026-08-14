@@ -2,7 +2,8 @@
 
 Bidirectional **Telegram ↔ Delta Chat** bridge for text, stickers, GIFs, images, and short video.
 
-Public bot: [@tgdeltabridgebot](https://t.me/tgdeltabridgebot)
+Public bot: [@tgdeltabridgebot](https://t.me/tgdeltabridgebot)  
+Site: [https://omidz4t.github.io/portal](https://omidz4t.github.io/portal)
 
 > **Beta.** This software is unfinished and may lose messages, break pairing, or change without notice. Use it at your own risk. The host can read everything you bridge — prefer running your own instance. See [docs/trust.md](docs/trust.md).
 

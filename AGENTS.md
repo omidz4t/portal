@@ -100,7 +100,10 @@ The **`Makefile` is the canonical entrypoint** for build, config bootstrap, and 
 | `make minor` | Force minor: VERSION + changelog + commit + tag |
 | `make major` | Force major: VERSION + changelog + commit + tag |
 | `make release-tag` | Same, bump chosen from conventional commits |
+| `make pack-linux` | `.deb`, `.rpm`, and `.apk` under `dist/` (needs `nfpm`) |
 | `make run-landing` | SvelteKit landing in `./landing` (`npm run dev` on port 5173) |
+
+Landing deploys from `.github/workflows/landing.yml` to GitHub Pages (`https://omidz4t.github.io/portal`) when `landing/**` changes on `main`.
 
 **Agent rules for the Makefile:**
 

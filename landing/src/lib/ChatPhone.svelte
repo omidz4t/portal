@@ -1,6 +1,7 @@
 <script lang="ts">
 	import KoboyoIcon from '$lib/KoboyoIcon.svelte';
 	import type { InboxRow, TutorialScene } from '$lib/content';
+	import { asset } from '$lib/links';
 
 	type Bubble = TutorialScene['bubbles'][number];
 
@@ -132,7 +133,7 @@
 							<img
 								class="app-logo"
 								class:logo-tg-dark={isPortal(row.name)}
-								src="/logos/telegram.svg"
+								src={asset('/logos/telegram.svg')}
 								alt=""
 								width="28"
 								height="28"
@@ -168,7 +169,7 @@
 					<div class="invite-card">
 						<img
 							class="invite-qr"
-							src="/logos/invite-example.svg"
+							src={asset('/logos/invite-example.svg')}
 							alt=""
 							width="120"
 							height="120"

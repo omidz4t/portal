@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { botUrl, repoUrl } from '$lib/links';
+	import { asset, botUrl, repoUrl } from '$lib/links';
 	import KoboyoIcon from '$lib/KoboyoIcon.svelte';
 	import PortalMark from '$lib/PortalMark.svelte';
 	import type { Copy, Locale } from '$lib/content';
@@ -48,7 +48,7 @@
 			</div>
 			<figure class="doodle-card doodle-card-tilt overflow-hidden">
 				<img
-					src="/poster.jpg"
+					src={asset('/poster.jpg')}
 					alt={copy.posterAlt}
 					width="960"
 					height="640"
@@ -84,9 +84,9 @@
 		<h2 class="text-2xl font-semibold sm:text-3xl">{copy.bridgeTitle}</h2>
 		<p class="mt-3 max-w-2xl text-lg leading-relaxed text-mist">{copy.bridgeLead}</p>
 		<p class="mt-4 inline-flex items-center gap-3 text-sm font-semibold">
-			<img src="/logos/telegram.svg" alt="" width="28" height="28" class="h-7 w-7" />
+			<img src={asset('/logos/telegram.svg')} alt="" width="28" height="28" class="h-7 w-7" />
 			<KoboyoIcon name="bridge-momentum" class="h-10 w-10" />
-			<img src="/logos/deltachat.svg" alt="" width="28" height="28" class="h-7 w-7" />
+			<img src={asset('/logos/deltachat.svg')} alt="" width="28" height="28" class="h-7 w-7" />
 			{copy.bridgeBoth}
 		</p>
 		<ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

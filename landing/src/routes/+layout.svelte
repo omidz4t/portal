@@ -3,20 +3,19 @@
 	import SiteHeader from '$lib/SiteHeader.svelte';
 	import SiteFooter from '$lib/SiteFooter.svelte';
 	import { page } from '$app/state';
-	import { copies, localeFromPath } from '$lib/content';
+	import { appPathname, copies, localeFromPath } from '$lib/content';
 	import { seoFor } from '$lib/seo';
 
 	let { children } = $props();
 
-	const locale = $derived(localeFromPath(page.url.pathname));
+	const path = $derived(appPathname(page.url.pathname));
+	const locale = $derived(localeFromPath(path));
 	const copy = $derived(copies[locale]);
-	const onDocs = $derived(page.url.pathname.includes('/docs'));
-	const onShow = $derived(page.url.pathname.includes('/show'));
-	const isHome = $derived(
-		page.url.pathname === '/' || page.url.pathname === '/fa' || page.url.pathname === '/fa/'
-	);
+	const onDocs = $derived(path.includes('/docs'));
+	const onShow = $derived(path.includes('/show'));
+	const isHome = $derived(path === '/' || path === '/fa' || path === '/fa/');
 	const headerCurrent = $derived(onDocs ? 'docs' : onShow ? 'try' : '');
-	const seo = $derived(seoFor(page.url.pathname));
+	const seo = $derived(seoFor(path));
 
 	$effect(() => {
 		document.documentElement.lang = locale === 'fa' ? 'fa' : 'en';
@@ -61,7 +60,7 @@
 >
 	<a class="skip-link" href="#main-content">{copy.skip}</a>
 	{#if !onShow}
-		<SiteHeader {copy} {locale} pathname={page.url.pathname} current={headerCurrent} />
+		<SiteHeader {copy} {locale} pathname={path} current={headerCurrent} />
 	{/if}
 	<main id="main-content" class="flex-1" class:show-main={onShow} tabindex="-1"
 		>{@render children()}</main

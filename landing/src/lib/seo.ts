@@ -1,4 +1,5 @@
 import {
+	appPathname,
 	copies,
 	docsCopies,
 	tutorialCopies,
@@ -14,7 +15,7 @@ function withSlash(pathname: string): string {
 }
 
 export function seoFor(pathname: string) {
-	const path = withSlash(pathname);
+	const path = withSlash(appPathname(pathname));
 	const locale: Locale = localeFromPath(path);
 	const copy = copies[locale];
 	const docs = docsCopies[locale];
@@ -54,8 +55,8 @@ export function seoFor(pathname: string) {
 		description,
 		locale,
 		canonical: `${siteOrigin}${path}`,
-		alternateEn: `${siteOrigin}${twinPath(path, 'en')}`,
-		alternateFa: `${siteOrigin}${twinPath(path, 'fa')}`,
+		alternateEn: `${siteOrigin}${appPathname(twinPath(path, 'en'))}`,
+		alternateFa: `${siteOrigin}${appPathname(twinPath(path, 'fa'))}`,
 		ogLocale: locale === 'fa' ? 'fa_IR' : 'en_US',
 		ogLocaleAlt: locale === 'fa' ? 'en_US' : 'fa_IR',
 		image: `${siteOrigin}/poster.jpg`,
