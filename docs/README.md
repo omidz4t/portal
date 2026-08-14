@@ -3,6 +3,7 @@
 | Document | Description |
 |----------|-------------|
 | [installation.md](installation.md) | Install dependencies and first run |
+| [docker.md](docker.md) | GHCR image (`ghcr.io/omidz4t/portal`) |
 | [configuration.md](configuration.md) | YAML, env, assets, data dir |
 | [pairing.md](pairing.md) | End-user pairing walkthrough |
 | [persona-design.md](persona-design.md) | **Persona design (source of truth)** — goals, e2e model, plan, acceptance |

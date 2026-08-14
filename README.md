@@ -4,6 +4,7 @@ Bidirectional **Telegram ↔ Delta Chat** bridge for text, stickers, GIFs, image
 
 Public bot: [@tgdeltabridgebot](https://t.me/tgdeltabridgebot)  
 Site: [https://omidz4t.github.io/portal](https://omidz4t.github.io/portal)  
+Image: [`ghcr.io/omidz4t/portal`](https://github.com/users/omidz4t/packages/container/package/portal)  
 Binary: `portal`
 
 > **Beta.** This software is unfinished and may lose messages, break pairing, or change without notice. Use it at your own risk. The host can read everything you bridge — prefer running your own instance. See [docs/trust.md](docs/trust.md).
@@ -21,6 +22,32 @@ make serve
 ```
 
 Pair: Telegram `/start` → open the Delta Chat invite → send the code to the bot.
+
+## Docker (GHCR)
+
+Public image (amd64 + arm64). Includes `portal` and `deltachat-rpc-server`. Do not bake tokens into the image.
+
+```bash
+docker pull ghcr.io/omidz4t/portal:latest
+# or: docker pull ghcr.io/omidz4t/portal:<git-sha>
+
+# first account (once per data volume)
+docker run --rm \
+  -v "$PWD/config.yml:/etc/portal/config.yml:ro" \
+  --env-file .env \
+  -v portal-data:/var/lib/portal \
+  ghcr.io/omidz4t/portal:latest \
+  --config /etc/portal/config.yml --folder /var/lib/portal \
+  init dcaccount:nine.testrun.org
+
+docker run --rm \
+  -v "$PWD/config.yml:/etc/portal/config.yml:ro" \
+  --env-file .env \
+  -v portal-data:/var/lib/portal \
+  ghcr.io/omidz4t/portal:latest
+```
+
+Tags: `latest`, the git SHA, and the `VERSION` file. Details: [docs/docker.md](docs/docker.md).
 
 ## Config
 
@@ -45,6 +72,7 @@ docker pull ghcr.io/omidz4t/portal:latest
 | | |
 |---|---|
 | [docs/installation.md](docs/installation.md) | Install |
+| [docs/docker.md](docs/docker.md) | Container / GHCR |
 | [docs/pairing.md](docs/pairing.md) | How to pair Telegram and Delta Chat |
 | [docs/persona.md](docs/persona.md) | Persona / ghost accounts |
 | [docs/security.md](docs/security.md) | Operator hardening |
