@@ -77,7 +77,7 @@
 		},
 		{
 			"n": "2 · your bot",
-			"title": "TGPORTAL is polling it",
+			"title": "The program is listening on your bot"
 			"body": "You registered the BotFather token with /pair-bot on the portal (after you /paired yourself)."
 		},
 		{
@@ -92,7 +92,7 @@
 		}
 	],
 	"setupTitle": "You only set this up once",
-	"setupBody": "mode: persona or both. Pair the portal first so it has your Delta Chat key. Then in a private chat: /pair-bot <TOKEN>. That token lives in SQLite under ./data.",
+	"setupBody": "mode: persona or both. Pair the portal first so it has your Delta Chat identity. Then in a private chat: /pair-bot <TOKEN>. That token lives in the database on that computer.",
 	"groupsTitle": "Groups if you want them",
 	"groupsBody": "Turn on persona.allow_groups, add the bot, turn Group Privacy off in BotFather. The group shows up as TG: … with each speaker as their ghost. Your replies still leave as the bot.",
 	"hostTitle": "Whoever runs the box is the bot",

@@ -26,7 +26,7 @@
 				},
 				{
 					"caption": "The bot replies with a Delta Chat invite (QR + link) and a short code such as K7H2MQNP.",
-					"why": "The invite is how you meet the bot’s Delta Chat account. The code is stored in SQLite on the host for about 30 minutes. It maps “whoever sends this code on Delta Chat” to your telegram_user_id. The host can see this row — that is why self-hosting is safer.",
+					"why": "The invite is how you meet the bot’s Delta Chat account. The code sits in the database on that computer for about 30 minutes. Whoever types it in Delta Chat gets linked to your Telegram. The person running the program can see that — that’s why running it yourself is safer.",
 					"tgTitle": "@tgdeltabridgebot",
 					"dcTitle": "—",
 					"bubbles": [
@@ -55,7 +55,7 @@
 				},
 				{
 					"caption": "In that Delta Chat, send only the code. Case does not matter. Do not add extra words.",
-					"why": "The bot looks up K7H2MQNP in SQLite. If it is unused and not expired, the row becomes active: telegram_user_id ↔ dc_chat_id. After that, a code-like message in an already-paired chat is just text — it will not steal the pair.",
+					"why": "The bot looks up that code in the database. If it’s still fresh, your Telegram is tied to that Delta Chat. After you’re paired, a message that just looks like a code is only text — it won’t steal the link.",
 					"tgTitle": "@tgdeltabridgebot",
 					"dcTitle": "TGPORTAL",
 					"bubbles": [
@@ -66,7 +66,7 @@
 				},
 				{
 					"caption": "Send a sticker on Telegram. It appears in the same Delta Chat with a neutral filename and no “from Telegram” caption.",
-					"why": "TGPORTAL downloads the file from Telegram’s servers, then uploads it through Delta Chat RPC. The host machine sees the file while it is in cache. Filenames are anonymized so the other side does not leak Telegram metadata.",
+					"why": "The program downloads the file from Telegram and sends it into Delta Chat. While that’s happening, the computer running it can see the file. It renames it so extra Telegram info doesn’t leak.",
 					"tgTitle": "@tgdeltabridgebot",
 					"dcTitle": "TGPORTAL",
 					"bubbles": [
@@ -92,8 +92,8 @@
 			"intro": "Persona is the other product. Stay paired, then attach a BotFather bot that’s yours. Do it on a machine you run.",
 			"scenes": [
 				{
-					"caption": "Finish story 1 first. Persona ghosts must know how to write to you. That knowledge is your Delta Chat public key, captured when you /pair.",
-					"why": "There is no second invite dance. When you paired, TGPORTAL stored your vcard / public key. New ghost accounts use that to open a 1:1 with you. If you skip /pair, /pair-bot will fail with “owner key missing.”",
+					"caption": "Finish story 1 first. A ghost has to know how to write to you. That comes from when you /pair.",
+					"why": "No second invite. When you paired, the program saved your Delta Chat identity. New ghosts use that to open a chat with you. Skip /pair and /pair-bot just fails.",
 					"tgTitle": "@tgdeltabridgebot",
 					"dcTitle": "TGPORTAL",
 					"bubbles": [
@@ -101,7 +101,7 @@
 						{
 							"side": "dc",
 							"who": "sys",
-							"text": "Your public key is on the host. Ghosts can reach you."
+							"text": "Your Delta Chat identity is saved. Ghosts can reach you."
 						}
 					]
 				},
@@ -122,7 +122,7 @@
 				},
 				{
 					"caption": "Back on the portal bot, in private, send /pair-bot and the token. Optional: the t.me link.",
-					"why": "/pair links you. /pair-bot registers a bot you own. Different commands. Groups are rejected so the token is not leaked. The host writes the token into SQLite under ./data and starts an 8-way poller.",
+					"why": "/pair links you. /pair-bot registers a bot you own. Different commands. Groups are refused so the token isn’t leaked. The token is stored in the database on that computer, and the program starts listening for messages on your bot.",
 					"tgTitle": "@tgdeltabridgebot",
 					"dcTitle": "TGPORTAL",
 					"bubbles": [
@@ -134,8 +134,8 @@
 					]
 				},
 				{
-					"caption": "The portal answers: your bot is polling. Anyone who DMs @YourBot can get a ghost.",
-					"why": "Polling means TGPORTAL asks Telegram “any new messages for this token?” and bridges them. Your friends never talk to @tgdeltabridgebot. They only know @YourBot.",
+					"caption": "The portal says your bot is on. Anyone who DMs @YourBot can get a ghost.",
+					"why": "The program keeps asking Telegram “any new messages?” and passes them on. Your friends never see @tgdeltabridgebot. They only know @YourBot.",
 					"tgTitle": "@tgdeltabridgebot",
 					"dcTitle": "TGPORTAL",
 					"bubbles": [
@@ -147,18 +147,18 @@
 						{
 							"side": "tg",
 							"who": "bot",
-							"text": "Persona bot @YourBot is polling.\nFriends DM that bot, not this one."
+							"text": "Persona bot @YourBot is on.\nFriends write that bot, not this one."
 						},
 						{
 							"side": "dc",
 							"who": "sys",
-							"text": "No extra SecureJoin. Key material already saved."
+							"text": "No extra invite. Your identity is already saved."
 						}
 					]
 				},
 				{
 					"caption": "On the machine that runs tgportal, set PERSONA_ACCOUNT_QR and mode: persona or both.",
-					"why": "Ghosts are real Delta Chat accounts. Creating one needs a chatmail / dcaccount: URI. That is PERSONA_ACCOUNT_QR in .env. Limits: persona.max_ghosts, persona.max_bots. List with /bots. Stop with /unpair-bot.",
+					"why": "A ghost is a real Delta Chat account. To create one you tell the program which Delta Chat provider to use (PERSONA_ACCOUNT_QR). You can cap how many. List: /bots. Stop: /unpair-bot.",
 					"tgTitle": "@tgdeltabridgebot",
 					"dcTitle": "TGPORTAL",
 					"bubbles": [
@@ -189,8 +189,8 @@
 					"bubbles": [{ "side": "tg", "who": "alice", "text": "hey, got a sticker?" }]
 				},
 				{
-					"caption": "On the host, TGPORTAL looks up (your_bot, Alice’s Telegram id).",
-					"why": "Missing → AddAccount with PERSONA_ACCOUNT_QR, set display name + avatar from Telegram, save the row. Exists → reuse the same dc_account_id. This table is not the personal-mode pairs table. Alice pairing the public portal would be a different row.",
+					"caption": "The program checks the database: have we seen this bot + Alice before?",
+					"why": "No? It makes a new Delta Chat account with her Telegram name and photo and saves it. Yes? Same account as last time. This is separate from you pairing the public portal.",
 					"tgTitle": "@YourBot ← Alice",
 					"dcTitle": "creating Alice…",
 					"bubbles": [
@@ -198,7 +198,7 @@
 						{
 							"side": "dc",
 							"who": "sys",
-							"text": "ghost lookup (persona_bot, alice_id)\n→ create account + photo"
+							"text": "Alice wasn’t in the database\n→ new account + photo"
 						}
 					]
 				},
@@ -214,7 +214,7 @@
 				},
 				{
 					"caption": "You answer in Delta Chat like any other contact.",
-					"why": "The persona poller watches this chat. Your reply is sent out through the Bot API as @YourBot. Telegram will not let the bridge speak as Alice — only as the bot.",
+					"why": "The program watches this chat and sends your reply out as @YourBot. Telegram won’t let it speak as Alice — only as the bot.",
 					"tgTitle": "@YourBot ← Alice",
 					"dcTitle": "Alice",
 					"bubbles": [
