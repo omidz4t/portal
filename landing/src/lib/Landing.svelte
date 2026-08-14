@@ -119,10 +119,6 @@
 		</ol>
 	</section>
 
-	{#key locale}
-		<MessengerTutorial tutorial={tutorialCopies[locale]} />
-	{/key}
-
 	<section id="persona" class="persona-band" aria-labelledby="persona-heading">
 		<div class="mx-auto max-w-6xl px-5">
 			<p class="feature-stamp">
@@ -241,4 +237,8 @@ make run-landing</code
 				></pre>
 		</div>
 	</section>
+
+	{#key locale}
+		<MessengerTutorial tutorial={tutorialCopies[locale]} />
+	{/key}
 </div>
