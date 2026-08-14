@@ -96,7 +96,7 @@
 			<h2 class="try-headline">
 				{tutorial.title}
 			</h2>
-			<KoboyoIcon name="smile" class="try-beam" />
+			<KoboyoIcon name="very-happy-beaming" class="try-beam" />
 		</div>
 		<button type="button" class="try-open doodle-btn doodle-btn-ink" onclick={openShow}>
 			{tutorial.open}
