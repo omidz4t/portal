@@ -115,17 +115,20 @@ version:
 version-dry:
 	@bash scripts/bump-version.sh --dry-run
 
-# Explicit semver bumps (ignore commit history)
+# Forced semver bump: VERSION + CHANGELOG + commit + tag (push yourself)
+#   make patch   → 0.0.X
+#   make minor   → 0.X.0
+#   make major   → X.0.0
+#   make release-tag  → bump from conventional commits instead
 patch:
-	@bash scripts/bump-version.sh --bump patch
+	@bash scripts/bump-version.sh --bump patch --commit --tag --changelog
 
 minor:
-	@bash scripts/bump-version.sh --bump minor
+	@bash scripts/bump-version.sh --bump minor --commit --tag --changelog
 
 major:
-	@bash scripts/bump-version.sh --bump major
+	@bash scripts/bump-version.sh --bump major --commit --tag --changelog
 
-# Bump from commits, changelog, commit VERSION, tag vX.Y.Z (push yourself)
 release-tag:
 	@bash scripts/bump-version.sh --commit --tag --changelog
 

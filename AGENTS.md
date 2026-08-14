@@ -95,6 +95,11 @@ The **`Makefile` is the canonical entrypoint** for build, config bootstrap, and 
 | `make serve` | Build and start the bot (`serve`) |
 | `make help` | CLI help |
 | `make clean` | Remove the built binary |
+| `make version-dry` | Preview conventional-commit version bump |
+| `make patch` | Force patch: VERSION + changelog + commit + tag |
+| `make minor` | Force minor: VERSION + changelog + commit + tag |
+| `make major` | Force major: VERSION + changelog + commit + tag |
+| `make release-tag` | Same, bump chosen from conventional commits |
 | `make run-landing` | SvelteKit landing in `./landing` (`npm run dev` on port 5173) |
 
 **Agent rules for the Makefile:**

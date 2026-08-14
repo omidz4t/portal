@@ -35,10 +35,12 @@ CI runs `go mod tidy` check, `go vet`, `go test`, and cross-builds. After a gree
 | `chore` / `docs` / `ci` / … | no bump |
 
 ```bash
-make version-dry          # preview
+make version-dry          # preview from commits
 make version              # write VERSION only
-make patch                # force patch
-make release-tag          # bump + changelog + commit + tag
+make patch                # 0.0.X + changelog + commit + tag
+make minor                # 0.X.0 + changelog + commit + tag
+make major                # X.0.0 + changelog + commit + tag
+make release-tag          # bump from conventional commits + changelog + commit + tag
 git push origin HEAD --tags
 ```
 
