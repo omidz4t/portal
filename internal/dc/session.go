@@ -150,11 +150,16 @@ func (s *Session) sendWithRetry(accID, chatID uint32, data deltachat.MessageData
 	}
 	var last error
 	for i := 1; i <= attempts; i++ {
+		var sentID uint32
 		err := s.Do(func() error {
-			_, err := s.Bot.Rpc.SendMsg(accID, chatID, data)
+			id, err := s.Bot.Rpc.SendMsg(accID, chatID, data)
+			sentID = id
 			return err
 		})
 		if err == nil {
+			if data.File != nil {
+				s.ForgetMessageFile(accID, sentID)
+			}
 			return nil
 		}
 		last = err

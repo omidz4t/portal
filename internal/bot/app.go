@@ -125,6 +125,9 @@ func Run() error {
 			phooks = &persona.PortalHooks{M: pm, DC: sess, St: st}
 		}
 		ApplyProfile(cli, sess, cfg)
+		if err := sess.ApplyShortDeviceRetention("60"); err != nil {
+			cli.Logger.Errorf("device retention: %v", err)
+		}
 
 		if dcp := cfg.DeltachatProxy(); dcp.IsEnabled() {
 			url := dcp.ResolvedURL()
@@ -545,6 +548,9 @@ func bridgeDCFileToTelegram(cli *botcli.BotCli, sess *dc.Session, br *bridge.Bri
 	defer func() {
 		if strings.Contains(outPath, "dc-cache") {
 			_ = os.Remove(outPath)
+		}
+		if msg.File != nil {
+			dc.RemoveEphemeralFile(*msg.File)
 		}
 	}()
 
