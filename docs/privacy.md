@@ -1,10 +1,10 @@
-# Privacy Policy — Delta ↔️ TG (TGPORTAL)
+# Privacy Policy — Delta ↔️ TG (Portal)
 
 **Last updated:** 27 July 2026  
 
 | | |
 |---|---|
-| **Third-Party Service** | Delta ↔️ TG bridge bot (also known as **TGPORTAL**) |
+| **Third-Party Service** | Delta ↔️ TG bridge bot (also known as **Portal**) |
 | **Developer (operator)** | [Your name or legal entity] |
 | **Contact for privacy requests** | [privacy@example.com] |
 | **Telegram bot** | [@tgdeltabridgebot](https://t.me/tgdeltabridgebot) *(update to your bot)* |
@@ -21,7 +21,7 @@ By using the Telegram bot, you also accept the Telegram Bot Terms and related pl
 
 > **Self-hosted copies:** If you run your own instance of the open-source software, **you** are the Developer/controller for that instance. Publish your own contact details and this (or an adapted) policy for your users.
 
-> **Trust:** Using a hosted bot means you trust **that** operator with pairing data and every message or file the bridge touches. Delta Chat encryption does not hide content from `tgportal`. Prefer running your own instance. See [trust.md](trust.md).
+> **Trust:** Using a hosted bot means you trust **that** operator with pairing data and every message or file the bridge touches. Delta Chat encryption does not hide content from `portal`. Prefer running your own instance. See [trust.md](trust.md).
 
 ---
 
@@ -316,7 +316,7 @@ Developer may update this Policy when the Service or practices change. The **Las
 
 ## 16. Open-source software
 
-The TGPORTAL / Delta ↔️ TG source code may be released under an open-source licence (see `LICENSE`).  
+The Portal / Delta ↔️ TG source code may be released under an open-source licence (see `LICENSE`).  
 **Publishing code does not make every author the controller of every deployment.** Each operator who runs an instance is Developer for that instance and must provide contact details and a privacy policy to their Users.
 
 ---
@@ -363,4 +363,4 @@ The TGPORTAL / Delta ↔️ TG source code may be released under an open-source 
 
 ---
 
-*This Policy is written to align with Telegram’s [Standard Bot Privacy Policy](https://telegram.org/privacy-tpa) and to describe Delta ↔️ TG / TGPORTAL accurately. It is not legal advice. For commercial or regulated use, obtain advice for your jurisdiction.*
+*This Policy is written to align with Telegram’s [Standard Bot Privacy Policy](https://telegram.org/privacy-tpa) and to describe Delta ↔️ TG / Portal accurately. It is not legal advice. For commercial or regulated use, obtain advice for your jurisdiction.*

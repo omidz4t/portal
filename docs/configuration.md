@@ -1,6 +1,6 @@
 # Configuration
 
-TGPORTAL splits **secrets** (environment) from **behavior** (YAML).
+Portal splits **secrets** (environment) from **behavior** (YAML).
 
 | File | Tracked in git? | Role |
 |------|-----------------|------|
@@ -103,7 +103,7 @@ Env: `PROXY_URL`, `TELEGRAM_PROXY_URL`, `DELTACHAT_PROXY_URL`, `PROXY_ENABLED`.
 
 | Key | Default | Description |
 |-----|---------|-------------|
-| `name` | `TGPORTAL` | Display name (`displayname`) |
+| `name` | `Portal` | Display name (`displayname`) |
 | `image` | `./assets/logo.jpg` | Avatar path (`selfavatar`); empty skips avatar update |
 | `reply` | `hi` | Text reply for unpaired DC messages |
 | `boot_message` | … | Optional message to `INVITE_URL` on serve |
@@ -122,7 +122,7 @@ log: false                 # default — no app logs
 log_level: info
 ```
 
-Note: Delta Chat core may still print its own lines to the process console; `log` controls TGPORTAL / bridge / botcli zap logs.
+Note: Delta Chat core may still print its own lines to the process console; `log` controls Portal / bridge / botcli zap logs.
 
 ### Storage
 

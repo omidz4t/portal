@@ -109,7 +109,7 @@
 	"selfConfig": "بعد config.example.yml → config.yml و .env.example → .env. دادهٔ پیش‌فرض ./data است. هرگز .env، config.yml یا data/ را commit نکنید.",
 	"selfWay1": "راه ۱ — ساخت باینری",
 	"selfWay1P": "وقتی Go 1.22+ دارید و می‌خواهید از git کامپایل کنید. Makefile نقطهٔ ورود رسمی است.",
-	"selfWay1Release": "باینری استاتیک یک‌تکه (strip و نسخه) در dist/tgportal:",
+	"selfWay1Release": "باینری استاتیک یک‌تکه (strip و نسخه) در dist/portal:",
 	"selfWay2": "راه ۲ — دانلود باینری از انتشار",
 	"selfWay2P": "وقتی toolchain گولنگ نمی‌خواهید. GitHub Actions روی هر تگ v* آرشیو می‌گذارد: tgportal_<tag>_<os>_<arch>.tar.gz (ویندوز .zip) به‌علاوهٔ checksums.txt.",
 	"selfWay2Items": [
@@ -126,7 +126,7 @@
 	"selfLinkConfig": "پیکربندی",
 	"cfgTitle": "config.yml",
 	"cfgLede": "کل فایل اپراتور: همهٔ کلیدها، پیش‌فرض‌ها و توضیح‌ها. اسرار در .env می‌مانند. نمونه را کپی کنید؛ هرگز config.yml، .env یا ./data را commit نکنید.",
-	"cfgFilesLead": "TGPORTAL عمداً دو فایل را جدا می‌کند:",
+	"cfgFilesLead": "Portal عمداً دو فایل را جدا می‌کند:",
 	"cfgFilesItems": [
 		"config.yml — حالت، پروفایل، ذخیره‌سازی، لاگ، پروکسی‌ها، رابط تلگرام، کلیدهای پل. در git نادیده گرفته می‌شود.",
 		"config.example.yml — قالب ردیابی‌شده. با make config کپی کنید.",
@@ -145,7 +145,7 @@
 		"PROXY_URL, TELEGRAM_PROXY_URL, DELTACHAT_PROXY_URL, PROXY_ENABLED — بازنویسی اختیاری پروکسی"
 	],
 	"cfgYamlTitle": "config.yml کامل",
-	"cfgYamlLead": "این همان فایلی است که TGPORTAL می‌خواند. توضیح‌ها بخشی از قالب‌اند — هنگام کپی نگه دارید. مقدارهای نشان‌داده‌شده پیش‌فرض مستند هستند.",
+	"cfgYamlLead": "این همان فایلی است که Portal می‌خواند. توضیح‌ها بخشی از قالب‌اند — هنگام کپی نگه دارید. مقدارهای نشان‌داده‌شده پیش‌فرض مستند هستند.",
 	"cfgProfileTitle": "پروفایل (دلتا چت)",
 	"cfgProfileItems": [
 		"name — نام نمایشی (displayname). پیش‌فرض: Delta ↔️ TG",
@@ -176,7 +176,7 @@
 		"database_key — در YAML نگذارید؛ از TGPORTAL_DB_KEY استفاده کنید"
 	],
 	"cfgLogTitle": "لاگ",
-	"cfgLogLead": "پیش‌فرض log برابر false است (خاموش). stderr، stdout یا مسیری مثل ./data/tgportal.log بگذارید. log_level یکی از debug، info، warn یا error است. هستهٔ دلتا چت ممکن است هنوز خط خودش را چاپ کند؛ این فقط لاگ TGPORTAL / پل را کنترل می‌کند.",
+	"cfgLogLead": "پیش‌فرض log برابر false است (خاموش). stderr، stdout یا مسیری مثل ./data/tgportal.log بگذارید. log_level یکی از debug، info، warn یا error است. هستهٔ دلتا چت ممکن است هنوز خط خودش را چاپ کند؛ این فقط لاگ Portal / پل را کنترل می‌کند.",
 	"cfgProxyTitle": "پروکسی",
 	"cfgProxyLead": "پروکسی مشترک روی تلگرام و دلتا چت اعمال می‌شود. telegram.proxy و deltachat.proxy آن را بازنویسی می‌کنند. طرح‌ها: socks5://، socks5h://، http://، https://.",
 	"cfgTgTitle": "تلگرام",

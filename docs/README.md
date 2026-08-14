@@ -1,4 +1,4 @@
-# TGPORTAL documentation
+# Portal documentation
 
 | Document | Description |
 |----------|-------------|

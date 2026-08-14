@@ -1,10 +1,10 @@
-# Deploy the linux/amd64 release binary to production over SSH.
+# Deploy the linux/amd64 portal binary to production over SSH.
 #
 # Secrets live in the GitHub Environment "production" (not in the repo):
 #   DEPLOY_HOST, DEPLOY_USER, DEPLOY_SSH_KEY, DEPLOY_KNOWN_HOSTS
 #
 # The deploy key is forced-command on the host: it can only run
-# /usr/local/sbin/tgportal-swap (atomic replace + restart + rollback).
+# /usr/local/sbin/tgportal-swap (forced-command name; swaps /usr/bin/portal).
 
 name: Deploy production
 

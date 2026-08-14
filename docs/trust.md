@@ -1,6 +1,6 @@
 # Trust the operator
 
-TGPORTAL is a **relay**. Messages and media you send the Telegram bot (or that arrive on the paired Delta Chat account) are **downloaded and re-sent by the machine that runs `tgportal`**.
+Portal is a **relay**. Messages and media you send the Telegram bot (or that arrive on the paired Delta Chat account) are **downloaded and re-sent by the machine that runs `portal`**.
 
 That host can see:
 

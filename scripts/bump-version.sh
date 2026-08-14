@@ -368,12 +368,12 @@ if [[ "$DO_TAG" -eq 1 ]]; then
 		exit 1
 	fi
 	if [[ "$IN_CI" -eq 1 ]]; then
-		git tag -a "$TAG" -m "TGPORTAL $TAG"
+		git tag -a "$TAG" -m "Portal $TAG"
 		echo "created tag $TAG"
-	elif git tag -s "$TAG" -m "TGPORTAL $TAG" 2>/dev/null; then
+	elif git tag -s "$TAG" -m "Portal $TAG" 2>/dev/null; then
 		echo "created signed tag $TAG"
 	else
-		git tag -a "$TAG" -m "TGPORTAL $TAG"
+		git tag -a "$TAG" -m "Portal $TAG"
 		echo "created annotated tag $TAG"
 	fi
 	echo "push with: git push origin HEAD $TAG"

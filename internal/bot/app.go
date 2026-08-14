@@ -22,9 +22,9 @@ import (
 	"github.com/omidz4t/portal/internal/usermsg"
 )
 
-// Run starts the TGPORTAL deltabot CLI (init, serve, etc.).
+// Run starts the Portal deltabot CLI (init, serve, etc.).
 func Run() error {
-	cli := botcli.New("tgportal")
+	cli := botcli.New("portal")
 
 	setDefaultDataDir(cli, config.DefaultFolder)
 

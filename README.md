@@ -1,9 +1,10 @@
-# TGPORTAL
+# Portal
 
 Bidirectional **Telegram ↔ Delta Chat** bridge for text, stickers, GIFs, images, and short video.
 
 Public bot: [@tgdeltabridgebot](https://t.me/tgdeltabridgebot)  
-Site: [https://omidz4t.github.io/portal](https://omidz4t.github.io/portal)
+Site: [https://omidz4t.github.io/portal](https://omidz4t.github.io/portal)  
+Binary: `portal`
 
 > **Beta.** This software is unfinished and may lose messages, break pairing, or change without notice. Use it at your own risk. The host can read everything you bridge — prefer running your own instance. See [docs/trust.md](docs/trust.md).
 
@@ -13,7 +14,7 @@ Requires Go 1.22+, [`deltachat-rpc-server`](https://github.com/chatmail/core/tre
 
 ```bash
 git clone https://github.com/omidz4t/portal.git
-cd tgportal
+cd portal
 make config          # then set TELEGRAM_BOT_TOKEN in .env
 make init QR=dcaccount:nine.testrun.org
 make serve
@@ -33,8 +34,9 @@ Templates: [`config.example.yml`](config.example.yml), [`.env.example`](.env.exa
 
 ```bash
 make serve
-make build-release
+make build-release   # → ./dist/portal
 make test
+./portal --version
 ```
 
 ## Docs

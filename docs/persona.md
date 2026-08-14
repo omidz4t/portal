@@ -26,7 +26,7 @@ persona:
 ```
 
 1. `/pair` on the **portal** bot and finish on Delta Chat  
-   → TGPORTAL stores your DC **vcard/public key** for later ghosts.  
+   → Portal stores your DC **vcard/public key** for later ghosts.  
 2. Create a bot with BotFather.  
 3. On the portal bot (private chat):
 

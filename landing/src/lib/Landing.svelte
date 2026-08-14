@@ -241,15 +241,15 @@
 					dir="ltr"
 				><code>tar -xzf tgportal_*.tar.gz
 chmod +x tgportal
-./tgportal --version
+./portal --version
 
 # config.yml ← config.example.yml
 # .env  TELEGRAM_BOT_TOKEN=…
 #       PERSONA_ACCOUNT_QR=…
 
-./tgportal --config config.yml init \
+./portal --config config.yml init \
   dcaccount:nine.testrun.org
-./tgportal --config config.yml serve</code></pre>
+./portal --config config.yml serve</code></pre>
 				<a
 					class="doodle-btn doodle-btn-ink self-host-dl"
 					href="{repoUrl}/releases/latest"

@@ -1,5 +1,5 @@
-# bash completion for tgportal
-_tgportal() {
+# bash completion for portal
+_portal() {
 	local cur prev
 	COMPREPLY=()
 	cur="${COMP_WORDS[COMP_CWORD]}"
@@ -22,4 +22,4 @@ _tgportal() {
 		COMPREPLY=( $(compgen -W "$cmds" -- "$cur") )
 	fi
 }
-complete -F _tgportal tgportal
+complete -F _portal portal

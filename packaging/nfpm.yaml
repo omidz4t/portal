@@ -1,33 +1,33 @@
-name: tgportal
+name: portal
 arch: ${GOARCH}
 platform: linux
 version: ${VERSION}
 section: net
 priority: optional
 maintainer: omidz4t <https://github.com/omidz4t/portal>
-description: Telegram to Delta Chat media bridge (beta)
+description: Portal — Telegram to Delta Chat media bridge (beta)
 homepage: https://github.com/omidz4t/portal
 license: MIT
 contents:
-  - src: ./dist/tgportal
-    dst: /usr/bin/tgportal
+  - src: ./dist/portal
+    dst: /usr/bin/portal
     file_info:
       mode: 0755
-  - src: ./packaging/tgportal.1
-    dst: /usr/share/man/man1/tgportal.1
-  - src: ./packaging/tgportal.bash
-    dst: /usr/share/bash-completion/completions/tgportal
-  - src: ./packaging/tgportal.service
-    dst: /lib/systemd/system/tgportal.service
-  - src: ./packaging/tgportal.sysusers
-    dst: /usr/lib/sysusers.d/tgportal.conf
-  - src: ./packaging/tgportal.tmpfiles
-    dst: /usr/lib/tmpfiles.d/tgportal.conf
+  - src: ./packaging/portal.1
+    dst: /usr/share/man/man1/portal.1
+  - src: ./packaging/portal.bash
+    dst: /usr/share/bash-completion/completions/portal
+  - src: ./packaging/portal.service
+    dst: /lib/systemd/system/portal.service
+  - src: ./packaging/portal.sysusers
+    dst: /usr/lib/sysusers.d/portal.conf
+  - src: ./packaging/portal.tmpfiles
+    dst: /usr/lib/tmpfiles.d/portal.conf
   - src: ./config.example.yml
-    dst: /usr/share/tgportal/config.example.yml
+    dst: /usr/share/portal/config.example.yml
     type: config|noreplace
   - src: ./.env.example
-    dst: /usr/share/tgportal/env.example
+    dst: /usr/share/portal/env.example
 scripts:
   postinstall: ./packaging/postinstall.sh
 overrides:

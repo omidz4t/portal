@@ -1,11 +1,11 @@
-.TH TGPORTAL 1 "August 2026" "tgportal" "User Commands"
+.TH PORTAL 1 "August 2026" "portal" "User Commands"
 .SH NAME
-tgportal \- Telegram to Delta Chat media bridge
+portal \- Telegram to Delta Chat media bridge
 .SH SYNOPSIS
-.B tgportal
+.B portal
 [\fIoptions\fR] \fIcommand\fR
 .SH DESCRIPTION
-TGPORTAL bridges Telegram and Delta Chat for text, stickers, GIFs, images,
+Portal bridges Telegram and Delta Chat for text, stickers, GIFs, images,
 and short video. Pairing is per user. This software is beta; use at your own risk.
 .SH COMMANDS
 .TP
@@ -38,13 +38,13 @@ Data directory (default ./data or folder in the config).
 Limit some commands to one Delta Chat account id.
 .SH FILES
 .TP
-.I /etc/tgportal/config.yml
+.I /etc/portal/config.yml
 Packaged config path.
 .TP
-.I /etc/tgportal/env
+.I /etc/portal/env
 Secrets. Mode 0640. Not in git.
 .TP
-.I /var/lib/tgportal
+.I /var/lib/portal
 Default data directory for the systemd unit.
 .SH ENVIRONMENT
 .TP
@@ -55,7 +55,7 @@ Portal BotFather token.
 URI used to create ghost Delta Chat accounts.
 .TP
 .B TGPORTAL_DB_KEY
-32-byte hex key when database encryption is on.
+32-byte hex key when database encryption is on (legacy name).
 .TP
 .B INVITE_URL
 Optional admin Delta Chat invite for the boot message.

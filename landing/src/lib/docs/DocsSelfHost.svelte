@@ -24,25 +24,25 @@
 		<p>{docs.selfWay1P}</p>
 		<pre dir="ltr"><code
 				>git clone https://github.com/omidz4t/portal.git
-cd tgportal
+cd portal
 make config
 # edit .env: TELEGRAM_BOT_TOKEN=…
 # optional persona: PERSONA_ACCOUNT_QR=dcaccount:…
 # edit config.yml: mode: personal | persona | both
 
 make build
-./tgportal --version
+./portal --version
 
 # first account, then run
 make init QR=dcaccount:nine.testrun.org
 make serve
-# same as: ./tgportal --config config.yml serve</code
+# same as: ./portal --config config.yml serve</code
 			></pre>
 		<p>{docs.selfWay1Release}</p>
 		<pre dir="ltr"><code
 				>make build-release
-./dist/tgportal --version
-./dist/tgportal --config config.yml serve</code
+./dist/portal --version
+./dist/portal --config config.yml serve</code
 			></pre>
 
 		<h2>{docs.selfWay2}</h2>
@@ -59,16 +59,16 @@ make serve
 		</ol>
 		<pre dir="ltr"><code
 				># example: Linux x86_64
-curl -fsSL -o tgportal.tgz \
-  https://github.com/omidz4t/portal/releases/latest/download/tgportal_VERSION_linux_amd64.tar.gz
-tar -tzf tgportal.tgz
-tar -xzf tgportal.tgz
-chmod +x tgportal
-sha256sum tgportal
+curl -fsSL -o portal.tgz \
+  https://github.com/omidz4t/portal/releases/latest/download/portal_VERSION_linux_amd64.tar.gz
+tar -tzf portal.tgz
+tar -xzf portal.tgz
+chmod +x portal
+sha256sum portal
 
-./tgportal --version
-./tgportal --config config.yml init dcaccount:nine.testrun.org
-./tgportal --config config.yml serve</code
+./portal --version
+./portal --config config.yml init dcaccount:nine.testrun.org
+./portal --config config.yml serve</code
 			></pre>
 		<p>{docs.selfWay2Note}</p>
 		<p>{docs.selfPreview}</p>

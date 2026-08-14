@@ -12,7 +12,7 @@ go version
 
 ### deltachat-rpc-server
 
-TGPORTAL talks to Delta Chat through the standalone RPC server.
+Portal talks to Delta Chat through the standalone RPC server.
 
 1. Install following upstream docs:  
    https://github.com/chatmail/core/tree/main/deltachat-rpc-server
@@ -44,16 +44,16 @@ If neither is installed, TGS is still bridged as a file attachment.
 
 ---
 
-## Get TGPORTAL (two ways)
+## Get Portal (two ways)
 
 ### A) Build the binary from source
 
 ```bash
 git clone https://github.com/omidz4t/portal.git
-cd tgportal
-make build          # → ./tgportal
+cd portal
+make build          # → ./portal
 # or
-make build-release  # → ./dist/tgportal
+make build-release  # → ./dist/portal
 ```
 
 Needs Go 1.22+. Then continue with First-time setup (`make config`, `make init`, `make serve`).
@@ -62,33 +62,33 @@ Needs Go 1.22+. Then continue with First-time setup (`make config`, `make init`,
 
 ```bash
 # after make pack-linux, or from a GitHub Release:
-sudo dpkg -i tgportal_0.1.0_amd64.deb
-# or: sudo rpm -i tgportal-0.1.0-1.x86_64.rpm
+sudo dpkg -i portal_0.1.0_amd64.deb
+# or: sudo rpm -i portal-0.1.0-1.x86_64.rpm
 ```
 
-Installs `/usr/bin/tgportal`, `man tgportal`, bash completion, and a systemd unit
-(`User=tgportal`). Copy secrets to `/etc/tgportal/env` and config to
-`/etc/tgportal/config.yml`, then `systemctl enable --now tgportal`.
+Installs `/usr/bin/portal`, `man portal`, bash completion, and a systemd unit
+(`User=portal`). Copy secrets to `/etc/portal/env` and config to
+`/etc/portal/config.yml`, then `systemctl enable --now portal`.
 You still need `deltachat-rpc-server` on `PATH`.
 
 ### C) Download a release binary
 
 No Go toolchain. Assets on each `v*` tag: [releases](https://github.com/omidz4t/portal/releases).
 
-Names: `tgportal_<tag>_<os>_<arch>.tar.gz` (Windows `.zip`) and `checksums.txt`.
+Names: `portal_<tag>_<os>_<arch>.tar.gz` (Windows `.zip`) and `checksums.txt`.
 
 ```bash
 # pick os/arch from the release page, then:
-tar -xzf tgportal_<tag>_linux_amd64.tar.gz
-chmod +x tgportal
-./tgportal --version
+tar -xzf portal_<tag>_linux_amd64.tar.gz
+chmod +x portal
+./portal --version
 ```
 
 You still need `deltachat-rpc-server` on `PATH`, plus `config.yml` / `.env` from the example files. Then:
 
 ```bash
-./tgportal --config config.yml init dcaccount:nine.testrun.org
-./tgportal --config config.yml serve
+./portal --config config.yml init dcaccount:nine.testrun.org
+./portal --config config.yml serve
 ```
 
 ---
@@ -127,9 +127,9 @@ Same binary. Use `mode: both`, leave `allowed_user_ids` empty, set `TGPORTAL_DB_
 ```bash
 make test
 make build
-./tgportal --help
-./tgportal list
-./tgportal link    # after init
+./portal --help
+./portal list
+./portal link    # after init
 ```
 
 When `serve` is healthy you should see logs similar to:

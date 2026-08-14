@@ -1,4 +1,5 @@
 # Build products / binaries
+/portal
 /tgportal
 /tg_delta_bridge
 *.exe

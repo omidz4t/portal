@@ -19,7 +19,8 @@ func main() {
 		}
 	}
 	// Expose version to bot package via env for any runtime banners.
-	_ = os.Setenv("TGPORTAL_VERSION", version)
+	_ = os.Setenv("PORTAL_VERSION", version)
+	_ = os.Setenv("TGPORTAL_VERSION", version) // leftover alias
 	if err := bot.Run(); err != nil {
 		os.Exit(1)
 	}

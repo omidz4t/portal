@@ -136,7 +136,7 @@ type Pairing struct {
 	PendingTTLSec int `yaml:"pending_ttl_sec"`
 }
 
-// Telegram controls the Telegram bot side of TGPORTAL.
+// Telegram controls the Telegram bot side of Portal.
 type Telegram struct {
 	Enabled        bool         `yaml:"enabled"`
 	BotURL         string       `yaml:"bot_url"`

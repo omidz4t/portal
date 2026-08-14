@@ -1,5 +1,5 @@
 # =============================================================================
-# TGPORTAL — complete config.yml
+# Portal — complete config.yml
 # =============================================================================
 # Copy the tracked template, then edit this file locally:
 #   make config
@@ -21,7 +21,7 @@
 # Runtime state lives under folder (default ./data). Never commit data/.
 #
 # Load this file:
-#   ./tgportal --config config.yml serve
+#   ./portal --config config.yml serve
 #   make serve CONFIG=config.yml
 # CLI --folder / -f wins over folder: below, which wins over ./data.
 # =============================================================================
@@ -85,7 +85,7 @@ folder: ./data               # accounts/, tgportal.db, tg-cache/
 database: tgportal.db        # relative to folder unless this path is absolute
 account: 0                   # 0 = all Delta Chat accounts; or a core account id
 
-# --- Logging (TGPORTAL / bridge only; Delta Chat core has its own console) ---
+# --- Logging (Portal / bridge only; Delta Chat core has its own console) ---
 # false     off (default)
 # stderr    print to stderr
 # stdout    print to stdout

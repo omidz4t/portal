@@ -11,7 +11,7 @@ import (
 	"github.com/omidz4t/portal/internal/safemedia"
 )
 
-// Session serializes application-level Delta Chat RPC used by TGPORTAL.
+// Session serializes application-level Delta Chat RPC used by Portal.
 //
 // Context (from rpc-client-go Bot.Run):
 //   - Events are pulled on one goroutine and handlers run inline on that loop.

@@ -1,19 +1,19 @@
-# Agent instructions — TGPORTAL
+# Agent instructions — Portal
 
 These rules apply to every coding agent and human working in this repository.
 
 **User-facing docs:** [README.md](README.md) and [docs/](docs/). Keep them updated when behavior or config changes.
 
-**Project name:** TGPORTAL  
+**Project name:** Portal  
 **Module:** `github.com/omidz4t/portal`  
-**Binary / CLI app name:** `tgportal`  
+**Binary / CLI app name:** `portal`  
 **Data directory default:** `./data` (set via `folder` in `config.yml` or `--folder`)
 
 ### Concurrency (important)
 
 The upstream `rpc-client-go` `Bot.Run()` processes DC events **one at a time** on a single goroutine; `OnNewMsg` runs **inline** on that loop. Blocking there freezes receive.
 
-TGPORTAL mitigations:
+Portal mitigations:
 
 - `internal/dc.Session` **serializes** app-level DC RPC (`SendMsg`, `GetMessage`, …); mutex released between send retries
 - DC `OnNewMsg` work runs in a **goroutine** (never block `Bot.Run`)
@@ -24,7 +24,7 @@ Do not call `bot.Rpc` directly from new code — use `dc.Session`.
 
 ### Purpose
 
-TGPORTAL bridges **Telegram ↔ Delta Chat** for media:
+Portal bridges **Telegram ↔ Delta Chat** for media:
 
 | Kind | Telegram | Delta Chat |
 |------|----------|------------|
@@ -85,8 +85,8 @@ The **`Makefile` is the canonical entrypoint** for build, config bootstrap, and 
 |--------|---------|
 | `make config` | Create local `config.yml` and `.env` from examples if missing |
 | `make tidy` | `go mod tidy` |
-| `make build` | Tidy + compile `./tgportal` |
-| `make build-release` | All-in-one static binary → `dist/tgportal` (embedded assets) |
+| `make build` | Tidy + compile `./portal` |
+| `make build-release` | All-in-one static binary → `dist/portal` (embedded assets) |
 | `make build-release-all` | Cross-platform archives under `dist/` |
 | `make run-landing` | Dev server for the SvelteKit site (`./landing`) |
 | `make landing-xdc` | Build the site and pack `dist/portal.xdc` (webxdc) |
@@ -119,7 +119,7 @@ Landing deploys from `.github/workflows/landing.yml` to GitHub Pages (`https://o
 Do **not** dump application logic in the repo root. Keep root for module metadata, Makefile, docs, and config templates.
 
 ```
-cmd/tgportal/          # main package only — thin entrypoint
+cmd/portal/            # main package only — thin entrypoint
 internal/config/       # YAML + env loading (mode: personal|persona|both)
 internal/bot/          # Delta CLI wiring, profile, pairing on DC
 internal/dc/           # Delta Chat helpers (open chat, send file/text, multi-account)
@@ -131,7 +131,7 @@ internal/persona/      # User-owned bots, ghost DC accounts, group mirror
 
 | Path | Role |
 |------|------|
-| `cmd/tgportal/main.go` | `main`; calls `bot.Run()` |
+| `cmd/portal/main.go` | `main`; calls `bot.Run()` |
 | `internal/config` | `Config`, `Load`, `mode` / `persona` |
 | `internal/bot` | deltabot-cli setup, DC pairing handler, start Telegram + persona |
 | `internal/store` | SQLite pairs + persona_bots + ghost_* tables |
@@ -139,7 +139,7 @@ internal/persona/      # User-owned bots, ghost DC accounts, group mirror
 | `internal/bridge` | media kinds + ForwardToDelta (personal pairing) |
 | `internal/telegram` | Portal Bot API, `/pair`, `/pair-bot`, media |
 | `internal/persona` | Multi-bot pollers, GetOrCreateGhost, group mirror |
-| `Makefile` | build/run entrypoint (`go build ./cmd/tgportal` → `./tgportal`) |
+| `Makefile` | build/run entrypoint (`go build ./cmd/portal` → `./portal`) |
 | `config.example.yml`, `.env.example` | tracked templates |
 
 ### Persona mode (ghost accounts)
@@ -157,7 +157,7 @@ Put new features under `internal/…`. Only add code under `cmd/` when introduci
 - Keep diffs small and reviewable.
 - Match existing Go style and project layout (`cmd/` + `internal/`).
 - Update examples (`.example` files) when adding required config or env vars.
-- Prefer **Makefile** workflows over raw `go build` / `./tgportal` for routine tasks.
+- Prefer **Makefile** workflows over raw `go build` / `./portal` for routine tasks.
 - Run `make build` / `make test` before committing when code changes.
 
 ## Config layout
@@ -176,7 +176,7 @@ Put new features under `internal/…`. Only add code under `cmd/` when introduci
 Set in `config.yml` and applied on every `serve`:
 
 ```yaml
-name: TGPORTAL
+name: Portal
 image: ./assets/avatar.png   # empty = leave avatar unchanged
 ```
 
@@ -191,7 +191,7 @@ Maps to Delta Chat `displayname` and `selfavatar`.
   folder: ./data
   ```
 
-- **CLI override:** `./tgportal --folder /other/path serve` (wins over config.yml)
+- **CLI override:** `./portal --folder /other/path serve` (wins over config.yml)
 - Precedence: `--folder` → `config.yml` `folder` → `./data`
 - Never commit `data/`; it holds accounts and runtime state.
 

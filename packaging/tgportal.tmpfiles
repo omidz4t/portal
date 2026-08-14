@@ -1,3 +1,0 @@
-d /var/lib/tgportal 0750 tgportal tgportal -
-d /var/log/tgportal 0750 tgportal tgportal -
-d /etc/tgportal 0750 root tgportal -

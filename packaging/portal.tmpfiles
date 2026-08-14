@@ -1,0 +1,3 @@
+d /var/lib/portal 0750 portal portal -
+d /var/log/portal 0750 portal portal -
+d /etc/portal 0750 root portal -

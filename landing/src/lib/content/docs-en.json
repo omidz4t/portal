@@ -109,7 +109,7 @@
 	"selfConfig": "Then copy config.example.yml → config.yml and .env.example → .env. Data default is ./data. Never commit .env, config.yml, or data/.",
 	"selfWay1": "Way 1 — build the binary",
 	"selfWay1P": "Use this when you have Go 1.22+ and want to compile from git. The Makefile is the supported entrypoint.",
-	"selfWay1Release": "All-in-one static binary (stripped, version stamped) goes to dist/tgportal:",
+	"selfWay1Release": "All-in-one static binary (stripped, version stamped) goes to dist/portal:",
 	"selfWay2": "Way 2 — download the binary from a release",
 	"selfWay2P": "Use this when you do not want a Go toolchain. GitHub Actions publish archives on each tag v*: tgportal_<tag>_<os>_<arch>.tar.gz (Windows .zip) plus checksums.txt.",
 	"selfWay2Items": [
@@ -126,7 +126,7 @@
 	"selfLinkConfig": "configuration",
 	"cfgTitle": "config.yml",
 	"cfgLede": "The whole operator file: every key, default, and comment. Secrets stay in .env. Copy the example; never commit config.yml, .env, or ./data.",
-	"cfgFilesLead": "TGPORTAL splits two files on purpose:",
+	"cfgFilesLead": "Portal splits two files on purpose:",
 	"cfgFilesItems": [
 		"config.yml — mode, profile, storage, logging, proxies, Telegram UI, bridge toggles. Gitignored.",
 		"config.example.yml — tracked template. Copy it with make config.",
@@ -145,7 +145,7 @@
 		"PROXY_URL, TELEGRAM_PROXY_URL, DELTACHAT_PROXY_URL, PROXY_ENABLED — optional proxy overrides"
 	],
 	"cfgYamlTitle": "Full config.yml",
-	"cfgYamlLead": "This is the complete file TGPORTAL reads. Comments are part of the template — leave them in when you copy. Values shown are the documented defaults.",
+	"cfgYamlLead": "This is the complete file Portal reads. Comments are part of the template — leave them in when you copy. Values shown are the documented defaults.",
 	"cfgProfileTitle": "Profile (Delta Chat)",
 	"cfgProfileItems": [
 		"name — display name (displayname). Default: Delta ↔️ TG",
@@ -176,7 +176,7 @@
 		"database_key — do not put this in YAML; use TGPORTAL_DB_KEY"
 	],
 	"cfgLogTitle": "Logging",
-	"cfgLogLead": "log defaults to false (off). Set stderr, stdout, or a file path such as ./data/tgportal.log. log_level is debug, info, warn, or error. Delta Chat core may still print its own lines; this only controls TGPORTAL / bridge logs.",
+	"cfgLogLead": "log defaults to false (off). Set stderr, stdout, or a file path such as ./data/tgportal.log. log_level is debug, info, warn, or error. Delta Chat core may still print its own lines; this only controls Portal / bridge logs.",
 	"cfgProxyTitle": "Proxy",
 	"cfgProxyLead": "Shared proxy applies to Telegram and Delta Chat. telegram.proxy and deltachat.proxy override it. Schemes: socks5://, socks5h://, http://, https://.",
 	"cfgTgTitle": "Telegram",

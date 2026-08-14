@@ -2,9 +2,9 @@
 	version version-dry release-tag patch minor major run-landing landing-xdc \
 	pack-linux pack-deb pack-rpm
 
-# Project: TGPORTAL
-BINARY := tgportal
-PKG    := ./cmd/tgportal
+# Project: Portal
+BINARY := portal
+PKG    := ./cmd/portal
 CMD    := ./$(BINARY)
 CONFIG ?= config.yml
 DIST   ?= dist
