@@ -96,7 +96,7 @@
 			<span class="try-beam-wrap">
 				<KoboyoIcon name="very-happy-beaming" class="try-beam" />
 			</span>
-			<h2 class="try-headline">
+			<h2 class="try-headline whitespace-pre-line">
 				{tutorial.title}
 			</h2>
 		</div>

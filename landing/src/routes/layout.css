@@ -389,6 +389,7 @@ footer.doodle-bar {
 	font-size: clamp(2.4rem, 7vw, 5.4rem);
 	font-weight: 700;
 	line-height: 1.05;
+	white-space: pre-line;
 	text-wrap: balance;
 }
 
