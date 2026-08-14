@@ -8,7 +8,8 @@
 	let step = $state(0);
 
 	const story = $derived(
-		tutorial.stories.find((s) => s.id === (storyId ?? tutorial.stories[0].id)) ?? tutorial.stories[0]
+		tutorial.stories.find((s) => s.id === (storyId ?? tutorial.stories[0].id)) ??
+			tutorial.stories[0]
 	);
 	const scene = $derived(story.scenes[Math.min(step, story.scenes.length - 1)]);
 	const total = $derived(story.scenes.length);
@@ -53,9 +54,9 @@
 			<button
 				type="button"
 				class="doodle-btn"
-				class:doodle-btn-ink={s.id === storyId}
+				class:doodle-btn-ink={s.id === story.id}
 				role="tab"
-				aria-selected={s.id === storyId}
+				aria-selected={s.id === story.id}
 				onclick={() => pick(s.id)}
 			>
 				{s.label}
@@ -63,7 +64,13 @@
 		{/each}
 	</div>
 
-	<p class="mt-6 max-w-3xl text-base leading-relaxed" aria-live="polite">{scene.caption}</p>
+	{#if story.intro}
+		<p class="mt-5 max-w-3xl text-mist">{story.intro}</p>
+	{/if}
+
+	<p class="mt-6 max-w-3xl text-lg leading-relaxed font-semibold" aria-live="polite">
+		{scene.caption}
+	</p>
 	<p class="mt-1 font-mono text-xs text-mist">{stepLabel}</p>
 
 	<div class="phones mt-6">
@@ -135,6 +142,13 @@
 			</div>
 		</article>
 	</div>
+
+	{#if scene.why}
+		<aside class="doodle-card mt-6 max-w-3xl p-5" aria-label={tutorial.whyLabel}>
+			<p class="font-mono text-xs uppercase">{tutorial.whyLabel}</p>
+			<p class="mt-2 leading-relaxed">{scene.why}</p>
+		</aside>
+	{/if}
 
 	<div class="mt-6 flex flex-wrap gap-2">
 		<button type="button" class="doodle-btn" onclick={back} disabled={step === 0}
