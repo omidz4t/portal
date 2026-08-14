@@ -4,10 +4,12 @@
 
 	let { tutorial }: { tutorial: TutorialCopy } = $props();
 
-	let storyId = $state(tutorial.stories[0].id);
+	let storyId = $state<string | null>(null);
 	let step = $state(0);
 
-	const story = $derived(tutorial.stories.find((s) => s.id === storyId) ?? tutorial.stories[0]);
+	const story = $derived(
+		tutorial.stories.find((s) => s.id === (storyId ?? tutorial.stories[0].id)) ?? tutorial.stories[0]
+	);
 	const scene = $derived(story.scenes[Math.min(step, story.scenes.length - 1)]);
 	const total = $derived(story.scenes.length);
 	const stepLabel = $derived(
