@@ -55,13 +55,18 @@
 
 <div
 	class="flex min-h-dvh flex-col"
+	class:show-shell={onShow}
 	dir={locale === 'fa' ? 'rtl' : 'ltr'}
 	lang={locale === 'fa' ? 'fa' : 'en'}
 >
 	<a class="skip-link" href="#main-content">{copy.skip}</a>
-	<SiteHeader {copy} {locale} pathname={page.url.pathname} current={headerCurrent} />
-	<main id="main-content" class="flex-1" tabindex="-1">{@render children()}</main>
-	{#if !isHome}
+	{#if !onShow}
+		<SiteHeader {copy} {locale} pathname={page.url.pathname} current={headerCurrent} />
+	{/if}
+	<main id="main-content" class="flex-1" class:show-main={onShow} tabindex="-1"
+		>{@render children()}</main
+	>
+	{#if !isHome && !onShow}
 		<SiteFooter {copy} {locale} />
 	{/if}
 </div>
