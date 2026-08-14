@@ -1,0 +1,27 @@
+[Unit]
+Description=TGPORTAL Telegram–Delta Chat bridge
+Documentation=man:tgportal(1)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tgportal
+Group=tgportal
+WorkingDirectory=/var/lib/tgportal
+EnvironmentFile=-/etc/tgportal/env
+ExecStart=/usr/bin/tgportal --config /etc/tgportal/config.yml serve
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/tgportal /var/log/tgportal
+LockPersonality=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+CapabilityBoundingSet=
+
+[Install]
+WantedBy=multi-user.target

@@ -46,6 +46,7 @@ func Run() error {
 		"config.yml",
 		"path to YAML config file",
 	)
+	cli.RootCmd.AddCommand(completionCmd())
 
 	cli.RootCmd.PersistentPreRunE = func(cmd *cobra.Command, args []string) error {
 		var err error

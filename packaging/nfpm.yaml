@@ -1,0 +1,39 @@
+name: tgportal
+arch: ${GOARCH}
+platform: linux
+version: ${VERSION}
+section: net
+priority: optional
+maintainer: omidz4t <https://github.com/omidz4t/portal>
+description: Telegram to Delta Chat media bridge (beta)
+homepage: https://github.com/omidz4t/portal
+license: MIT
+contents:
+  - src: ./dist/tgportal
+    dst: /usr/bin/tgportal
+    file_info:
+      mode: 0755
+  - src: ./packaging/tgportal.1
+    dst: /usr/share/man/man1/tgportal.1
+  - src: ./packaging/tgportal.bash
+    dst: /usr/share/bash-completion/completions/tgportal
+  - src: ./packaging/tgportal.service
+    dst: /lib/systemd/system/tgportal.service
+  - src: ./packaging/tgportal.sysusers
+    dst: /usr/lib/sysusers.d/tgportal.conf
+  - src: ./packaging/tgportal.tmpfiles
+    dst: /usr/lib/tmpfiles.d/tgportal.conf
+  - src: ./config.example.yml
+    dst: /usr/share/tgportal/config.example.yml
+    type: config|noreplace
+  - src: ./.env.example
+    dst: /usr/share/tgportal/env.example
+scripts:
+  postinstall: ./packaging/postinstall.sh
+overrides:
+  deb:
+    depends:
+      - adduser
+  rpm:
+    depends:
+      - shadow-utils

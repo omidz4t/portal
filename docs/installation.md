@@ -58,7 +58,20 @@ make build-release  # → ./dist/tgportal
 
 Needs Go 1.22+. Then continue with First-time setup (`make config`, `make init`, `make serve`).
 
-### B) Download a release binary
+### B) Debian / RPM package
+
+```bash
+# after make pack-linux, or from a GitHub Release:
+sudo dpkg -i tgportal_0.1.0_amd64.deb
+# or: sudo rpm -i tgportal-0.1.0-1.x86_64.rpm
+```
+
+Installs `/usr/bin/tgportal`, `man tgportal`, bash completion, and a systemd unit
+(`User=tgportal`). Copy secrets to `/etc/tgportal/env` and config to
+`/etc/tgportal/config.yml`, then `systemctl enable --now tgportal`.
+You still need `deltachat-rpc-server` on `PATH`.
+
+### C) Download a release binary
 
 No Go toolchain. Assets on each `v*` tag: [releases](https://github.com/omidz4t/portal/releases).
 

@@ -1,0 +1,65 @@
+.TH TGPORTAL 1 "August 2026" "tgportal" "User Commands"
+.SH NAME
+tgportal \- Telegram to Delta Chat media bridge
+.SH SYNOPSIS
+.B tgportal
+[\fIoptions\fR] \fIcommand\fR
+.SH DESCRIPTION
+TGPORTAL bridges Telegram and Delta Chat for text, stickers, GIFs, images,
+and short video. Pairing is per user. This software is beta; use at your own risk.
+.SH COMMANDS
+.TP
+.B serve
+Start the bot (Telegram long-poll and Delta Chat).
+.TP
+.B init \fIqr\fR
+Configure a new Delta Chat account from a dcaccount: or dclogin: URI.
+.TP
+.B link
+Print the Delta Chat invite for the bot account.
+.TP
+.B list
+List Delta Chat accounts in the data folder.
+.TP
+.B completion \fIshell\fR
+Write completion script for bash, zsh, or fish.
+.TP
+.B version
+Print the binary version.
+.SH OPTIONS
+.TP
+.BR \-c ", " \-\-config " " \fIpath\fR
+YAML config (default config.yml).
+.TP
+.BR \-f ", " \-\-folder " " \fIpath\fR
+Data directory (default ./data or folder in the config).
+.TP
+.BR \-a ", " \-\-account " " \fIid\fR
+Limit some commands to one Delta Chat account id.
+.SH FILES
+.TP
+.I /etc/tgportal/config.yml
+Packaged config path.
+.TP
+.I /etc/tgportal/env
+Secrets. Mode 0640. Not in git.
+.TP
+.I /var/lib/tgportal
+Default data directory for the systemd unit.
+.SH ENVIRONMENT
+.TP
+.B TELEGRAM_BOT_TOKEN
+Portal BotFather token.
+.TP
+.B PERSONA_ACCOUNT_QR
+URI used to create ghost Delta Chat accounts.
+.TP
+.B TGPORTAL_DB_KEY
+32-byte hex key when database encryption is on.
+.TP
+.B INVITE_URL
+Optional admin Delta Chat invite for the boot message.
+.SH SEE ALSO
+https://github.com/omidz4t/portal
+.SH BUGS
+Beta. The host can read bridged traffic.

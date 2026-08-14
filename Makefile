@@ -1,5 +1,6 @@
 .PHONY: tidy build build-release build-release-all test test-proxy vet run init serve help clean config \
-	version version-dry release-tag patch minor major run-landing landing-xdc
+	version version-dry release-tag patch minor major run-landing landing-xdc \
+	pack-linux pack-deb pack-rpm
 
 # Project: TGPORTAL
 BINARY := tgportal
@@ -131,6 +132,19 @@ major:
 
 release-tag:
 	@bash scripts/bump-version.sh --commit --tag --changelog
+
+# Linux packages (nfpm: go install github.com/goreleaser/nfpm/v2/cmd/nfpm@latest)
+pack-linux: build-release
+	@command -v nfpm >/dev/null || { echo "install nfpm: go install github.com/goreleaser/nfpm/v2/cmd/nfpm@latest" >&2; exit 1; }
+	@mkdir -p $(DIST)
+	VERSION=$(VERSION) GOARCH=$(GOARCH) \
+		envsubst '$${VERSION} $${GOARCH}' < packaging/nfpm.yaml > $(DIST)/nfpm.yaml
+	nfpm pkg --packager deb --config $(DIST)/nfpm.yaml --target $(DIST)
+	nfpm pkg --packager rpm --config $(DIST)/nfpm.yaml --target $(DIST)
+	nfpm pkg --packager apk --config $(DIST)/nfpm.yaml --target $(DIST)
+	@ls -lh $(DIST)
+
+pack-deb pack-rpm: pack-linux
 
 clean:
 	rm -f $(BINARY)
