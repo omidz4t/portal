@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 (2026-08-14)
+
+Release type: **patch**
+
+### Fixes
+
+- fix: do not keep sticker or video files on disk
+
 ## 0.2.0 (2026-08-14)
 
 Release type: **minor**
