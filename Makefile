@@ -1,6 +1,6 @@
 .PHONY: tidy build build-release build-release-all test test-proxy vet run init serve help clean config \
 	version version-dry release-tag patch minor major run-landing landing-xdc \
-	pack-linux pack-deb pack-rpm
+	pack-linux pack-deb pack-rpm docker
 
 # Project: Portal
 BINARY := portal
@@ -145,6 +145,10 @@ pack-linux: build-release
 	@ls -lh $(DIST)
 
 pack-deb pack-rpm: pack-linux
+
+IMAGE ?= ghcr.io/omidz4t/portal
+docker:
+	docker build --build-arg VERSION=$(VERSION) -t $(IMAGE):$(VERSION) -t $(IMAGE):local .
 
 clean:
 	rm -f $(BINARY)

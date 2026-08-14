@@ -37,6 +37,7 @@ make serve
 make build-release   # → ./dist/portal
 make test
 ./portal --version
+docker pull ghcr.io/omidz4t/portal:latest
 ```
 
 ## Docs

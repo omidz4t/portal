@@ -91,6 +91,21 @@ You still need `deltachat-rpc-server` on `PATH`, plus `config.yml` / `.env` from
 ./portal --config config.yml serve
 ```
 
+### D) Container (GHCR)
+
+Image: `ghcr.io/omidz4t/portal` (`linux/amd64`, `linux/arm64`). Ships `portal` and `deltachat-rpc-server`. Mount config and secrets — they are not in the image.
+
+```bash
+docker pull ghcr.io/omidz4t/portal:latest
+docker run --rm \
+  -v "$PWD/config.yml:/etc/portal/config.yml:ro" \
+  --env-file .env \
+  -v portal-data:/var/lib/portal \
+  ghcr.io/omidz4t/portal:latest
+```
+
+First account: same mounts, override the command with `init dcaccount:…`. CI builds and pushes this image on every push to `main`.
+
 ---
 
 ## First-time setup
