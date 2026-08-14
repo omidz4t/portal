@@ -410,6 +410,10 @@ footer.doodle-bar {
 	color: var(--color-ink);
 }
 
+[dir='rtl'] .try-beam {
+	transform: scaleX(-1);
+}
+
 .try-open {
 	min-height: 4.2rem;
 	padding: 1rem 2rem;
