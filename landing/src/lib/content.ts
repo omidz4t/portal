@@ -43,6 +43,10 @@ export function basePath(locale: Locale): string {
 	return locale === 'fa' ? '/fa/' : '/';
 }
 
+export function showPath(locale: Locale): string {
+	return locale === 'fa' ? '/fa/show/' : '/show/';
+}
+
 export function docsPath(locale: Locale, slug = ''): string {
 	const root = locale === 'fa' ? '/fa/docs/' : '/docs/';
 	return slug ? `${root}${slug}/` : root;

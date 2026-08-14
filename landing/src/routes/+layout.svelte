@@ -10,6 +10,8 @@
 	const locale = $derived(localeFromPath(page.url.pathname));
 	const copy = $derived(copies[locale]);
 	const onDocs = $derived(page.url.pathname.includes('/docs'));
+	const onShow = $derived(page.url.pathname.includes('/show'));
+	const headerCurrent = $derived(onDocs ? 'docs' : onShow ? 'try' : '');
 
 	$effect(() => {
 		document.documentElement.lang = locale === 'fa' ? 'fa' : 'en';
@@ -39,7 +41,7 @@
 	lang={locale === 'fa' ? 'fa' : 'en'}
 >
 	<a class="skip-link" href="#main-content">{copy.skip}</a>
-	<SiteHeader {copy} {locale} pathname={page.url.pathname} current={onDocs ? 'docs' : ''} />
+	<SiteHeader {copy} {locale} pathname={page.url.pathname} current={headerCurrent} />
 	<main id="main-content" class="flex-1" tabindex="-1">{@render children()}</main>
 	<SiteFooter {copy} {locale} />
 </div>

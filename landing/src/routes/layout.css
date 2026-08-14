@@ -417,16 +417,8 @@ footer.doodle-bar {
 	font-weight: 700;
 }
 
-.try-modal {
-	inset: 0;
-	width: 100%;
-	max-width: none;
-	height: 100%;
-	max-height: none;
-	margin: 0;
-	overflow: auto;
-	border: 0;
-	border-radius: 0;
+.try-page {
+	min-height: 100%;
 	background-color: #dce8e2;
 	background-image:
 		radial-gradient(circle at 1px 1px, #a8bfb4 1.15px, transparent 1.2px),
@@ -434,30 +426,18 @@ footer.doodle-bar {
 	background-size:
 		20px 20px,
 		auto;
-	padding: 0;
-	box-shadow: none;
+	padding-block: 1.5rem 3rem;
 }
 
-.try-modal::backdrop {
-	background: #dce8e2;
-}
-
-.try-modal-inner {
+.try-page-inner {
 	box-sizing: border-box;
-	min-height: 100%;
 	margin: 0 auto;
 	max-width: 72rem;
-	padding: 1.25rem 1.25rem 2rem;
+	padding: 0 1.25rem;
 }
 
-.try-modal-bar {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 1rem;
-}
-
-.try-modal-bar .try-headline {
+.try-page .try-headline {
+	margin-top: 1.25rem;
 	font-size: clamp(1.6rem, 4vw, 2.75rem);
 }
 
