@@ -515,12 +515,39 @@ footer.doodle-bar {
 
 .phone-thread {
 	display: flex;
-	flex: 1;
+	height: 22rem;
+	min-height: 22rem;
+	max-height: 22rem;
+	flex: none;
 	flex-direction: column;
 	gap: 0.55rem;
+	overflow-x: hidden;
+	overflow-y: auto;
 	padding: 0.85rem;
 	background: radial-gradient(#e8e0d2 0.8px, transparent 0.9px), #f4efe4;
 	background-size: 12px 12px;
+}
+
+.invite-card {
+	display: grid;
+	gap: 0.45rem;
+}
+
+.invite-qr {
+	width: 7.5rem;
+	height: 7.5rem;
+	border: 2px solid var(--color-ink);
+	background: #fff;
+}
+
+.invite-link {
+	direction: ltr;
+	display: block;
+	overflow-wrap: anywhere;
+	font-family: var(--font-mono);
+	font-size: 0.72rem;
+	text-align: left;
+	unicode-bidi: isolate;
 }
 
 .phone-empty {

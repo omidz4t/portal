@@ -27,7 +27,7 @@ export type TutorialScene = {
 	view?: string;
 	inboxTg?: InboxRow[];
 	inboxDc?: InboxRow[];
-	bubbles: { side: string; who: string; text: string; kind?: string }[];
+	bubbles: { side: string; who: string; text: string; kind?: string; link?: string }[];
 };
 export type Locale = 'en' | 'fa';
 

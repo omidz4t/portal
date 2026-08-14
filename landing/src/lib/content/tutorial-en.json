@@ -110,7 +110,9 @@
 						{
 							"side": "tg",
 							"who": "bot",
-							"text": "Invite (QR + link) → open in Delta Chat\nThen send ONLY this code:\nK7H2MQNP\n(expires in ~30 min)"
+							"kind": "invite",
+							"link": "https://example.invalid/i/delta-chat/K7H2MQNP",
+							"text": "Open this in Delta Chat, then send ONLY this code:\nK7H2MQNP\n(expires in ~30 min)"
 						}
 					]
 				},
@@ -126,7 +128,9 @@
 						{
 							"side": "tg",
 							"who": "bot",
-							"text": "Invite (QR + link) → open in Delta Chat\nThen send ONLY this code:\nK7H2MQNP"
+							"kind": "invite",
+							"link": "https://example.invalid/i/delta-chat/K7H2MQNP",
+							"text": "Open this in Delta Chat, then send ONLY this code:\nK7H2MQNP\n(expires in ~30 min)"
 						},
 						{ "side": "dc", "who": "sys", "text": "Chat accepted. Not paired yet. Send the code." }
 					]

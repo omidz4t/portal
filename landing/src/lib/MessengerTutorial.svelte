@@ -36,8 +36,23 @@
 		step = 0;
 	}
 
+	function bubbleKey(b: TutorialScene['bubbles'][number]) {
+		return `${b.side}|${b.who}|${b.kind ?? ''}|${b.text}|${b.link ?? ''}`;
+	}
+
 	function bubbles(side: 'tg' | 'dc') {
-		return scene.bubbles.filter((b) => b.side === side);
+		const seen = new Set<string>();
+		const out: TutorialScene['bubbles'] = [];
+		for (let i = 0; i <= step && i < story.scenes.length; i++) {
+			for (const b of story.scenes[i].bubbles) {
+				if (b.side !== side) continue;
+				const key = bubbleKey(b);
+				if (seen.has(key)) continue;
+				seen.add(key);
+				out.push(b);
+			}
+		}
+		return out;
 	}
 
 	function whoLabel(who: string) {
@@ -46,15 +61,42 @@
 		return '';
 	}
 
+	function listTitle(title: string) {
+		return title === 'Chats' || title === 'چت‌ها' || title === '—';
+	}
+
+	function lastInbox(side: 'tg' | 'dc') {
+		for (let i = step; i >= 0; i--) {
+			const s = story.scenes[i] as TutorialScene;
+			const rows = side === 'tg' ? s.inboxTg : s.inboxDc;
+			if (Array.isArray(rows)) return rows;
+		}
+		return [];
+	}
+
 	function isInbox(side: 'tg' | 'dc') {
-		if (scene.view !== 'inbox') return false;
-		const rows = side === 'tg' ? scene.inboxTg : scene.inboxDc;
-		return Array.isArray(rows);
+		if (bubbles(side).length > 0) return false;
+		const title = side === 'tg' ? scene.tgTitle : scene.dcTitle;
+		if (!listTitle(title) && scene.view !== 'inbox') return false;
+		return lastInbox(side).length > 0;
 	}
 
 	function inboxRows(side: 'tg' | 'dc') {
-		return (side === 'tg' ? scene.inboxTg : scene.inboxDc) ?? [];
+		return lastInbox(side);
 	}
+
+	let tgThread = $state<HTMLElement | null>(null);
+	let dcThread = $state<HTMLElement | null>(null);
+
+	$effect(() => {
+		void step;
+		void story.id;
+		queueMicrotask(() => {
+			for (const el of [tgThread, dcThread]) {
+				if (el) el.scrollTop = el.scrollHeight;
+			}
+		});
+	});
 </script>
 
 <section id="try" class="try-band">
@@ -100,7 +142,11 @@
 						<p class="phone-peer">{scene.tgTitle}</p>
 					</div>
 				</header>
-				<div class="phone-thread" class:phone-inbox={isInbox('tg')}>
+				<div
+					class="phone-thread"
+					class:phone-inbox={isInbox('tg')}
+					bind:this={tgThread}
+				>
 					{#if isInbox('tg')}
 						{#each inboxRows('tg') as row}
 							<div class="inbox-row" class:is-focus={row.focus}>
@@ -130,6 +176,20 @@
 								<span class="sticker-chip">
 									<KoboyoIcon name="sticker" class="h-8 w-8" />
 								</span>
+							{:else if b.kind === 'invite'}
+								<div class="invite-card">
+									<img
+										class="invite-qr"
+										src="/logos/invite-example.svg"
+										alt=""
+										width="120"
+										height="120"
+									/>
+									<a class="invite-link" href={b.link} rel="nofollow noopener"
+										>{b.link}</a
+									>
+									<p class="whitespace-pre-wrap">{b.text}</p>
+								</div>
 							{:else}
 								{#if whoLabel(b.who) && b.who !== 'you'}
 									<span class="bubble-who">{whoLabel(b.who)}</span>
@@ -155,7 +215,11 @@
 						<p class="phone-peer">{scene.dcTitle}</p>
 					</div>
 				</header>
-				<div class="phone-thread" class:phone-inbox={isInbox('dc')}>
+				<div
+					class="phone-thread"
+					class:phone-inbox={isInbox('dc')}
+					bind:this={dcThread}
+				>
 					{#if isInbox('dc')}
 						{#each inboxRows('dc') as row}
 							<div class="inbox-row" class:is-focus={row.focus}>
@@ -185,6 +249,20 @@
 								<span class="sticker-chip">
 									<KoboyoIcon name="sticker" class="h-8 w-8" />
 								</span>
+							{:else if b.kind === 'invite'}
+								<div class="invite-card">
+									<img
+										class="invite-qr"
+										src="/logos/invite-example.svg"
+										alt=""
+										width="120"
+										height="120"
+									/>
+									<a class="invite-link" href={b.link} rel="nofollow noopener"
+										>{b.link}</a
+									>
+									<p class="whitespace-pre-wrap">{b.text}</p>
+								</div>
 							{:else}
 								{#if whoLabel(b.who) && b.who !== 'you'}
 									<span class="bubble-who">{whoLabel(b.who)}</span>
