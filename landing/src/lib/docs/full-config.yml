@@ -1,0 +1,182 @@
+# =============================================================================
+# TGPORTAL — complete config.yml
+# =============================================================================
+# Copy the tracked template, then edit this file locally:
+#   make config
+#   # or:  cp config.example.yml config.yml
+#
+# This file is gitignored. Do not commit a filled-in copy.
+#
+# Secrets do NOT belong here. Put them in .env (also gitignored):
+#   TELEGRAM_BOT_TOKEN=123456:ABC-DEF...     # required for Telegram
+#   PERSONA_ACCOUNT_QR=dcaccount:...         # persona / both (ghost accounts)
+#   INVITE_URL=https://i.delta.chat/#...     # optional admin boot notify
+#   TGPORTAL_DB_KEY=<openssl rand -hex 32>   # required if database_encrypt: true
+#   TELEGRAM_ALLOWED_USER_IDS=111,222        # overrides telegram.allowed_user_ids
+#   PROXY_URL=socks5://127.0.0.1:1080        # shared proxy override
+#   TELEGRAM_PROXY_URL=socks5://...          # Telegram-only override
+#   DELTACHAT_PROXY_URL=socks5://...         # Delta Chat core override
+#   PROXY_ENABLED=true                       # force shared proxy on
+#
+# Runtime state lives under folder (default ./data). Never commit data/.
+#
+# Load this file:
+#   ./tgportal --config config.yml serve
+#   make serve CONFIG=config.yml
+# CLI --folder / -f wins over folder: below, which wins over ./data.
+# =============================================================================
+
+# --- Delta Chat profile (applied on every serve) -----------------------------
+# Maps to core keys displayname + selfavatar.
+name: "Delta ↔️ TG"
+# Path is relative to the process working directory. "" = leave avatar as-is.
+image: ./assets/logo.jpg
+# Legacy text for unpaired Delta Chat messages. Pairing usually replaces this
+# with an invite + code offer.
+reply: hi
+# Optional one-shot text sent to INVITE_URL when serve starts (admin ping).
+boot_message: "hi — Delta ↔️ TG bridge is online"
+
+# --- Operating mode ----------------------------------------------------------
+# personal  Classic portal bot. One Telegram user ↔ one Delta Chat chat.
+#           User /start on Telegram, pastes the pairing code in Delta Chat.
+# persona   Owners /pair then /pair-bot <BotFather token> on the portal bot.
+#           Each remote Telegram person gets a unique ghost Delta Chat account
+#           (reused forever). Tokens live only in SQLite, never in this file.
+# both      One process runs personal + persona (typical public host).
+mode: personal
+# mode: persona
+# mode: both
+
+# Persona (used when mode is persona or both). See docs/persona.md.
+persona:
+  # QR / URI used to provision ghost accounts.
+  # Prefer PERSONA_ACCOUNT_QR in .env so this can stay empty.
+  account_qr: ""
+  # account_qr: "dcaccount:nine.testrun.org"
+  # account_qr: "dclogin:..."
+
+  # Hard caps — serve refuses new ghosts / bots past these.
+  max_ghosts: 200            # process-wide ghost Delta Chat accounts
+  max_ghosts_per_bot: 200    # ghosts bound to one owner bot
+  max_bots: 20               # registered owner bots on this host
+  max_bots_per_owner: 3      # bots one Telegram owner may register
+
+  # Allow /pair-bot in a private chat with the portal bot.
+  allow_register_from_tg: true
+
+  # Mirror Telegram groups as Delta Chat groups. Off by default on public hosts
+  # (more accounts, more abuse surface).
+  allow_groups: false
+
+# Pairing codes (Telegram user ↔ Delta Chat chat).
+pairing:
+  code_length: 8             # integer 4–12
+  pending_ttl_sec: 1800      # unused code lifetime; 1800 = 30 minutes
+
+# Encrypt secrets in tgportal.db (BotFather tokens, vcards, invite QR, codes).
+# Public instance: leave true so serve exits without TGPORTAL_DB_KEY.
+# Do not put the key in YAML — use .env TGPORTAL_DB_KEY (openssl rand -hex 32).
+database_encrypt: true
+# database_key: ""           # discouraged; env wins for a reason
+
+# --- Storage -----------------------------------------------------------------
+folder: ./data               # accounts/, tgportal.db, tg-cache/
+database: tgportal.db        # relative to folder unless this path is absolute
+account: 0                   # 0 = all Delta Chat accounts; or a core account id
+
+# --- Logging (TGPORTAL / bridge only; Delta Chat core has its own console) ---
+# false     off (default)
+# stderr    print to stderr
+# stdout    print to stdout
+# <path>    append to a file
+log: false
+# log: stderr
+# log: stdout
+# log: ./data/tgportal.log
+log_level: info              # debug | info | warn | error
+
+# --- Shared proxy (Telegram Bot API + Delta Chat core, unless overridden) ----
+# Schemes: socks5://  socks5h://  http://  https://
+# Example: socks5://user:pass@127.0.0.1:1080
+# Env PROXY_URL / PROXY_ENABLED override this block.
+proxy:
+  enabled: false
+  url: ""
+  # If url is empty you can build it from parts:
+  # type: socks5             # socks5 | socks5h | http | https
+  # host: 127.0.0.1
+  # port: 1080
+  # username: ""
+  # password: ""
+
+# --- Telegram portal bot -----------------------------------------------------
+# Token stays in TELEGRAM_BOT_TOKEN. This block is behavior + branding.
+telegram:
+  enabled: true              # start long-poll when a token is set
+  bot_url: https://t.me/tgdeltabridgebot
+  logo: ./assets/logo.jpg                    # photo on /start and /help
+  start_animation: ./assets/start_black_hole.mp4   # /start animation
+
+  # Reaction after a successful Telegram → Delta Chat forward (setMessageReaction).
+  # Disable with: off | none | -
+  reaction: "✅"
+  # reaction: "👍"
+  # reaction: off
+
+  # Empty = public: anyone who DMs the bot may /pair.
+  # Non-empty = private host. TELEGRAM_ALLOWED_USER_IDS in .env wins if set.
+  allowed_user_ids: []
+  # allowed_user_ids: [123456789, 987654321]
+
+  # Telegram-only proxy (Bot API + file downloads). Overrides top-level proxy.
+  # TELEGRAM_PROXY_URL in .env overrides this.
+  proxy:
+    enabled: false
+    url: ""
+
+# --- Delta Chat core ---------------------------------------------------------
+deltachat:
+  # Core-only proxy. DELTACHAT_PROXY_URL in .env overrides this.
+  proxy:
+    enabled: false
+    url: ""
+    # url: socks5://127.0.0.1:1080
+
+# --- Bridge (what is forwarded both ways once a pair is active) --------------
+# Each flag defaults on. Set false to drop that kind in both directions.
+bridge:
+  text: true                 # plain text
+  images: true               # photos (JPG/PNG/…)
+  videos: true               # short video notes / messages (see limits)
+  stickers: true             # static WEBP
+  lottie: true               # animated TGS (file, or GIF if a converter is installed)
+  video_stickers: true       # WEBM stickers
+  gif: true                  # GIF / MP4 animations
+  custom_emoji: true         # Telegram custom / premium emoji
+  sticker_packs: true        # /send_pack — reply to a sticker, whole pack → Delta Chat
+
+  # Media caps. 0 = built-in default after load. -1 = unlimited where supported.
+  limits:
+    video_max_duration_sec: 60       # Telegram video.duration; default 60
+    video_max_bytes: 20971520        # 20 MiB
+    image_max_bytes: 10485760        # 10 MiB
+    file_max_bytes: 20971520         # 20 MiB (other attachments)
+    sticker_pack_max: 120            # stickers per /send_pack (packs can be large)
+
+# =============================================================================
+# Not in YAML
+#   TELEGRAM_BOT_TOKEN, PERSONA_ACCOUNT_QR, INVITE_URL, TGPORTAL_DB_KEY
+#   TELEGRAM_ALLOWED_USER_IDS, PROXY_*  →  .env
+#   Owner BotFather tokens from /pair-bot  →  SQLite under folder
+#
+# Precedence
+#   folder:     --folder / -f  >  folder:  >  ./data
+#   allow-list: TELEGRAM_ALLOWED_USER_IDS  >  telegram.allowed_user_ids  >  open
+#   config:     --config / -c  (default config.yml)
+#
+# Runtime under folder/
+#   accounts/      Delta Chat account databases
+#   tgportal.db    pairing + persona store
+#   tg-cache/      temporary Telegram downloads
+# =============================================================================

@@ -27,8 +27,8 @@
 		},
 		{
 			"slug": "config",
-			"title": "Config file",
-			"body": "config.yml keys, .env secrets, proxies, bridge toggles, and what wins when both are set."
+			"title": "config.yml",
+			"body": "The complete annotated config.yml: every key, default, comment, plus .env and precedence."
 		}
 	],
 	"trustTitle": "You are trusting whoever runs the bot",
@@ -124,8 +124,8 @@
 	"selfPreview": "Landing preview while developing: make run-landing → http://127.0.0.1:5173.",
 	"selfMore": "More: installation, configuration, security, trust.",
 	"selfLinkConfig": "configuration",
-	"cfgTitle": "Config file",
-	"cfgLede": "Secrets stay in .env. Behavior stays in config.yml. Copy the examples; never commit the locals or ./data.",
+	"cfgTitle": "config.yml",
+	"cfgLede": "The whole operator file: every key, default, and comment. Secrets stay in .env. Copy the example; never commit config.yml, .env, or ./data.",
 	"cfgFilesLead": "TGPORTAL splits two files on purpose:",
 	"cfgFilesItems": [
 		"config.yml — mode, profile, storage, logging, proxies, Telegram UI, bridge toggles. Gitignored.",
@@ -144,7 +144,8 @@
 		"TELEGRAM_ALLOWED_USER_IDS — comma-separated IDs; overrides telegram.allowed_user_ids when set",
 		"PROXY_URL, TELEGRAM_PROXY_URL, DELTACHAT_PROXY_URL, PROXY_ENABLED — optional proxy overrides"
 	],
-	"cfgYamlTitle": "YAML (config.yml)",
+	"cfgYamlTitle": "Full config.yml",
+	"cfgYamlLead": "This is the complete file TGPORTAL reads. Comments are part of the template — leave them in when you copy. Values shown are the documented defaults.",
 	"cfgProfileTitle": "Profile (Delta Chat)",
 	"cfgProfileItems": [
 		"name — display name (displayname). Default: Delta ↔️ TG",

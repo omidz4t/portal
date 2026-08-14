@@ -27,8 +27,8 @@
 		},
 		{
 			"slug": "config",
-			"title": "فایل تنظیمات",
-			"body": "کلیدهای config.yml، اسرار .env، پروکسی‌ها، کلیدهای پل، و اینکه وقتی هر دو تنظیم شوند کدام مقدم است."
+			"title": "config.yml",
+			"body": "کل config.yml با توضیح: همهٔ کلیدها، پیش‌فرض‌ها، به‌همراه .env و تقدم."
 		}
 	],
 	"trustTitle": "شما به هرکسی که ربات را اجرا می‌کند اعتماد می‌کنید",
@@ -124,8 +124,8 @@
 	"selfPreview": "پیش‌نمایش لندینگ در توسعه: make run-landing → http://127.0.0.1:5173.",
 	"selfMore": "بیشتر: نصب، پیکربندی، امنیت، اعتماد.",
 	"selfLinkConfig": "پیکربندی",
-	"cfgTitle": "فایل تنظیمات",
-	"cfgLede": "اسرار در .env می‌مانند. رفتار در config.yml است. نمونه‌ها را کپی کنید؛ هرگز فایل‌های محلی یا ./data را commit نکنید.",
+	"cfgTitle": "config.yml",
+	"cfgLede": "کل فایل اپراتور: همهٔ کلیدها، پیش‌فرض‌ها و توضیح‌ها. اسرار در .env می‌مانند. نمونه را کپی کنید؛ هرگز config.yml، .env یا ./data را commit نکنید.",
 	"cfgFilesLead": "TGPORTAL عمداً دو فایل را جدا می‌کند:",
 	"cfgFilesItems": [
 		"config.yml — حالت، پروفایل، ذخیره‌سازی، لاگ، پروکسی‌ها، رابط تلگرام، کلیدهای پل. در git نادیده گرفته می‌شود.",
@@ -144,7 +144,8 @@
 		"TELEGRAM_ALLOWED_USER_IDS — شناسه‌ها با کاما؛ اگر تنظیم شود telegram.allowed_user_ids را بازنویسی می‌کند",
 		"PROXY_URL, TELEGRAM_PROXY_URL, DELTACHAT_PROXY_URL, PROXY_ENABLED — بازنویسی اختیاری پروکسی"
 	],
-	"cfgYamlTitle": "YAML (config.yml)",
+	"cfgYamlTitle": "config.yml کامل",
+	"cfgYamlLead": "این همان فایلی است که TGPORTAL می‌خواند. توضیح‌ها بخشی از قالب‌اند — هنگام کپی نگه دارید. مقدارهای نشان‌داده‌شده پیش‌فرض مستند هستند.",
 	"cfgProfileTitle": "پروفایل (دلتا چت)",
 	"cfgProfileItems": [
 		"name — نام نمایشی (displayname). پیش‌فرض: Delta ↔️ TG",

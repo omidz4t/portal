@@ -8,12 +8,14 @@
 		lede,
 		docs,
 		locale,
+		wide = false,
 		children
 	}: {
 		title: string;
 		lede?: string;
 		docs: DocsCopy;
 		locale: Locale;
+		wide?: boolean;
 		children: Snippet;
 	} = $props();
 </script>
@@ -44,7 +46,9 @@
 		<p class="docs-copy max-w-prose text-lg text-mist">{lede}</p>
 	{/if}
 	<div
-		class="docs-copy max-w-prose text-mist [&_a]:text-sky [&_a]:underline-offset-2 [&_a]:hover:underline [&_code]:text-ink [&_pre]:overflow-x-auto [&_strong]:text-ink"
+		class="docs-copy text-mist [&_a]:text-sky [&_a]:underline-offset-2 [&_a]:hover:underline [&_p_code]:text-ink [&_li_code]:text-ink [&_pre]:overflow-x-auto [&_pre]:text-[#f6f1e6] [&_pre_code]:text-[#f6f1e6] [&_strong]:text-ink"
+		class:max-w-prose={!wide}
+		class:max-w-none={wide}
 	>
 		{@render children()}
 	</div>

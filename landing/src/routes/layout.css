@@ -154,6 +154,13 @@ pre code,
 	line-height: 1.7;
 }
 
+.docs-copy pre.config-yml {
+	max-height: none;
+	padding: 1.35rem 1.4rem;
+	font-size: 0.82rem;
+	line-height: 1.65;
+}
+
 .docs-copy pre code {
 	background-color: transparent;
 	color: #f6f1e6;
