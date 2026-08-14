@@ -46,7 +46,8 @@ make test
 | [docs/installation.md](docs/installation.md) | Install |
 | [docs/pairing.md](docs/pairing.md) | Pairing |
 | [docs/persona.md](docs/persona.md) | Persona / ghost accounts |
-| [docs/security.md](docs/security.md) | Security |
+| [docs/security.md](docs/security.md) | Operator hardening |
+| [SECURITY.md](SECURITY.md) | Report a vulnerability |
 | [docs/trust.md](docs/trust.md) | Why self-host |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contributing |
 

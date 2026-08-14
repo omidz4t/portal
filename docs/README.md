@@ -11,7 +11,9 @@
 | [development.md](development.md) | Hacking and conventions |
 | [trust.md](trust.md) | **Trust the operator** — prefer self-hosting |
 | [privacy.md](privacy.md) | Privacy Policy (pairing, media, retention) |
-| [security.md](security.md) | Secrets, allow-lists, hardening |
+| [security.md](security.md) | Operator hardening |
 | [proxy.md](proxy.md) | SOCKS5 / HTTP proxy for Telegram and Delta Chat |
+| [../SECURITY.md](../SECURITY.md) | Vulnerability reporting |
+| [../CONTRIBUTING.md](../CONTRIBUTING.md) | How to contribute |
 
 Start at the root [README.md](../README.md).
