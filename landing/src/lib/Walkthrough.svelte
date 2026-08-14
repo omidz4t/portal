@@ -2,7 +2,7 @@
 	import ChatPhone from '$lib/ChatPhone.svelte';
 	import type { TutorialCopy, TutorialScene } from '$lib/content';
 
-	let { tutorial }: { tutorial: TutorialCopy } = $props();
+	let { tutorial, hideTitle = false }: { tutorial: TutorialCopy; hideTitle?: boolean } = $props();
 
 	let storyId = $state<string | null>(null);
 	let step = $state(0);
@@ -88,7 +88,9 @@
 </script>
 
 <div class="try-walk">
-	<h1 class="try-headline whitespace-pre-line">{tutorial.title}</h1>
+	{#if !hideTitle}
+		<h1 class="try-headline whitespace-pre-line">{tutorial.title}</h1>
+	{/if}
 
 	<div class="try-story-nav mt-4">
 		{#each storyGroups as g}
