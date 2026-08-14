@@ -83,11 +83,10 @@
 	<section id="crosses" class="mx-auto max-w-6xl px-5 py-16">
 		<h2 class="text-2xl font-semibold sm:text-3xl">{copy.bridgeTitle}</h2>
 		<p class="mt-3 max-w-2xl text-lg leading-relaxed text-mist">{copy.bridgeLead}</p>
-		<p class="mt-4 inline-flex items-center gap-3 text-sm font-semibold">
-			<img src="/logos/telegram.svg" alt="" width="28" height="28" class="h-7 w-7" />
-			<KoboyoIcon name="bridge-momentum" class="h-12 w-12" />
-			<img src="/logos/deltachat.svg" alt="" width="28" height="28" class="h-7 w-7" />
-			{copy.bridgeBoth}
+		<p class="portal-mark mt-6" aria-hidden="true">
+			<KoboyoIcon name="mirror-portal" class="h-16 w-16" />
+			<span class="portal-mark-name">{copy.brandName}</span>
+			<KoboyoIcon name="mirror-portal" class="portal-mark-flip h-16 w-16" />
 		</p>
 		<ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 			{#each copy.media as row, i}
