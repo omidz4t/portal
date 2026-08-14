@@ -18,6 +18,7 @@
 		{
 			"id": "pair",
 			"label": "Just pair me",
+			"group": "",
 			"intro": "Simple mode: you, the portal bot, one Delta Chat. Nothing moves until this pair is on.",
 			"scenes": [
 				{
@@ -180,6 +181,7 @@
 		{
 			"id": "install",
 			"label": "Plug in /pair-bot",
+			"group": "Persona mode",
 			"intro": "Persona is the other product. Stay paired, then attach a BotFather bot that’s yours. Do it on a machine you run.",
 			"scenes": [
 				{
@@ -339,6 +341,7 @@
 		{
 			"id": "create",
 			"label": "A friend writes your bot",
+			"group": "Persona mode",
 			"intro": "After /pair-bot, each person who DMs you becomes a ghost on Delta Chat — their name, their photo, same account next time.",
 			"scenes": [
 				{

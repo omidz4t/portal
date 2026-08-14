@@ -445,6 +445,29 @@ footer.doodle-bar {
 	font-size: clamp(1.6rem, 4vw, 2.75rem);
 }
 
+.try-story-nav {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 1rem 1.5rem;
+}
+
+.try-story-group.has-label {
+	border: 2px solid var(--color-ink);
+	border-radius: 1rem;
+	background: #fffdf8;
+	padding: 0.65rem 0.75rem 0.75rem;
+}
+
+.try-story-group-label {
+	margin-bottom: 0.45rem;
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
 .try-band .phones {
 	display: grid;
 	min-height: 0;

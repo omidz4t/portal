@@ -74,23 +74,43 @@
 		if (!listTitle(title) && scene.view !== 'inbox') return false;
 		return lastInbox(side).length > 0;
 	}
+
+	const storyGroups = $derived.by(() => {
+		const groups: { name: string; stories: typeof tutorial.stories }[] = [];
+		for (const s of tutorial.stories) {
+			const name = s.group ?? '';
+			const last = groups[groups.length - 1];
+			if (last && last.name === name) last.stories.push(s);
+			else groups.push({ name, stories: [s] });
+		}
+		return groups;
+	});
 </script>
 
 <div class="try-walk">
 	<h1 class="try-headline whitespace-pre-line">{tutorial.title}</h1>
 
-	<div class="mt-4 flex flex-wrap gap-2" role="tablist" aria-label={tutorial.title}>
-		{#each tutorial.stories as s}
-			<button
-				type="button"
-				class="doodle-btn"
-				class:doodle-btn-ink={s.id === story.id}
-				role="tab"
-				aria-selected={s.id === story.id}
-				onclick={() => pick(s.id)}
-			>
-				{s.label}
-			</button>
+	<div class="try-story-nav mt-4">
+		{#each storyGroups as g}
+			<div class="try-story-group" class:has-label={Boolean(g.name)}>
+				{#if g.name}
+					<p class="try-story-group-label">{g.name}</p>
+				{/if}
+				<div class="flex flex-wrap gap-2" role="tablist" aria-label={g.name || tutorial.title}>
+					{#each g.stories as s}
+						<button
+							type="button"
+							class="doodle-btn"
+							class:doodle-btn-ink={s.id === story.id}
+							role="tab"
+							aria-selected={s.id === story.id}
+							onclick={() => pick(s.id)}
+						>
+							{s.label}
+						</button>
+					{/each}
+				</div>
+			</div>
 		{/each}
 	</div>
 
