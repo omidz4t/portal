@@ -9,6 +9,7 @@
 
 	const flowIcons = ['telegram', 'robot-face', 'ghost-face', 'paper-plane'] as const;
 	const stepIcons = ['telegram', 'qr-code', 'handshake', 'sticker'] as const;
+	const mediaIcons = ['sticker', 'sparkles', 'film', 'video', 'smile', 'letter'] as const;
 	const doodleRow = [
 		'sparkles',
 		'ghost-face',
@@ -72,27 +73,24 @@
 		</div>
 	</section>
 
-	<section class="mx-auto max-w-6xl px-5 py-16">
-		<h2 class="text-2xl font-semibold">{copy.bridgeTitle}</h2>
-		<p class="mt-2 max-w-2xl text-mist">{copy.bridgeLead}</p>
-		<div class="doodle-card mt-8 overflow-x-auto">
-			<table class="w-full text-left text-sm">
-				<thead class="font-mono text-xs tracking-wide uppercase">
-					<tr>
-						<th class="px-4 py-3">{copy.colTelegram}</th>
-						<th class="px-4 py-3">{copy.colDelta}</th>
-					</tr>
-				</thead>
-				<tbody>
-					{#each copy.media as row}
-						<tr class="border-t-2 border-ink/15">
-							<td class="px-4 py-3">{row.tg}</td>
-							<td class="px-4 py-3 text-mist">{row.dc}</td>
-						</tr>
-					{/each}
-				</tbody>
-			</table>
-		</div>
+	<section id="crosses" class="mx-auto max-w-6xl px-5 py-16">
+		<h2 class="text-2xl font-semibold sm:text-3xl">{copy.bridgeTitle}</h2>
+		<p class="mt-3 max-w-2xl text-lg leading-relaxed text-mist">{copy.bridgeLead}</p>
+		<p class="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
+			<KoboyoIcon name="telegram" class="h-6 w-6" />
+			<span aria-hidden="true">↔</span>
+			<KoboyoIcon name="bridge-2" class="h-6 w-6" />
+			{copy.bridgeBoth}
+		</p>
+		<ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+			{#each copy.media as row, i}
+				<li class="doodle-card p-5">
+					<KoboyoIcon name={mediaIcons[i]} class="h-11 w-11" />
+					<h3 class="mt-3 text-lg font-semibold">{row.title}</h3>
+					<p class="mt-2 text-sm leading-relaxed text-mist">{row.note}</p>
+				</li>
+			{/each}
+		</ul>
 	</section>
 
 	<section id="how" class="mx-auto max-w-6xl px-5 pb-16">

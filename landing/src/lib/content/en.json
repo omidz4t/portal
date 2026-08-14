@@ -21,17 +21,36 @@
 	"ctaPublic": "Public bot — you trust the host",
 	"ctaDocs": "Docs",
 	"posterAlt": "TGPORTAL branding poster: dark void with the product mark",
-	"bridgeTitle": "What actually crosses",
-	"bridgeLead": "You pair once. After that, these types go both ways and still look right on Delta Chat.",
+	"bridgeTitle": "What you can send",
+	"bridgeLead": "After you pair, this goes both ways. We keep filenames boring on purpose — no “from Telegram.”",
+	"bridgeBoth": "Both ways",
 	"colTelegram": "Telegram",
 	"colDelta": "Delta Chat",
 	"media": [
-		{ "tg": "Static WEBP stickers", "dc": "Sticker / image" },
-		{ "tg": "Lottie TGS", "dc": "File, or GIF if a converter is installed" },
-		{ "tg": "Video stickers (WEBM)", "dc": "Video" },
-		{ "tg": "GIF / animation (GIF or MP4)", "dc": "GIF / video" },
-		{ "tg": "Custom emoji", "dc": "Sticker via getCustomEmojiStickers" },
-		{ "tg": "Text, images, short video", "dc": "Same, both directions" }
+		{
+			"title": "Stickers",
+			"note": "The still ones. They land as a sticker or a picture."
+		},
+		{
+			"title": "Moving stickers",
+			"note": "Telegram’s animated ones. You get a file, or a GIF if the converter is installed."
+		},
+		{
+			"title": "Video stickers",
+			"note": "The short WEBM loops. They show up as video."
+		},
+		{
+			"title": "GIFs",
+			"note": "GIFs and Telegram animations (often MP4). They play as GIF or video."
+		},
+		{
+			"title": "Custom emoji",
+			"note": "Those premium stickers-in-text. They come through as stickers."
+		},
+		{
+			"title": "Text, photos, short clips",
+			"note": "Normal chat stuff, same both ways. Long videos stay on their side — we cap duration."
+		}
 	],
 	"howTitle": "First, just pair yourself",
 	"howLead": "This is the simple mode: you, the portal bot, one Delta Chat. Don’t use a public host unless you’re fine with that person seeing what you send. You can also start from Delta Chat with t.me/…?start=CODE.",
