@@ -57,6 +57,8 @@
 			"body": "Stickers, GIFs, text, images, short video. Filenames stay neutral; source captions are stripped."
 		}
 	],
+	"personaNew": "New",
+	"personaNewHint": "A second product in the same binary — not the same as pairing the public portal.",
 	"personaEyebrow": "Persona",
 	"personaTitle": "Persona: they message your Telegram bot. You see them as people on Delta Chat.",
 	"personaLead": "Personal mode is one public portal bot and one chat. Persona is different: you plug in a bot you created with BotFather. Friends never join a shared dump. Each Telegram user becomes a ghost — a real Delta Chat account with their name and photo — that opens a normal 1:1 with you. Replies you type there leave as your bot.",

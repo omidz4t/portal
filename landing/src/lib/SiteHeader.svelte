@@ -48,6 +48,9 @@
 					rel={link.external ? 'noreferrer' : undefined}
 				>
 					{link.label}
+					{#if link.id === 'persona'}
+						<span class="ms-1 text-[0.65rem] font-bold uppercase">({copy.personaNew})</span>
+					{/if}
 				</a>
 			{/each}
 		</nav>
@@ -83,6 +86,9 @@
 							rel={link.external ? 'noreferrer' : undefined}
 						>
 							{link.label}
+							{#if link.id === 'persona'}
+								<span class="ms-1 text-[0.65rem] font-bold uppercase">({copy.personaNew})</span>
+							{/if}
 						</a>
 					{/each}
 					<div class="flex gap-2 px-3 py-2 text-sm">

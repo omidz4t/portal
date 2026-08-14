@@ -291,6 +291,41 @@ footer.doodle-bar {
 	background: var(--color-warn-bg);
 }
 
+.persona-band {
+	margin-block: 1rem 2.5rem;
+	border-block: 3px dashed var(--color-ink);
+	background: radial-gradient(circle at 12% 18%, #f3e0b580 0 7rem, transparent 7.2rem), #fff8e6;
+	padding-block: 3rem 3.25rem;
+}
+
+.feature-stamp {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	rotate: -5deg;
+	border: 2.5px solid var(--color-ink);
+	border-radius: 0.4rem 0.85rem 0.45rem 0.75rem;
+	background: #f2c94c;
+	padding: 0.2rem 0.65rem 0.25rem;
+	font-size: 0.85rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	box-shadow: 2px 2px 0 var(--color-ink);
+}
+
+.persona-icons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.65rem;
+	margin-top: 1.25rem;
+}
+
+.persona-icons span {
+	height: 2.4rem;
+	width: 2.4rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
