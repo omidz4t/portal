@@ -29,8 +29,9 @@
 	/>
 </svelte:head>
 
-<div class="flex min-h-screen flex-col">
+<div class="flex min-h-dvh flex-col">
+	<a class="skip-link" href="#main-content">Skip to main content</a>
 	<SiteHeader current={onDocs ? 'docs' : ''} />
-	<div class="flex-1">{@render children()}</div>
+	<main id="main-content" class="flex-1" tabindex="-1">{@render children()}</main>
 	<SiteFooter />
 </div>

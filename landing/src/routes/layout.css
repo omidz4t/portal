@@ -6,11 +6,13 @@
 	--font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 	--color-ink: #0b1220;
 	--color-panel: #121b2d;
-	--color-line: #243049;
-	--color-mist: #9aa8c0;
+	--color-line: #3a4a66;
+	--color-mist: #c5d0e3;
 	--color-paper: #eef3fb;
 	--color-teal: #3ecfb2;
-	--color-sky: #4ea0ff;
+	--color-sky: #7ab8ff;
+	--color-warn: #fde68a;
+	--color-warn-bg: #3b2a08;
 }
 
 html {
@@ -19,15 +21,73 @@ html {
 
 body {
 	margin: 0;
-	min-height: 100vh;
+	min-height: 100dvh;
 	background:
-		radial-gradient(900px 420px at 10% -10%, rgba(78, 160, 255, 0.18), transparent 55%),
-		radial-gradient(700px 380px at 100% 0%, rgba(62, 207, 178, 0.12), transparent 50%),
+		radial-gradient(900px 420px at 10% -10%, rgba(78, 160, 255, 0.16), transparent 55%),
+		radial-gradient(700px 380px at 100% 0%, rgba(62, 207, 178, 0.1), transparent 50%),
 		var(--color-ink);
 	color: var(--color-paper);
 	font-family: var(--font-sans);
+	font-size: 1rem;
+	line-height: 1.65;
+	overflow-wrap: anywhere;
 }
 
 ::selection {
 	background: rgba(62, 207, 178, 0.35);
+}
+
+a,
+button,
+summary {
+	cursor: pointer;
+}
+
+details > summary {
+	list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+	display: none;
+}
+
+:focus-visible {
+	outline: 3px solid var(--color-teal);
+	outline-offset: 3px;
+}
+
+.skip-link {
+	position: absolute;
+	left: 1rem;
+	top: 0.75rem;
+	z-index: 100;
+	transform: translateY(-150%);
+	border-radius: 9999px;
+	background: var(--color-teal);
+	color: var(--color-ink);
+	padding: 0.6rem 1rem;
+	font-weight: 600;
+}
+
+.skip-link:focus {
+	transform: none;
+}
+
+code,
+pre {
+	overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
 }

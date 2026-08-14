@@ -34,28 +34,42 @@
 	];
 </script>
 
-<main>
-	<aside
-		class="border-b border-amber-500/40 bg-amber-950/50"
-		role="note"
-		aria-label="Trust warning"
-	>
-		<div class="mx-auto max-w-6xl px-5 py-4 text-sm leading-relaxed text-amber-100">
-			<strong class="font-semibold text-amber-50">Warning.</strong>
-			A public bot is a relay. Whoever runs
-			<code class="font-mono text-amber-50">tgportal</code>
-			can see pairing data and everything you bridge. Delta Chat encryption does not hide messages from
-			that host. Prefer
-			<a class="font-semibold underline underline-offset-2" href="/docs/self-host/">self-hosting</a>
-			so you are the only operator.
-			<a class="underline underline-offset-2" href="/docs/trust/">Why this matters</a>.
+<div>
+	<aside class="border-b border-warn/40 bg-warn-bg" role="note" aria-label="Trust warning">
+		<div class="mx-auto flex max-w-6xl gap-3 px-5 py-4 text-sm leading-relaxed text-warn">
+			<svg
+				class="mt-0.5 h-5 w-5 shrink-0"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				aria-hidden="true"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"
+				/>
+			</svg>
+			<p>
+				<strong class="font-semibold text-paper">Warning.</strong>
+				A public bot is a relay. Whoever runs
+				<code class="font-mono text-paper">tgportal</code>
+				can see pairing data and everything you bridge. Delta Chat encryption does not hide messages from
+				that host. Prefer
+				<a class="font-semibold underline underline-offset-2" href="/docs/self-host/"
+					>self-hosting</a
+				>
+				so you are the only operator.
+				<a class="underline underline-offset-2" href="/docs/trust/">Why this matters</a>.
+			</p>
 		</div>
 	</aside>
 
 	<section class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 lg:grid-cols-2 lg:py-24">
 		<div>
 			<p class="font-mono text-xs tracking-[0.22em] text-teal uppercase">Telegram ↔ Delta Chat</p>
-			<h1 class="mt-4 text-4xl leading-tight font-semibold tracking-tight sm:text-5xl">
+			<h1 class="mt-4 text-4xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl">
 				Stickers and GIFs that survive the jump to Delta Chat.
 			</h1>
 			<p class="mt-5 max-w-xl text-lg leading-relaxed text-mist">
@@ -66,26 +80,33 @@
 			<div class="mt-8 flex flex-wrap gap-3">
 				<a
 					href="/docs/self-host/"
-					class="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-ink hover:brightness-110"
+					class="inline-flex min-h-11 items-center rounded-full bg-teal px-5 text-sm font-semibold text-ink hover:brightness-110"
 				>
 					Host your own
 				</a>
 				<a
 					href={botUrl}
-					class="rounded-full border border-line px-5 py-2.5 text-sm font-medium text-paper hover:border-mist"
+					rel="noreferrer"
+					class="inline-flex min-h-11 items-center rounded-full border border-line px-5 text-sm font-medium text-paper hover:border-mist"
 				>
 					Public bot (trust the runner)
 				</a>
 				<a
 					href="/docs/"
-					class="rounded-full border border-line px-5 py-2.5 text-sm font-medium text-paper hover:border-mist"
+					class="inline-flex min-h-11 items-center rounded-full border border-line px-5 text-sm font-medium text-paper hover:border-mist"
 				>
 					Docs
 				</a>
 			</div>
 		</div>
 		<figure class="overflow-hidden rounded-2xl border border-line bg-panel shadow-2xl">
-			<img src="/poster.jpg" alt="TGPORTAL branding poster" class="h-full w-full object-cover" />
+			<img
+				src="/poster.jpg"
+				alt="TGPORTAL branding poster: dark void with the product mark"
+				width="960"
+				height="640"
+				class="aspect-3/2 h-full w-full object-cover"
+			/>
 		</figure>
 	</section>
 
@@ -95,7 +116,7 @@
 			<p class="mt-2 max-w-2xl text-mist">
 				Bidirectional, per-user pairing. Telegram types stay useful on Delta Chat.
 			</p>
-			<div class="mt-8 overflow-hidden rounded-xl border border-line">
+			<div class="mt-8 overflow-x-auto rounded-xl border border-line">
 				<table class="w-full text-left text-sm">
 					<thead class="bg-ink/60 font-mono text-xs tracking-wide text-mist uppercase">
 						<tr>
@@ -233,4 +254,4 @@ make run-landing</code
 				></pre>
 		</div>
 	</section>
-</main>
+</div>
