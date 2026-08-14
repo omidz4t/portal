@@ -287,7 +287,7 @@ footer.doodle-bar {
 }
 
 .doodle-warn {
-	border-bottom: 2px dashed var(--color-ink);
+	border-block: 2px dashed var(--color-ink);
 	background: var(--color-warn-bg);
 }
 
