@@ -48,6 +48,16 @@
 	}
 
 	$effect(() => {
+		if (typeof window === 'undefined') return;
+		const desktop = window.matchMedia('(min-width: 768px)');
+		function onDesktopChange() {
+			if (desktop.matches) closeMenu();
+		}
+		desktop.addEventListener('change', onDesktopChange);
+		return () => desktop.removeEventListener('change', onDesktopChange);
+	});
+
+	$effect(() => {
 		if (!menuOpen) return;
 		function onKey(event: KeyboardEvent) {
 			if (event.key === 'Escape') closeMenu();
@@ -100,9 +110,11 @@
 			<a href={botUrl} rel="noreferrer" class="doodle-btn doodle-btn-ink">{copy.openBot}</a>
 		</div>
 
-		<button type="button" class="doodle-btn min-w-11 md:hidden" onclick={openMenu}>
-			{copy.navMenu}
-		</button>
+		<div class="site-menu-open">
+			<button type="button" class="doodle-btn min-w-11" onclick={openMenu}>
+				{copy.navMenu}
+			</button>
+		</div>
 	</div>
 </header>
 

@@ -326,6 +326,13 @@ footer.doodle-bar {
 	margin-top: 0.25rem;
 }
 
+@media (min-width: 768px) {
+	.site-menu-open,
+	.site-menu {
+		display: none;
+	}
+}
+
 .flow-track {
 	margin-inline: auto;
 	margin-top: 2.5rem;
