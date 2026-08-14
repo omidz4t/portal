@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { botUrl, repoUrl } from '$lib/links';
+	import KoboyoIcon from '$lib/KoboyoIcon.svelte';
 	import type { Copy, Locale } from '$lib/content';
 	import { basePath, docsPath, twinPath } from '$lib/content';
 
@@ -52,15 +53,8 @@
 
 <header class="doodle-bar">
 	<div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-3">
-		<a href={base} class="flex min-h-11 items-center gap-3 rounded-lg px-1">
-			<img
-				src="/avatar.png"
-				alt=""
-				width="36"
-				height="36"
-				class="h-9 w-9 rounded-full border-2 border-ink"
-				aria-hidden="true"
-			/>
+		<a href={base} class="flex min-h-11 items-center gap-2 rounded-lg px-1">
+			<KoboyoIcon name="mirror-portal" class="h-8 w-8" />
 			<span class="text-sm font-semibold tracking-wide">{copy.brandName}</span>
 		</a>
 
