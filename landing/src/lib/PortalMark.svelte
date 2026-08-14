@@ -89,98 +89,90 @@
 	}
 
 	.portal-mark-tg {
-		animation: telegram-teleport 6.4s ease-in-out infinite;
+		--portal-dir: 1;
+		animation: portal-swap 6.4s ease-in-out infinite;
 	}
 
 	.portal-mark-dc {
-		animation: delta-walk-left 6.4s ease-in-out infinite;
+		--portal-dir: -1;
+		animation: portal-swap 6.4s ease-in-out infinite;
 	}
 
-	@keyframes telegram-teleport {
+	@keyframes portal-swap {
 		0%,
-		16% {
+		10% {
 			transform: translateX(0) scale(1);
 			opacity: 1;
 			filter: blur(0);
 		}
+		20% {
+			transform: translateX(calc(var(--portal-dir) * 0.7rem)) scale(0.2);
+			opacity: 0;
+			filter: blur(3px);
+		}
+		21%,
 		24% {
-			transform: translateX(0.55rem) scale(0.25);
-			opacity: 0;
-			filter: blur(3px);
-		}
-		25%,
-		32% {
-			transform: translateX(var(--portal-span)) scale(0.15);
+			transform: translateX(
+				calc(var(--portal-dir) * var(--portal-span) - var(--portal-dir) * 0.7rem)
+			)
+				scale(0.2);
 			opacity: 0;
 			filter: blur(4px);
 		}
-		40%,
-		66% {
-			transform: translateX(var(--portal-span)) scale(1);
+		34%,
+		52% {
+			transform: translateX(calc(var(--portal-dir) * var(--portal-span))) scale(1);
 			opacity: 1;
 			filter: blur(0);
 		}
-		74% {
-			transform: translateX(calc(var(--portal-span) - 0.55rem)) scale(0.25);
+		62% {
+			transform: translateX(
+				calc(var(--portal-dir) * var(--portal-span) - var(--portal-dir) * 0.7rem)
+			)
+				scale(0.2);
 			opacity: 0;
 			filter: blur(3px);
 		}
-		75%,
-		82% {
-			transform: translateX(0) scale(0.15);
+		63%,
+		66% {
+			transform: translateX(calc(var(--portal-dir) * 0.7rem)) scale(0.2);
 			opacity: 0;
 			filter: blur(4px);
 		}
-		90%,
+		76%,
 		100% {
 			transform: translateX(0) scale(1);
 			opacity: 1;
 			filter: blur(0);
-		}
-	}
-
-	@keyframes delta-walk-left {
-		0%,
-		14% {
-			transform: translateX(0);
-			opacity: 1;
-		}
-		40%,
-		66% {
-			transform: translateX(calc(-1 * var(--portal-span)));
-			opacity: 1;
-		}
-		92%,
-		100% {
-			transform: translateX(0);
-			opacity: 1;
 		}
 	}
 
 	@keyframes gate-pulse {
 		0%,
-		20%,
-		46%,
+		16%,
+		28%,
+		58%,
 		70%,
 		100% {
 			transform: scale(1);
 		}
-		24%,
-		74% {
+		20%,
+		62% {
 			transform: scale(1.14);
 		}
 	}
 
 	@keyframes gate-pulse-flip {
 		0%,
-		20%,
-		46%,
+		16%,
+		28%,
+		58%,
 		70%,
 		100% {
 			transform: scaleX(-1) scale(1);
 		}
-		24%,
-		74% {
+		20%,
+		62% {
 			transform: scaleX(-1) scale(1.14);
 		}
 	}
