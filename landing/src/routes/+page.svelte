@@ -1,6 +1,5 @@
 <script lang="ts">
-	const botUrl = 'https://t.me/tgdeltabridgebot';
-	const repoUrl = 'https://github.com/themadorg/tgportal';
+	import { botUrl, repoUrl } from '$lib/links';
 
 	const media = [
 		{ tg: 'Static WEBP stickers', dc: 'Sticker / image' },
@@ -33,48 +32,26 @@
 			body: 'Stickers, GIFs, text, images, short video. Filenames stay neutral; source captions are stripped.'
 		}
 	];
-
-	const modes = [
-		{
-			name: 'personal',
-			title: 'Personal pairing',
-			body: 'One Telegram user maps to one Delta Chat conversation on the portal bot. Default product.'
-		},
-		{
-			name: 'persona',
-			title: 'Persona bots',
-			body: 'Pair, then /pair-bot with your BotFather token. Each remote Telegram user gets a stable ghost Delta Chat account that messages you as a normal 1:1.'
-		},
-		{
-			name: 'both',
-			title: 'Both',
-			body: 'Run classic pairing and user-owned bots on the same instance.'
-		}
-	];
 </script>
 
-<header class="border-b border-line/80">
-	<div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
-		<a href="/" class="flex items-center gap-3">
-			<img src="/avatar.png" alt="" class="h-9 w-9 rounded-lg" />
-			<span class="text-sm font-semibold tracking-[0.18em] text-paper">TGPORTAL</span>
-		</a>
-		<nav class="hidden items-center gap-6 text-sm text-mist sm:flex">
-			<a href="#how" class="hover:text-paper">How it works</a>
-			<a href="#modes" class="hover:text-paper">Modes</a>
-			<a href="#self-host" class="hover:text-paper">Self-host</a>
-			<a href={repoUrl} class="hover:text-paper">Source</a>
-		</nav>
-		<a
-			href={botUrl}
-			class="rounded-full bg-teal px-4 py-2 text-sm font-semibold text-ink hover:brightness-110"
-		>
-			Open Telegram bot
-		</a>
-	</div>
-</header>
-
 <main>
+	<aside
+		class="border-b border-amber-500/40 bg-amber-950/50"
+		role="note"
+		aria-label="Trust warning"
+	>
+		<div class="mx-auto max-w-6xl px-5 py-4 text-sm leading-relaxed text-amber-100">
+			<strong class="font-semibold text-amber-50">Warning.</strong>
+			A public bot is a relay. Whoever runs
+			<code class="font-mono text-amber-50">tgportal</code>
+			can see pairing data and everything you bridge. Delta Chat encryption does not hide messages from
+			that host. Prefer
+			<a class="font-semibold underline underline-offset-2" href="/docs/self-host/">self-hosting</a>
+			so you are the only operator.
+			<a class="underline underline-offset-2" href="/docs/trust/">Why this matters</a>.
+		</div>
+	</aside>
+
 	<section class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 lg:grid-cols-2 lg:py-24">
 		<div>
 			<p class="font-mono text-xs tracking-[0.22em] text-teal uppercase">Telegram ↔ Delta Chat</p>
@@ -88,16 +65,22 @@
 			</p>
 			<div class="mt-8 flex flex-wrap gap-3">
 				<a
-					href={botUrl}
-					class="rounded-full bg-sky px-5 py-2.5 text-sm font-semibold text-ink hover:brightness-110"
+					href="/docs/self-host/"
+					class="rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-ink hover:brightness-110"
 				>
-					Pair with @tgdeltabridgebot
+					Host your own
 				</a>
 				<a
-					href={repoUrl}
+					href={botUrl}
 					class="rounded-full border border-line px-5 py-2.5 text-sm font-medium text-paper hover:border-mist"
 				>
-					GitHub
+					Public bot (trust the runner)
+				</a>
+				<a
+					href="/docs/"
+					class="rounded-full border border-line px-5 py-2.5 text-sm font-medium text-paper hover:border-mist"
+				>
+					Docs
 				</a>
 			</div>
 		</div>
@@ -134,12 +117,18 @@
 	</section>
 
 	<section id="how" class="mx-auto max-w-6xl px-5 py-16">
-		<h2 class="text-2xl font-semibold">Pair once</h2>
+		<h2 class="text-2xl font-semibold">Pair once (personal mode)</h2>
 		<p class="mt-2 max-w-2xl text-mist">
-			The live bot is
-			<a class="text-teal underline-offset-2 hover:underline" href={botUrl}>@tgdeltabridgebot</a>.
-			You can also start from Delta Chat: send any message to the bot, then open the
-			<code class="font-mono text-paper">t.me/…?start=CODE</code> link it gives you.
+			Default product: one Telegram user maps to one Delta Chat chat on the portal bot. Live
+			instance:
+			<a class="text-teal underline-offset-2 hover:underline" href={botUrl}>@tgdeltabridgebot</a>
+			— only if you accept
+			<a class="text-teal underline-offset-2 hover:underline" href="/docs/trust/"
+				>trusting that host</a
+			>. You can also start from Delta Chat and open
+			<code class="font-mono text-paper">t.me/…?start=CODE</code>.
+			<a class="text-teal underline-offset-2 hover:underline" href="/docs/pairing/">Pairing docs</a
+			>.
 		</p>
 		<ol class="mt-10 grid gap-5 md:grid-cols-2">
 			{#each steps as step}
@@ -152,30 +141,58 @@
 		</ol>
 	</section>
 
-	<section id="modes" class="border-y border-line/80 bg-panel/40">
+	<section id="persona" class="border-y border-line/80 bg-panel/40">
 		<div class="mx-auto max-w-6xl px-5 py-16">
-			<h2 class="text-2xl font-semibold">Two products, one binary</h2>
-			<p class="mt-2 max-w-2xl text-mist">
-				<code class="font-mono text-paper">mode</code> in
-				<code class="font-mono text-paper">config.yml</code> is
-				<code class="font-mono text-paper">personal</code>,
-				<code class="font-mono text-paper">persona</code>, or
-				<code class="font-mono text-paper">both</code>.
+			<p class="font-mono text-xs tracking-[0.2em] text-sky uppercase">Persona</p>
+			<h2 class="mt-2 text-2xl font-semibold">Your Telegram bot, their faces on Delta Chat</h2>
+			<p class="mt-3 max-w-3xl leading-relaxed text-mist">
+				Persona is a second product in the same binary. You keep a normal portal pair (so TGPORTAL
+				knows <em>your</em> Delta Chat identity), then register a BotFather bot you own. People who
+				message <em>that</em> bot are not dumped into one shared chat. Each Telegram user gets a
+				<strong class="text-paper">ghost Delta Chat account</strong> — name and photo copied from Telegram
+				— that writes to you as a normal 1:1. No “from Telegram” prefix. Replies you send in that 1:1
+				go back out through your bot.
 			</p>
 			<div class="mt-8 grid gap-5 md:grid-cols-3">
-				{#each modes as mode}
-					<article class="rounded-2xl border border-line bg-ink/50 p-6">
-						<p class="font-mono text-xs text-sky">{mode.name}</p>
-						<h3 class="mt-2 text-lg font-semibold">{mode.title}</h3>
-						<p class="mt-2 text-sm leading-relaxed text-mist">{mode.body}</p>
-					</article>
-				{/each}
+				<article class="rounded-2xl border border-line bg-ink/50 p-6">
+					<p class="font-mono text-xs text-sky">01 · owner</p>
+					<h3 class="mt-2 text-lg font-semibold">Pair, then /pair-bot</h3>
+					<p class="mt-2 text-sm leading-relaxed text-mist">
+						<code class="font-mono text-paper">/pair</code> on the portal bot first (stores your DC
+						vcard/public key). Create a bot with BotFather. In a private chat with the portal:
+						<code class="font-mono text-paper">/pair-bot &lt;TOKEN&gt;</code>. Tokens stay in SQLite
+						under <code class="font-mono text-paper">./data</code> — never in logs or git.
+					</p>
+				</article>
+				<article class="rounded-2xl border border-line bg-ink/50 p-6">
+					<p class="font-mono text-xs text-sky">02 · ghosts</p>
+					<h3 class="mt-2 text-lg font-semibold">One account per Telegram id</h3>
+					<p class="mt-2 text-sm leading-relaxed text-mist">
+						Alice DMs your bot → ghost A messages you. Bob DMs → ghost B, separate chat. Same person
+						later? Same ghost, reused forever. These accounts are created with
+						<code class="font-mono text-paper">PERSONA_ACCOUNT_QR</code> and are independent of personal-mode
+						pairings.
+					</p>
+				</article>
+				<article class="rounded-2xl border border-line bg-ink/50 p-6">
+					<p class="font-mono text-xs text-sky">03 · groups</p>
+					<h3 class="mt-2 text-lg font-semibold">Optional TG group mirror</h3>
+					<p class="mt-2 text-sm leading-relaxed text-mist">
+						If <code class="font-mono text-paper">persona.allow_groups</code> is on, add the bot to
+						a Telegram group and turn <strong class="text-paper">Group Privacy off</strong> in
+						BotFather. Posts become a Delta Chat group
+						<code class="font-mono text-paper">TG: …</code> with each speaker as their ghost. Your replies
+						leave as the bot (Telegram cannot puppet users).
+					</p>
+				</article>
 			</div>
-			<p class="mt-6 text-sm text-mist">
-				Persona groups can be mirrored as Delta Chat groups named
-				<code class="font-mono text-paper">TG: …</code> when
-				<code class="font-mono text-paper">persona.allow_groups</code> is on. Replies go out as the bot
-				(Telegram cannot puppet other users).
+			<p class="mt-8 text-sm text-mist">
+				Config: <code class="font-mono text-paper">mode: persona</code> or
+				<code class="font-mono text-paper">both</code>. Full operator steps, commands, and failure
+				notes:
+				<a class="text-teal underline-offset-2 hover:underline" href="/docs/persona/"
+					>persona docs</a
+				>.
 			</p>
 		</div>
 	</section>
@@ -185,45 +202,35 @@
 			<div>
 				<h2 class="text-2xl font-semibold">Run your own instance</h2>
 				<p class="mt-3 leading-relaxed text-mist">
-					Open source (MIT). Runtime is a single Go binary plus
+					This is the recommended way to use TGPORTAL. Open source (MIT). One Go binary plus
 					<code class="font-mono text-paper">deltachat-rpc-server</code> on
-					<code class="font-mono text-paper">PATH</code>. Pairing lives in SQLite under
-					<code class="font-mono text-paper">./data</code>. Secrets stay in
-					<code class="font-mono text-paper">.env</code> — never commit tokens.
+					<code class="font-mono text-paper">PATH</code>. You hold the token, the SQLite DB, and the
+					ghost keys.
 				</p>
 				<ul class="mt-5 list-disc space-y-2 pl-5 text-sm text-mist">
 					<li>Go 1.22+ and a Telegram BotFather token</li>
 					<li>Chatmail / Delta Chat provider (e.g. nine.testrun.org for tests)</li>
-					<li>Optional SOCKS5 / HTTP proxies for Telegram or Delta Chat</li>
-					<li>Makefile is the supported build and serve entrypoint</li>
+					<li>Optional SOCKS5 / HTTP proxies</li>
+					<li>Makefile is the supported entrypoint</li>
 				</ul>
+				<p class="mt-4 text-sm">
+					<a class="text-teal underline-offset-2 hover:underline" href="/docs/self-host/"
+						>Self-host walkthrough</a
+					>
+					·
+					<a class="text-teal underline-offset-2 hover:underline" href={repoUrl}>GitHub</a>
+				</p>
 			</div>
 			<pre
 				class="overflow-x-auto rounded-2xl border border-line bg-panel p-5 font-mono text-sm leading-7 text-paper"><code
 					>make config
 # .env → TELEGRAM_BOT_TOKEN=…
+#        PERSONA_ACCOUNT_QR=…   # if you want persona
 make init QR=dcaccount:nine.testrun.org
 make serve
 
-# this site
 make run-landing</code
 				></pre>
 		</div>
 	</section>
 </main>
-
-<footer class="border-t border-line/80">
-	<div
-		class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-8 text-sm text-mist"
-	>
-		<p>TGPORTAL · MIT · themadorg</p>
-		<div class="flex gap-4">
-			<a class="hover:text-paper" href={repoUrl}>Source</a>
-			<a
-				class="hover:text-paper"
-				href="https://github.com/themadorg/tgportal/blob/main/docs/privacy.md">Privacy</a
-			>
-			<a class="hover:text-paper" href={botUrl}>Telegram</a>
-		</div>
-	</div>
-</footer>

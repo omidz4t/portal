@@ -10,6 +10,8 @@ make run-landing
 
 Dev server: [http://127.0.0.1:5173](http://127.0.0.1:5173)
 
+Routes: `/` (warning + persona), `/docs`, `/docs/trust`, `/docs/persona`, `/docs/pairing`, `/docs/self-host`.
+
 ```sh
 cd landing
 npm install

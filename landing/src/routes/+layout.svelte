@@ -1,19 +1,24 @@
 <script lang="ts">
 	import './layout.css';
+	import SiteHeader from '$lib/SiteHeader.svelte';
+	import SiteFooter from '$lib/SiteFooter.svelte';
+	import { page } from '$app/state';
 
 	let { children } = $props();
+
+	const onDocs = $derived(page.url.pathname.startsWith('/docs'));
 </script>
 
 <svelte:head>
 	<title>TGPORTAL — Telegram ↔ Delta Chat media bridge</title>
 	<meta
 		name="description"
-		content="Pair once, then stickers, GIFs, Lottie, and short video move both ways between Telegram and Delta Chat."
+		content="Pair once, then stickers, GIFs, Lottie, and short video move both ways between Telegram and Delta Chat. Self-host if you can: you trust whoever runs the bot with bridged data."
 	/>
 	<meta property="og:title" content="TGPORTAL" />
 	<meta
 		property="og:description"
-		content="Bidirectional Telegram ↔ Delta Chat bridge for stickers, GIFs, and more."
+		content="Bidirectional Telegram ↔ Delta Chat bridge. Prefer self-hosting — the operator sees bridged traffic."
 	/>
 	<meta property="og:image" content="/poster.jpg" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,6 +29,8 @@
 	/>
 </svelte:head>
 
-<div class="min-h-screen">
-	{@render children()}
+<div class="flex min-h-screen flex-col">
+	<SiteHeader current={onDocs ? 'docs' : ''} />
+	<div class="flex-1">{@render children()}</div>
+	<SiteFooter />
 </div>

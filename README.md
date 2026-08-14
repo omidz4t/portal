@@ -204,6 +204,7 @@ See [docs/security.md](docs/security.md).
 | [docs/architecture.md](docs/architecture.md) | Design, concurrency, packages |
 | [docs/development.md](docs/development.md) | Hacking, tests, commits |
 | [docs/security.md](docs/security.md) | Threat model and hard rules |
+| [docs/trust.md](docs/trust.md) | Why you should self-host (operator sees bridged data) |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute |
 | [AGENTS.md](AGENTS.md) | Rules for automated coding agents |
 
