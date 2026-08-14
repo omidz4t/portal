@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { botUrl, repoUrl } from '$lib/links';
 	import KoboyoIcon from '$lib/KoboyoIcon.svelte';
+	import PortalMark from '$lib/PortalMark.svelte';
 	import type { Copy, Locale } from '$lib/content';
 	import { docsPath, tutorialCopies } from '$lib/content';
 	import MessengerTutorial from '$lib/MessengerTutorial.svelte';
@@ -33,13 +34,11 @@
 	<section class="hero-band">
 		<div class="hero-grid mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
 			<div>
-				<p class="portal-mark">
-					<span class="portal-mark-side">{copy.colTelegram}</span>
-					<KoboyoIcon name="mirror-portal" class="h-12 w-12" />
-					<span class="portal-mark-name">{copy.brandName}</span>
-					<KoboyoIcon name="mirror-portal" class="h-12 w-12" />
-					<span class="portal-mark-side">{copy.colDelta}</span>
-				</p>
+				<PortalMark
+					telegram={copy.colTelegram}
+					name={copy.brandName}
+					delta={copy.colDelta}
+				/>
 				<h1 class="mt-3 text-4xl leading-tight font-semibold text-balance sm:text-5xl">
 					{copy.heroTitle}
 				</h1>
