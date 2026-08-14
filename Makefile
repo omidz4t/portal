@@ -1,5 +1,5 @@
 .PHONY: tidy build build-release build-release-all test test-proxy vet run init serve help clean config \
-	version version-dry release-tag patch minor major run-landing
+	version version-dry release-tag patch minor major run-landing landing-xdc
 
 # Project: TGPORTAL
 BINARY := tgportal
@@ -92,6 +92,17 @@ run-landing:
 	@test -d landing || (echo "missing landing/" && exit 1)
 	@test -d landing/node_modules || (cd landing && npm install)
 	cd landing && npm run dev -- --host 127.0.0.1 --port $(LANDING_PORT)
+
+# Pack the landing site as a Delta Chat webxdc (dist/portal.xdc).
+landing-xdc:
+	@test -d landing || (echo "missing landing/" && exit 1)
+	@test -d landing/node_modules || (cd landing && npm install)
+	cd landing && npm run build
+	@mkdir -p $(DIST)
+	@rm -f $(DIST)/portal.xdc
+	cd landing/build && zip -9 --recurse-paths $(CURDIR)/$(DIST)/portal.xdc . -x '*.map' -x '*/.DS_Store'
+	@ls -lh $(DIST)/portal.xdc
+	@unzip -l $(DIST)/portal.xdc | head -20
 
 help: build
 	$(CMD) --help

@@ -88,6 +88,8 @@ The **`Makefile` is the canonical entrypoint** for build, config bootstrap, and 
 | `make build` | Tidy + compile `./tgportal` |
 | `make build-release` | All-in-one static binary → `dist/tgportal` (embedded assets) |
 | `make build-release-all` | Cross-platform archives under `dist/` |
+| `make run-landing` | Dev server for the SvelteKit site (`./landing`) |
+| `make landing-xdc` | Build the site and pack `dist/portal.xdc` (webxdc) |
 | `make run ARGS='…'` | Build and run with `CONFIG` (default `config.yml`) |
 | `make init QR=dcaccount:…` | Build and configure a new account |
 | `make serve` | Build and start the bot (`serve`) |

@@ -23,3 +23,11 @@ npm run dev      # same as make run-landing
 npm run build    # static files in landing/build
 npm run preview
 ```
+
+Webxdc (share the site in Delta Chat):
+
+```sh
+make landing-xdc
+```
+
+Writes `dist/portal.xdc` (zip of the static build + `manifest.toml` + `icon.png`). Drop that file in a chat and tap Start. Do not commit the `.xdc`.
