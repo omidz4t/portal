@@ -5,7 +5,7 @@
 		telegram,
 		name,
 		delta,
-		iconClass = 'h-7 w-7'
+		iconClass = 'h-12 w-12'
 	}: {
 		telegram: string;
 		name: string;
@@ -27,17 +27,17 @@
 		display: inline-flex;
 		flex-wrap: wrap;
 		align-items: center;
-		gap: 0.4rem;
+		gap: 0.45rem;
 	}
 
 	.portal-mark-name {
-		font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+		font-size: clamp(0.85rem, 1.8vw, 1.05rem);
 		font-weight: 700;
 		line-height: 1;
 	}
 
 	.portal-mark-side {
-		font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+		font-size: clamp(0.7rem, 1.5vw, 0.85rem);
 		font-weight: 700;
 		line-height: 1;
 		letter-spacing: 0.02em;
