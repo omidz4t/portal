@@ -8,6 +8,27 @@ import tutorialFa from './content/tutorial-fa.json';
 export type Copy = typeof en;
 export type DocsCopy = typeof docsEn;
 export type TutorialCopy = typeof tutorialEn;
+
+export type InboxRow = {
+	name: string;
+	preview: string;
+	when: string;
+	icon: string;
+	focus?: boolean;
+};
+
+export type TutorialScene = {
+	caption: string;
+	why: string;
+	tgTitle: string;
+	dcTitle: string;
+	tgIcon?: string;
+	dcIcon?: string;
+	view?: string;
+	inboxTg?: InboxRow[];
+	inboxDc?: InboxRow[];
+	bubbles: { side: string; who: string; text: string; kind?: string }[];
+};
 export type Locale = 'en' | 'fa';
 
 export const copies: Record<Locale, Copy> = { en, fa };

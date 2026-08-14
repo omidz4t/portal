@@ -18,17 +18,93 @@
 			"intro": "Simple mode: you, the portal bot, one Delta Chat. Nothing moves until this pair is on.",
 			"scenes": [
 				{
-					"caption": "Open the portal bot in a private 1:1 and send /start (or /pair). Groups are refused on purpose.",
-					"why": "A pairing code is a secret. If you typed /start in a group, anyone in that group could steal the code and bind your Telegram to their Delta Chat. So the bot only answers in a private chat.",
-					"tgTitle": "@tgdeltabridgebot",
-					"dcTitle": "—",
+					"caption": "This is just your normal Telegram. Fake chats, same mess as always. Portal is sitting in the list — you haven’t opened it yet.",
+					"why": "Nothing is paired. The right phone is your Delta Chat, also just a list. No extra bot chat until you tap Portal.",
+					"view": "inbox",
+					"tgTitle": "Chats",
+					"dcTitle": "Chats",
+					"tgIcon": "telegram",
+					"dcIcon": "bridge-2",
+					"inboxTg": [
+						{
+							"name": "Nima",
+							"preview": "ok see you at 8",
+							"when": "12:04",
+							"icon": "glasses"
+						},
+						{
+							"name": "Sticker dump",
+							"preview": "you: that cat one",
+							"when": "11:40",
+							"icon": "cat"
+						},
+						{
+							"name": "Work",
+							"preview": "Sara: deck is in the drive",
+							"when": "Yesterday",
+							"icon": "coffee"
+						},
+						{
+							"name": "Portal",
+							"preview": "Tap to start",
+							"when": "",
+							"icon": "robot-face",
+							"focus": true
+						},
+						{
+							"name": "Pizza night",
+							"preview": "who’s bringing drinks",
+							"when": "Mon",
+							"icon": "pizza"
+						}
+					],
+					"inboxDc": [
+						{
+							"name": "Ada",
+							"preview": "sent you a file",
+							"when": "10:12",
+							"icon": "owl"
+						},
+						{
+							"name": "Family",
+							"preview": "mom: call later",
+							"when": "Sun",
+							"icon": "bear"
+						},
+						{
+							"name": "Fox",
+							"preview": "haha",
+							"when": "Sat",
+							"icon": "fox"
+						}
+					],
+					"bubbles": []
+				},
+				{
+					"caption": "You open Portal. Empty private chat. This is where /start goes — not a group.",
+					"why": "A pairing code is a secret. If you typed /start in a group, anyone there could steal it. So we only do this in a 1:1.",
+					"tgTitle": "Portal",
+					"dcTitle": "Chats",
+					"tgIcon": "robot-face",
+					"dcIcon": "bridge-2",
+					"bubbles": []
+				},
+				{
+					"caption": "Type /start (or /pair). That’s you asking the bot to pair you.",
+					"why": "Still nothing on Delta Chat. The bot hasn’t given you a code yet.",
+					"tgTitle": "Portal",
+					"dcTitle": "Chats",
+					"tgIcon": "robot-face",
+					"dcIcon": "bridge-2",
 					"bubbles": [{ "side": "tg", "who": "you", "text": "/start" }]
 				},
 				{
 					"caption": "The bot replies with a Delta Chat invite (QR + link) and a short code such as K7H2MQNP.",
 					"why": "The invite is how you meet the bot’s Delta Chat account. The code sits in the database on that computer for about 30 minutes. Whoever types it in Delta Chat gets linked to your Telegram. The person running the program can see that — that’s why running it yourself is safer.",
-					"tgTitle": "@tgdeltabridgebot",
-					"dcTitle": "—",
+					"tgTitle": "Portal",
+					"dcTitle": "Chats",
+					"tgIcon": "robot-face",
+					"dcIcon": "bridge-2",
 					"bubbles": [
 						{ "side": "tg", "who": "you", "text": "/start" },
 						{
@@ -41,8 +117,10 @@
 				{
 					"caption": "Open the invite in Delta Chat or ArcaneChat and accept the chat. Right phone lights up: you are talking to Portal.",
 					"why": "Until you accept, there is no Delta Chat conversation to attach the pair to. You are not paired yet — you only opened the door. Anyone else with the same invite would also get a chat with the bot, but they cannot steal your pair without the code.",
-					"tgTitle": "@tgdeltabridgebot",
+					"tgTitle": "Portal",
 					"dcTitle": "Portal",
+					"tgIcon": "robot-face",
+					"dcIcon": "robot-face",
 					"bubbles": [
 						{ "side": "tg", "who": "you", "text": "/start" },
 						{
@@ -56,8 +134,10 @@
 				{
 					"caption": "In that Delta Chat, send only the code. Case does not matter. Do not add extra words.",
 					"why": "The bot looks up that code in the database. If it’s still fresh, your Telegram is tied to that Delta Chat. After you’re paired, a message that just looks like a code is only text — it won’t steal the link.",
-					"tgTitle": "@tgdeltabridgebot",
+					"tgTitle": "Portal",
 					"dcTitle": "Portal",
+					"tgIcon": "robot-face",
+					"dcIcon": "robot-face",
 					"bubbles": [
 						{ "side": "dc", "who": "you", "text": "K7H2MQNP" },
 						{ "side": "dc", "who": "bot", "text": "Paired. This chat is now your Telegram." },
@@ -67,8 +147,10 @@
 				{
 					"caption": "Send a sticker on Telegram. It appears in the same Delta Chat with a neutral filename and no “from Telegram” caption.",
 					"why": "The program downloads the file from Telegram and sends it into Delta Chat. While that’s happening, the computer running it can see the file. It renames it so extra Telegram info doesn’t leak.",
-					"tgTitle": "@tgdeltabridgebot",
+					"tgTitle": "Portal",
 					"dcTitle": "Portal",
+					"tgIcon": "robot-face",
+					"dcIcon": "robot-face",
 					"bubbles": [
 						{ "side": "tg", "who": "you", "text": "sticker", "kind": "sticker" },
 						{ "side": "dc", "who": "bot", "text": "sticker", "kind": "sticker" }
@@ -77,8 +159,10 @@
 				{
 					"caption": "Reply from Delta Chat. The same sticker or text comes back to your private Telegram chat with the portal bot.",
 					"why": "Personal mode is one dump chat: everything you bridge lives in this single 1:1 with Portal. Friends do not get their own faces here. That is what persona mode is for (next two stories).",
-					"tgTitle": "@tgdeltabridgebot",
+					"tgTitle": "Portal",
 					"dcTitle": "Portal",
+					"tgIcon": "robot-face",
+					"dcIcon": "robot-face",
 					"bubbles": [
 						{ "side": "dc", "who": "you", "text": "nice" },
 						{ "side": "tg", "who": "bot", "text": "nice" }
@@ -94,8 +178,10 @@
 				{
 					"caption": "Finish story 1 first. A ghost has to know how to write to you. That comes from when you /pair.",
 					"why": "No second invite. When you paired, the program saved your Delta Chat identity. New ghosts use that to open a chat with you. Skip /pair and /pair-bot just fails.",
-					"tgTitle": "@tgdeltabridgebot",
+					"tgTitle": "Portal",
 					"dcTitle": "Portal",
+					"tgIcon": "robot-face",
+					"dcIcon": "robot-face",
 					"bubbles": [
 						{ "side": "tg", "who": "sys", "text": "Already paired (story 1)." },
 						{
@@ -123,8 +209,10 @@
 				{
 					"caption": "Back on the portal bot, in private, send /pair-bot and the token. Optional: the t.me link.",
 					"why": "/pair links you. /pair-bot registers a bot you own. Different commands. Groups are refused so the token isn’t leaked. The token is stored in the database on that computer, and the program starts listening for messages on your bot.",
-					"tgTitle": "@tgdeltabridgebot",
+					"tgTitle": "Portal",
 					"dcTitle": "Portal",
+					"tgIcon": "robot-face",
+					"dcIcon": "robot-face",
 					"bubbles": [
 						{
 							"side": "tg",
@@ -136,8 +224,10 @@
 				{
 					"caption": "The portal says your bot is on. Anyone who DMs @YourBot can get a ghost.",
 					"why": "The program keeps asking Telegram “any new messages?” and passes them on. Your friends never see @tgdeltabridgebot. They only know @YourBot.",
-					"tgTitle": "@tgdeltabridgebot",
+					"tgTitle": "Portal",
 					"dcTitle": "Portal",
+					"tgIcon": "robot-face",
+					"dcIcon": "robot-face",
 					"bubbles": [
 						{
 							"side": "tg",
@@ -159,8 +249,10 @@
 				{
 					"caption": "On the machine that runs tgportal, set PERSONA_ACCOUNT_QR and mode: persona or both.",
 					"why": "A ghost is a real Delta Chat account. To create one you tell the program which Delta Chat provider to use (PERSONA_ACCOUNT_QR). You can cap how many. List: /bots. Stop: /unpair-bot.",
-					"tgTitle": "@tgdeltabridgebot",
+					"tgTitle": "Portal",
 					"dcTitle": "Portal",
+					"tgIcon": "robot-face",
+					"dcIcon": "robot-face",
 					"bubbles": [
 						{
 							"side": "tg",

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import KoboyoIcon from '$lib/KoboyoIcon.svelte';
-	import type { TutorialCopy } from '$lib/content';
+	import type { TutorialCopy, TutorialScene } from '$lib/content';
 
 	let { tutorial }: { tutorial: TutorialCopy } = $props();
 
@@ -11,7 +11,9 @@
 		tutorial.stories.find((s) => s.id === (storyId ?? tutorial.stories[0].id)) ??
 			tutorial.stories[0]
 	);
-	const scene = $derived(story.scenes[Math.min(step, story.scenes.length - 1)]);
+	const scene = $derived(
+		story.scenes[Math.min(step, story.scenes.length - 1)] as TutorialScene
+	);
 	const total = $derived(story.scenes.length);
 	const stepLabel = $derived(
 		tutorial.stepOf.replace('{n}', String(step + 1)).replace('{total}', String(total))
@@ -42,6 +44,21 @@
 		if (who === 'you') return tutorial.you;
 		if (who === 'alice') return 'Alice';
 		return '';
+	}
+
+	function sceneIcon(side: 'tg' | 'dc') {
+		if (side === 'tg') return scene.tgIcon ?? 'telegram';
+		return scene.dcIcon ?? 'bridge-2';
+	}
+
+	function isInbox(side: 'tg' | 'dc') {
+		if (scene.view !== 'inbox') return false;
+		const rows = side === 'tg' ? scene.inboxTg : scene.inboxDc;
+		return Array.isArray(rows);
+	}
+
+	function inboxRows(side: 'tg' | 'dc') {
+		return (side === 'tg' ? scene.inboxTg : scene.inboxDc) ?? [];
 	}
 </script>
 
@@ -77,14 +94,31 @@
 		<div class="phones mt-6">
 			<article class="phone phone-tg" aria-label={tutorial.telegram}>
 				<header class="phone-bar">
-					<KoboyoIcon name="telegram" class="h-5 w-5" />
+					<span class="phone-avatar">
+						<KoboyoIcon name={sceneIcon('tg')} class="h-7 w-7" />
+					</span>
 					<div>
 						<p class="phone-app">{tutorial.telegram}</p>
 						<p class="phone-peer">{scene.tgTitle}</p>
 					</div>
 				</header>
-				<div class="phone-thread">
-					{#if bubbles('tg').length === 0}
+				<div class="phone-thread" class:phone-inbox={isInbox('tg')}>
+					{#if isInbox('tg')}
+						{#each inboxRows('tg') as row}
+							<div class="inbox-row" class:is-focus={row.focus}>
+								<span class="phone-avatar">
+									<KoboyoIcon name={row.icon} class="h-8 w-8" />
+								</span>
+								<div class="inbox-copy">
+									<div class="inbox-top">
+										<p class="inbox-name">{row.name}</p>
+										<p class="inbox-when">{row.when}</p>
+									</div>
+									<p class="inbox-preview">{row.preview}</p>
+								</div>
+							</div>
+						{/each}
+					{:else if bubbles('tg').length === 0}
 						<p class="phone-empty">{tutorial.emptyTg}</p>
 					{/if}
 					{#each bubbles('tg') as b}
@@ -111,14 +145,31 @@
 
 			<article class="phone phone-dc" aria-label={tutorial.delta}>
 				<header class="phone-bar">
-					<KoboyoIcon name="bridge-2" class="h-5 w-5" />
+					<span class="phone-avatar">
+						<KoboyoIcon name={sceneIcon('dc')} class="h-7 w-7" />
+					</span>
 					<div>
 						<p class="phone-app">{tutorial.delta}</p>
 						<p class="phone-peer">{scene.dcTitle}</p>
 					</div>
 				</header>
-				<div class="phone-thread">
-					{#if bubbles('dc').length === 0}
+				<div class="phone-thread" class:phone-inbox={isInbox('dc')}>
+					{#if isInbox('dc')}
+						{#each inboxRows('dc') as row}
+							<div class="inbox-row" class:is-focus={row.focus}>
+								<span class="phone-avatar">
+									<KoboyoIcon name={row.icon} class="h-8 w-8" />
+								</span>
+								<div class="inbox-copy">
+									<div class="inbox-top">
+										<p class="inbox-name">{row.name}</p>
+										<p class="inbox-when">{row.when}</p>
+									</div>
+									<p class="inbox-preview">{row.preview}</p>
+								</div>
+							</div>
+						{/each}
+					{:else if bubbles('dc').length === 0}
 						<p class="phone-empty">{tutorial.emptyDc}</p>
 					{/if}
 					{#each bubbles('dc') as b}
