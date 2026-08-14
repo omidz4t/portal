@@ -455,6 +455,10 @@ footer.doodle-bar {
 	border-radius: 999px;
 }
 
+.logo-tg-dark {
+	filter: grayscale(1) brightness(0.22);
+}
+
 .phone-inbox {
 	gap: 0;
 	padding: 0.35rem 0.4rem;

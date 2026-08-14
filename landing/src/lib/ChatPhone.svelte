@@ -34,6 +34,15 @@
 		return '';
 	}
 
+	function isPortal(name: string) {
+		const n = name.toLowerCase();
+		return n.includes('portal') || name.includes('پورتال') || n.includes('tgdeltabridge');
+	}
+
+	function isBotFather(name: string) {
+		return name.toLowerCase().includes('botfather');
+	}
+
 	$effect(() => {
 		void bubbles.length;
 		void inbox;
@@ -45,7 +54,14 @@
 
 <article class="phone {variant === 'tg' ? 'phone-tg' : 'phone-dc'}" aria-label={app}>
 	<header class="phone-bar">
-		<img class="app-logo" src={logo} alt="" width="28" height="28" />
+		<img
+			class="app-logo"
+			class:logo-tg-dark={!inbox && isPortal(peer)}
+			src={logo}
+			alt=""
+			width="28"
+			height="28"
+		/>
 		<div>
 			<p class="phone-app">{app}</p>
 			<p class="phone-peer">{peer}</p>
@@ -56,7 +72,18 @@
 			{#each rows as row}
 				<div class="inbox-row" class:is-focus={row.focus}>
 					<span class="phone-avatar">
-						<KoboyoIcon name={row.icon} class="h-8 w-8" />
+						{#if isPortal(row.name) || isBotFather(row.name)}
+							<img
+								class="app-logo"
+								class:logo-tg-dark={isPortal(row.name)}
+								src="/logos/telegram.svg"
+								alt=""
+								width="28"
+								height="28"
+							/>
+						{:else}
+							<KoboyoIcon name={row.icon} class="h-8 w-8" />
+						{/if}
 					</span>
 					<div class="inbox-copy">
 						<div class="inbox-top">
