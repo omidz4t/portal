@@ -18,7 +18,7 @@
 				<KoboyoIcon name="very-happy-beaming" class="try-beam" />
 			</span>
 			<h2 class="try-headline whitespace-pre-line">
-				{tutorial.title}
+				{tutorial.homeTitle}
 			</h2>
 		</div>
 		<a href={showPath(locale)} class="try-open doodle-btn doodle-btn-ink">
