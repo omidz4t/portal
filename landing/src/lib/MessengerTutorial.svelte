@@ -93,10 +93,12 @@
 <section id="try" class="try-band">
 	<div class="try-cta mx-auto flex w-full max-w-6xl flex-col items-start justify-center px-5">
 		<div class="try-cta-row">
+			<span class="try-beam-wrap">
+				<KoboyoIcon name="very-happy-beaming" class="try-beam" />
+			</span>
 			<h2 class="try-headline">
 				{tutorial.title}
 			</h2>
-			<KoboyoIcon name="very-happy-beaming" class="try-beam" />
 		</div>
 		<button type="button" class="try-open doodle-btn doodle-btn-ink" onclick={openShow}>
 			{tutorial.open}
