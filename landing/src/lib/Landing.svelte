@@ -243,6 +243,6 @@
 	</section>
 
 	{#key locale}
-		<MessengerTutorial tutorial={tutorialCopies[locale]} {locale} />
+		<MessengerTutorial tutorial={tutorialCopies[locale]} {locale} {copy} />
 	{/key}
 </div>

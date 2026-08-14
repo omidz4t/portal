@@ -366,8 +366,15 @@ footer.doodle-bar {
 	background-size:
 		20px 20px,
 		auto;
-	padding-block: 2rem 2.5rem;
+	padding-block: 2rem 0;
 	scroll-margin-top: 0;
+}
+
+.try-band > footer.doodle-bar {
+	margin-top: auto;
+	border-top: 2.5px solid var(--color-ink);
+	background: transparent;
+	backdrop-filter: none;
 }
 
 .try-cta {

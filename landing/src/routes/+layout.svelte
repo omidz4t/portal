@@ -11,6 +11,9 @@
 	const copy = $derived(copies[locale]);
 	const onDocs = $derived(page.url.pathname.includes('/docs'));
 	const onShow = $derived(page.url.pathname.includes('/show'));
+	const isHome = $derived(
+		page.url.pathname === '/' || page.url.pathname === '/fa' || page.url.pathname === '/fa/'
+	);
 	const headerCurrent = $derived(onDocs ? 'docs' : onShow ? 'try' : '');
 
 	$effect(() => {
@@ -43,5 +46,7 @@
 	<a class="skip-link" href="#main-content">{copy.skip}</a>
 	<SiteHeader {copy} {locale} pathname={page.url.pathname} current={headerCurrent} />
 	<main id="main-content" class="flex-1" tabindex="-1">{@render children()}</main>
-	<SiteFooter {copy} {locale} />
+	{#if !isHome}
+		<SiteFooter {copy} {locale} />
+	{/if}
 </div>

@@ -1,9 +1,14 @@
 <script lang="ts">
 	import KoboyoIcon from '$lib/KoboyoIcon.svelte';
-	import type { Locale, TutorialCopy } from '$lib/content';
+	import SiteFooter from '$lib/SiteFooter.svelte';
+	import type { Copy, Locale, TutorialCopy } from '$lib/content';
 	import { showPath } from '$lib/content';
 
-	let { tutorial, locale = 'en' }: { tutorial: TutorialCopy; locale?: Locale } = $props();
+	let {
+		tutorial,
+		locale = 'en',
+		copy
+	}: { tutorial: TutorialCopy; locale?: Locale; copy: Copy } = $props();
 </script>
 
 <section id="try" class="try-band">
@@ -20,4 +25,5 @@
 			{tutorial.open}
 		</a>
 	</div>
+	<SiteFooter {copy} {locale} />
 </section>

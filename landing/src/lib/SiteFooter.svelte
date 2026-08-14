@@ -7,7 +7,7 @@
 	const base = $derived(basePath(locale));
 </script>
 
-<footer class="doodle-bar mt-8">
+<footer class="doodle-bar">
 	<div
 		class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-8 text-sm text-mist"
 	>
