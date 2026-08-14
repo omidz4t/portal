@@ -1,15 +1,17 @@
 <script lang="ts">
 	import { botUrl, repoUrl } from '$lib/links';
 	import type { Copy, Locale } from '$lib/content';
-	import { basePath } from '$lib/content';
+	import { basePath, docsPath, twinPath } from '$lib/content';
 
 	let {
 		copy,
 		locale,
+		pathname = '/',
 		current = ''
 	}: {
 		copy: Copy;
 		locale: Locale;
+		pathname?: string;
 		current?: string;
 	} = $props();
 
@@ -17,7 +19,7 @@
 	const links = $derived([
 		{ href: `${base}#how`, label: copy.navHow, id: 'how' },
 		{ href: `${base}#persona`, label: copy.navPersona, id: 'persona' },
-		{ href: '/docs/', label: copy.navDocs, id: 'docs' },
+		{ href: docsPath(locale), label: copy.navDocs, id: 'docs' },
 		{ href: repoUrl, label: copy.navSource, id: 'source', external: true }
 	]);
 </script>
@@ -52,9 +54,19 @@
 
 		<div class="hidden items-center gap-2 md:flex">
 			<nav class="flex items-center gap-1 text-sm" aria-label="Language">
-				<a class="doodle-lang" class:is-current={locale === 'en'} href="/" hreflang="en">EN</a>
+				<a
+					class="doodle-lang"
+					class:is-current={locale === 'en'}
+					href={twinPath(pathname, 'en')}
+					hreflang="en">EN</a
+				>
 				<span aria-hidden="true">·</span>
-				<a class="doodle-lang" class:is-current={locale === 'fa'} href="/fa/" hreflang="fa">فا</a>
+				<a
+					class="doodle-lang"
+					class:is-current={locale === 'fa'}
+					href={twinPath(pathname, 'fa')}
+					hreflang="fa">فا</a
+				>
 			</nav>
 			<a href={botUrl} rel="noreferrer" class="doodle-btn doodle-btn-ink">{copy.openBot}</a>
 		</div>
@@ -74,8 +86,8 @@
 						</a>
 					{/each}
 					<div class="flex gap-2 px-3 py-2 text-sm">
-						<a href="/" hreflang="en">EN</a>
-						<a href="/fa/" hreflang="fa">فا</a>
+						<a href={twinPath(pathname, 'en')} hreflang="en">EN</a>
+						<a href={twinPath(pathname, 'fa')} hreflang="fa">فا</a>
 					</div>
 					<a href={botUrl} rel="noreferrer" class="doodle-btn doodle-btn-ink mt-1 justify-center">
 						{copy.openBot}

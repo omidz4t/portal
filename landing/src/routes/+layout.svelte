@@ -39,7 +39,7 @@
 	lang={locale === 'fa' ? 'fa' : 'en'}
 >
 	<a class="skip-link" href="#main-content">{copy.skip}</a>
-	<SiteHeader {copy} {locale} current={onDocs ? 'docs' : ''} />
+	<SiteHeader {copy} {locale} pathname={page.url.pathname} current={onDocs ? 'docs' : ''} />
 	<main id="main-content" class="flex-1" tabindex="-1">{@render children()}</main>
 	<SiteFooter {copy} {locale} />
 </div>

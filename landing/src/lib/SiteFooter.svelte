@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { botUrl, repoUrl } from '$lib/links';
 	import type { Copy, Locale } from '$lib/content';
-	import { basePath } from '$lib/content';
+	import { basePath, docsPath } from '$lib/content';
 
 	let { copy, locale }: { copy: Copy; locale: Locale } = $props();
 	const base = $derived(basePath(locale));
@@ -18,11 +18,12 @@
 			>
 		</p>
 		<nav class="flex flex-wrap gap-1" aria-label="Footer">
-			<a class="inline-flex min-h-11 items-center px-2 hover:text-ink" href="/docs/"
+			<a class="inline-flex min-h-11 items-center px-2 hover:text-ink" href={docsPath(locale)}
 				>{copy.navDocs}</a
 			>
-			<a class="inline-flex min-h-11 items-center px-2 hover:text-ink" href="/docs/trust/"
-				>{copy.navTrust}</a
+			<a
+				class="inline-flex min-h-11 items-center px-2 hover:text-ink"
+				href={docsPath(locale, 'trust')}>{copy.navTrust}</a
 			>
 			<a class="inline-flex min-h-11 items-center px-2 hover:text-ink" href={`${base}#persona`}
 				>{copy.navPersonaShort}</a

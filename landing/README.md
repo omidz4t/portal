@@ -10,7 +10,7 @@ make run-landing
 
 Dev server: [http://127.0.0.1:5173](http://127.0.0.1:5173)
 
-Routes: `/` (English), `/fa/` (Farsi, [Arad](https://github.com/MohamadDarvishi/Arad) FD webfonts), `/docs`, `/docs/trust`, `/docs/persona`, `/docs/pairing`, `/docs/self-host`.
+Routes: `/` (English), `/fa/` (Farsi, [Arad](https://github.com/MohamadDarvishi/Arad) FD webfonts), `/docs/…` and `/fa/docs/…` (trust, persona, pairing, self-host).
 
 Farsi strings were drafted with `llmcli ask -m openrouter/google/gemini-3.5-flash-lite` from `src/lib/content/en.json`.
 

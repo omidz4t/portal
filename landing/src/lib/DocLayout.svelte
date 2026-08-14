@@ -1,13 +1,19 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import type { DocsCopy, Locale } from '$lib/content';
+	import { basePath, docsPath } from '$lib/content';
 
 	let {
 		title,
 		lede,
+		docs,
+		locale,
 		children
 	}: {
 		title: string;
 		lede?: string;
+		docs: DocsCopy;
+		locale: Locale;
 		children: Snippet;
 	} = $props();
 </script>
@@ -16,15 +22,16 @@
 	<nav aria-label="Breadcrumb" class="not-prose text-sm text-mist">
 		<ol class="flex flex-wrap items-center gap-2">
 			<li>
-				<a class="inline-flex min-h-11 items-center underline-offset-2 hover:underline" href="/"
-					>Home</a
+				<a
+					class="inline-flex min-h-11 items-center underline-offset-2 hover:underline"
+					href={basePath(locale)}>{docs.crumbHome}</a
 				>
 			</li>
 			<li aria-hidden="true">/</li>
 			<li>
 				<a
 					class="inline-flex min-h-11 items-center underline-offset-2 hover:underline"
-					href="/docs/">Docs</a
+					href={docsPath(locale)}>{docs.crumbDocs}</a
 				>
 			</li>
 			<li aria-hidden="true">/</li>

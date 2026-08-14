@@ -3,4 +3,4 @@
 	import { copies } from '$lib/content';
 </script>
 
-<Landing copy={copies.en} />
+<Landing copy={copies.en} locale="en" />

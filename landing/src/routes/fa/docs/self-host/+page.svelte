@@ -3,4 +3,4 @@
 	import { docsCopies } from '$lib/content';
 </script>
 
-<DocsSelfHost docs={docsCopies.en} locale="en" />
+<DocsSelfHost docs={docsCopies.fa} locale="fa" />

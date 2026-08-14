@@ -3,4 +3,4 @@
 	import { copies } from '$lib/content';
 </script>
 
-<Landing copy={copies.fa} />
+<Landing copy={copies.fa} locale="fa" />

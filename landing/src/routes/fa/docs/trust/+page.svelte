@@ -3,4 +3,4 @@
 	import { docsCopies } from '$lib/content';
 </script>
 
-<DocsTrust docs={docsCopies.en} locale="en" />
+<DocsTrust docs={docsCopies.fa} locale="fa" />

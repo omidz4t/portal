@@ -3,4 +3,4 @@
 	import { docsCopies } from '$lib/content';
 </script>
 
-<DocsPairing docs={docsCopies.en} locale="en" />
+<DocsPairing docs={docsCopies.fa} locale="fa" />

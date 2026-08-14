@@ -1,0 +1,121 @@
+{
+	"crumbHome": "Home",
+	"crumbDocs": "Docs",
+	"indexTitle": "Documentation",
+	"indexLede": "How the bridge works, why you should host it yourself, and how persona ghosts differ from a single pair.",
+	"indexMore": "Maintainer-level notes (architecture, config keys, security hardening) live in the repo docs/ directory.",
+	"pages": [
+		{
+			"slug": "trust",
+			"title": "Trust the operator",
+			"body": "The host sees bridged traffic. Prefer running your own instance."
+		},
+		{
+			"slug": "persona",
+			"title": "Persona mode",
+			"body": "Your BotFather bot, one ghost Delta Chat account per Telegram user, optional groups."
+		},
+		{
+			"slug": "pairing",
+			"title": "Pairing (personal)",
+			"body": "Telegram-first and Delta Chat-first pairing, commands, sticker packs."
+		},
+		{
+			"slug": "self-host",
+			"title": "Self-host",
+			"body": "Build the binary, or download one from a release. Then config, init, serve."
+		}
+	],
+	"trustTitle": "You are trusting whoever runs the bot",
+	"trustLede": "TGPORTAL is not an end-to-end tunnel past the operator. It is better to host one yourself.",
+	"trustP1": "Messages you send a Telegram bot are delivered to that bot’s process. TGPORTAL then downloads files and calls Delta Chat RPC on the same machine. The person (or company) who can read that disk and those logs can read your bridged content.",
+	"trustIncludes": "That includes:",
+	"trustItems": [
+		"Telegram user ids, names, and message bodies sent to the bot",
+		"Pairing codes and the SQLite map of Telegram ↔ Delta Chat chats",
+		"Sticker, GIF, image, and video files while they sit in cache",
+		"In persona mode: BotFather tokens you register, and the keys of ghost Delta Chat accounts"
+	],
+	"trustP2": "Delta Chat still encrypts traffic on the wire to chatmail. That does not hide plaintext from tgportal itself. The runner is a participant.",
+	"trustP3": "A public instance such as @tgdeltabridgebot is convenient for trying the product. Using it means you accept that operator’s machine. Do not bridge anything you would not hand to them.",
+	"trustP4Lead": "Host your own.",
+	"trustP4": "Then the only runner is you. See self-host. Operators who serve other people should publish a privacy policy (repo docs/privacy.md) and never log tokens.",
+	"trustLinkSelf": "self-host",
+	"personaTitle": "Persona mode",
+	"personaLede": "Register your own Telegram bot. Each remote user becomes a stable ghost Delta Chat account that talks to you as themselves.",
+	"personaWhy": "Why it exists",
+	"personaWhyP1": "Personal mode is one portal bot and one pair: telegram_user_id ↔ dc_chat_id. Fine for “my stickers land in my DC chat.”",
+	"personaWhyP2": "Persona mode is for people who already have (or want) a Telegram bot of their own. Friends and groups message your bot. On Delta Chat you should see them, not a labeled dump from a shared bridge account.",
+	"personaGhosts": "How ghosts work",
+	"personaGhostsP1": "TGPORTAL creates a real Delta Chat account per remote Telegram user (under each persona bot). Display name and avatar are copied from Telegram. Lookup key is (persona_bot_id, telegram_user_id): missing → create; exists → reuse forever.",
+	"personaGhostsP2": "That ghost delivers the person’s message to you as a normal 1:1 — no prefix, no “via TGPORTAL.” When you reply in that chat, the persona poller sends the reply out through your BotFather bot.",
+	"personaGhostsP3": "Ghost tables are separate from personal-mode pairs. Alice pairing the public portal bot does not reuse Alice’s persona ghost.",
+	"personaSetup": "Owner setup",
+	"personaSetupItems": [
+		"Set mode: persona or both, and PERSONA_ACCOUNT_QR (a dcaccount: / dclogin: URI used to provision ghosts).",
+		"/pair on the portal bot and finish on Delta Chat. This stores your DC vcard / public key so ghosts can message you without a second invite dance.",
+		"Create a bot with BotFather. Copy the token. Never paste it into issues or chats.",
+		"In a private chat with the portal bot: /pair-bot <TOKEN> [https://t.me/YourBot]"
+	],
+	"personaLimits": "Limits: persona.max_ghosts, persona.max_bots. List with /bots. Stop with /unpair-bot [id|@user]. Re-run /pair-bot after unpair to start the same bot again.",
+	"personaGroups": "Groups",
+	"personaGroupsLead": "Off by default. Enable persona.allow_groups: true, then:",
+	"personaGroupsItems": [
+		"Add the persona bot to the Telegram group.",
+		"BotFather → your bot → Bot Settings → Group Privacy → Turn off. Otherwise Telegram only delivers mentions and commands.",
+		"Posts become a Delta Chat group named TG: …. Each speaker is their ghost; you are a member.",
+		"Your replies in that DC group go to Telegram as the bot, not as the original users."
+	],
+	"personaTrust": "Trust",
+	"personaTrustP1": "The instance that stores the BotFather token is your Telegram bot. Ghost account keys live under ./data. If you give /pair-bot to someone else’s public TGPORTAL, you are handing them the bot and every conversation it will carry. Prefer self-hosting. See trust.",
+	"personaRepo": "Repo operator notes: docs/persona.md, design: persona-design.md.",
+	"pairingTitle": "Personal pairing",
+	"pairingLede": "Nothing is forwarded until a Telegram user is linked to a Delta Chat chat.",
+	"pairingP1": "This is mode: personal (also available under both). For owner-owned bots see persona.",
+	"pairingP2": "Using a hosted bot means you trust that runner. Prefer your own instance.",
+	"pairingTgFirst": "Telegram first",
+	"pairingTgItems": [
+		"Open the bot in a private 1:1 (e.g. @tgdeltabridgebot) and send /start or /pair. Groups are rejected so codes do not leak.",
+		"You get a QR of the Delta Chat invite plus an 8-character code (about 30 minutes).",
+		"Open the invite in Delta Chat / ArcaneChat and accept the chat.",
+		"Send only the code (case-insensitive)."
+	],
+	"pairingDcFirst": "Delta Chat first",
+	"pairingDcItems": [
+		"Message the Delta Chat bot while unpaired (or send /pair).",
+		"It replies with https://t.me/<bot>?start=CODE.",
+		"Open that link on Telegram. Pairing is active immediately."
+	],
+	"pairingCmds": "Useful commands (Telegram)",
+	"pairingCmdItems": [
+		"/status — pairing state",
+		"/disconnect — unlink",
+		"/send_pack — reply to a sticker to bridge the whole pack (if bridge.sticker_packs is on)"
+	],
+	"pairingRepo": "Full walkthrough in the repo: docs/pairing.md.",
+	"selfTitle": "Self-host",
+	"selfLede": "Recommended. You keep the token, the database, and the ghost keys. Pick one path: build the binary, or download a release.",
+	"selfNeedLead": "Both ways need the same runtime pieces after you have a tgportal binary:",
+	"selfNeedItems": [
+		"deltachat-rpc-server on PATH (match the project’s rpc-client major; this repo uses v2.56.x APIs)",
+		"A BotFather token in .env",
+		"A chatmail / Delta Chat provider for make init / tgportal init"
+	],
+	"selfConfig": "Then copy config.example.yml → config.yml and .env.example → .env. Data default is ./data. Never commit .env, config.yml, or data/.",
+	"selfWay1": "Way 1 — build the binary",
+	"selfWay1P": "Use this when you have Go 1.22+ and want to compile from git. The Makefile is the supported entrypoint.",
+	"selfWay1Release": "All-in-one static binary (stripped, version stamped) goes to dist/tgportal:",
+	"selfWay2": "Way 2 — download the binary from a release",
+	"selfWay2P": "Use this when you do not want a Go toolchain. GitHub Actions publish archives on each tag v*: tgportal_<tag>_<os>_<arch>.tar.gz (Windows .zip) plus checksums.txt.",
+	"selfWay2Items": [
+		"Open the latest release or the releases list.",
+		"Download the archive for your OS/CPU (examples: linux_amd64, linux_arm64, darwin_arm64, windows_amd64).",
+		"Verify the SHA-256 against checksums.txt.",
+		"Unpack, mark executable, put it next to config.yml and .env."
+	],
+	"selfLatest": "latest release",
+	"selfList": "releases list",
+	"selfWay2Note": "Replace VERSION with the tag without the leading v if the asset name uses that form (see the release notes). You still need deltachat-rpc-server on PATH; the release is only the Go bot.",
+	"selfPreview": "Landing preview while developing: make run-landing → http://127.0.0.1:5173.",
+	"selfMore": "More: installation, configuration, security, trust."
+}

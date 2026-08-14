@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { botUrl, repoUrl } from '$lib/links';
 	import KoboyoIcon from '$lib/KoboyoIcon.svelte';
-	import type { Copy } from '$lib/content';
+	import type { Copy, Locale } from '$lib/content';
+	import { docsPath } from '$lib/content';
 
-	let { copy }: { copy: Copy } = $props();
+	let { copy, locale = 'en' }: { copy: Copy; locale?: Locale } = $props();
 
 	const flowIcons = ['telegram', 'bot', 'ghost', 'paper-plane'] as const;
 </script>
@@ -20,10 +21,10 @@
 			<p>
 				<strong class="font-semibold text-ink">{copy.warnTitle}</strong>
 				{copy.warnBody}
-				<a class="font-semibold underline underline-offset-2" href="/docs/self-host/"
+				<a class="font-semibold underline underline-offset-2" href={docsPath(locale, 'self-host')}
 					>{copy.ctaHost}</a
 				>.
-				<a class="underline underline-offset-2" href="/docs/trust/">{copy.warnWhy}</a>
+				<a class="underline underline-offset-2" href={docsPath(locale, 'trust')}>{copy.warnWhy}</a>
 			</p>
 		</div>
 	</aside>
@@ -36,9 +37,9 @@
 			</h1>
 			<p class="mt-5 max-w-xl text-lg leading-relaxed text-mist">{copy.heroLead}</p>
 			<div class="mt-8 flex flex-wrap gap-3">
-				<a href="/docs/self-host/" class="doodle-btn doodle-btn-ink">{copy.ctaHost}</a>
+				<a href={docsPath(locale, 'self-host')} class="doodle-btn doodle-btn-ink">{copy.ctaHost}</a>
 				<a href={botUrl} rel="noreferrer" class="doodle-btn">{copy.ctaPublic}</a>
-				<a href="/docs/" class="doodle-btn doodle-btn-ghost">{copy.ctaDocs}</a>
+				<a href={docsPath(locale)} class="doodle-btn doodle-btn-ghost">{copy.ctaDocs}</a>
 			</div>
 		</div>
 		<figure class="doodle-card doodle-card-tilt overflow-hidden">
@@ -79,7 +80,9 @@
 		<h2 class="text-2xl font-semibold">{copy.howTitle}</h2>
 		<p class="mt-2 max-w-2xl text-mist">
 			{copy.howLead}
-			<a class="underline underline-offset-2" href="/docs/pairing/">{copy.pairingDocs}</a>.
+			<a class="underline underline-offset-2" href={docsPath(locale, 'pairing')}
+				>{copy.pairingDocs}</a
+			>.
 		</p>
 		<ol class="mt-10 grid gap-5 md:grid-cols-2">
 			{#each copy.steps as step, i}
@@ -156,14 +159,18 @@
 				<h3 class="mt-4 text-lg font-semibold">{copy.hostTitle}</h3>
 				<p class="mt-2 text-sm leading-relaxed text-mist">
 					{copy.hostBody}
-					<a class="underline underline-offset-2" href="/docs/self-host/">{copy.ctaHost}</a>.
+					<a class="underline underline-offset-2" href={docsPath(locale, 'self-host')}
+						>{copy.ctaHost}</a
+					>.
 				</p>
 			</article>
 		</div>
 
 		<p class="mt-8 text-sm text-mist">
 			{copy.personaCommands}
-			<a class="underline underline-offset-2" href="/docs/persona/">{copy.personaDocs}</a>.
+			<a class="underline underline-offset-2" href={docsPath(locale, 'persona')}
+				>{copy.personaDocs}</a
+			>.
 		</p>
 	</section>
 
@@ -178,7 +185,9 @@
 					{/each}
 				</ul>
 				<p class="mt-4 text-sm">
-					<a class="underline underline-offset-2" href="/docs/self-host/">{copy.selfWalk}</a>
+					<a class="underline underline-offset-2" href={docsPath(locale, 'self-host')}
+						>{copy.selfWalk}</a
+					>
 					·
 					<a class="underline underline-offset-2" href={repoUrl}>GitHub</a>
 				</p>
