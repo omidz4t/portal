@@ -5,7 +5,7 @@
 		telegram,
 		name,
 		delta,
-		iconClass = 'h-12 w-12'
+		iconClass = 'h-10 w-10'
 	}: {
 		telegram: string;
 		name: string;
