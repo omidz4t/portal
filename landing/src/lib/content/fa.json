@@ -123,10 +123,10 @@
 	"selfTitle": "بهترین کار: روی سیستم خودت راهش بنداز",
 	"selfLead": "وقتی می‌گیم «استفاده کن» منظورمون همینه. یه برنامه، به‌علاوهٔ deltachat-rpc-server روی سیستم. توکن و دیتابیس و کلیدها پیش خودته.",
 	"selfNeeds": [
-		"Go 1.22+ و توکن BotFather",
+		"باینری tgportal (بساز، یا از انتشار گیت‌هاب بگیر)",
+		"deltachat-rpc-server روی سیستم و توکن BotFather",
 		"ارائه‌دهندهٔ chatmail / دلتا چت (مثلاً nine.testrun.org برای تست)",
-		"پراکسی SOCKS5 / HTTP اختیاری",
-		"نقطهٔ ورود رسمی: Makefile"
+		"پراکسی SOCKS5 / HTTP اختیاری"
 	],
 	"selfWalk": "راهنمای خودمیزبانی",
 	"footerCredit": "پورتال · MIT · themadorg · آیکون‌ها",

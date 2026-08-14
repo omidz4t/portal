@@ -123,10 +123,10 @@
 	"selfTitle": "Best: run it on your machine",
 	"selfLead": "That’s the version we mean when we say “use this.” One Go binary, deltachat-rpc-server on PATH. You keep the token, the database, the keys.",
 	"selfNeeds": [
-		"Go 1.22+ and a Telegram BotFather token",
+		"The tgportal binary (build it, or download a GitHub release)",
+		"deltachat-rpc-server on PATH and a Telegram BotFather token",
 		"Chatmail / Delta Chat provider (e.g. nine.testrun.org for tests)",
-		"Optional SOCKS5 / HTTP proxies",
-		"Makefile is the supported entrypoint"
+		"Optional SOCKS5 / HTTP proxies"
 	],
 	"selfWalk": "Self-host walkthrough",
 	"footerCredit": "Portal · MIT · themadorg · icons",

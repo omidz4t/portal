@@ -83,10 +83,15 @@ body {
 }
 
 [dir='rtl'] .docs-copy h2,
-[dir='rtl'] .docs-copy h3,
-[dir='rtl'] .docs-copy pre,
-[dir='rtl'] .docs-copy code {
+[dir='rtl'] .docs-copy h3 {
 	text-align: start;
+}
+
+[dir='rtl'] .docs-copy pre,
+[dir='rtl'] .docs-copy pre code {
+	direction: ltr;
+	text-align: left;
+	unicode-bidi: isolate;
 }
 
 ::selection {
@@ -135,6 +140,14 @@ pre {
 	overflow-wrap: anywhere;
 	font-family: var(--font-mono);
 	font-size: 0.85em;
+}
+
+pre,
+pre code,
+.code-ltr {
+	direction: ltr;
+	text-align: left;
+	unicode-bidi: isolate;
 }
 
 .doodle-bar {

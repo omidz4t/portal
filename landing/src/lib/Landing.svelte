@@ -228,15 +228,17 @@
 					<a class="underline underline-offset-2" href={repoUrl}>GitHub</a>
 				</p>
 			</div>
-			<pre class="doodle-card overflow-x-auto p-5 font-mono text-sm leading-7"><code
-					>make config
+			<pre
+				class="code-ltr doodle-card overflow-x-auto p-5 font-mono text-sm leading-7"
+				dir="ltr"
+			><code>./tgportal --version
+
+# config.yml from config.example.yml
 # .env → TELEGRAM_BOT_TOKEN=…
 #        PERSONA_ACCOUNT_QR=…
-make init QR=dcaccount:nine.testrun.org
-make serve
 
-make run-landing</code
-				></pre>
+./tgportal --config config.yml init dcaccount:nine.testrun.org
+./tgportal --config config.yml serve</code></pre>
 		</div>
 	</section>
 

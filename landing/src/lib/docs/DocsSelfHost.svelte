@@ -26,7 +26,7 @@
 
 		<h2>{docs.selfWay1}</h2>
 		<p>{docs.selfWay1P}</p>
-		<pre><code
+		<pre dir="ltr"><code
 				>git clone https://github.com/themadorg/tgportal.git
 cd tgportal
 make config
@@ -43,7 +43,7 @@ make serve
 # same as: ./tgportal --config config.yml serve</code
 			></pre>
 		<p>{docs.selfWay1Release}</p>
-		<pre><code
+		<pre dir="ltr"><code
 				>make build-release
 ./dist/tgportal --version
 ./dist/tgportal --config config.yml serve</code
@@ -61,7 +61,7 @@ make serve
 				<li>{item}</li>
 			{/each}
 		</ol>
-		<pre><code
+		<pre dir="ltr"><code
 				># example: Linux x86_64
 curl -fsSL -o tgportal.tgz \
   https://github.com/themadorg/tgportal/releases/latest/download/tgportal_VERSION_linux_amd64.tar.gz
