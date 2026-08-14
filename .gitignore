@@ -1,0 +1,65 @@
+# Build products / binaries
+/tgportal
+/tg_delta_bridge
+*.exe
+*.test
+*.out
+*.o
+*.a
+*.so
+bin/
+dist/
+build/
+coverage.*
+*.cover
+*.prof
+cpu.prof
+mem.prof
+
+# Go / toolchain
+vendor/
+.gocache/
+tmp/
+
+# Delta Chat local data (default folder: ./data) + TG download cache
+/data/
+**/tg-cache/
+**/dc-cache/
+*.db
+*.db-shm
+*.db-wal
+accounts/
+*.sqlite
+*.sqlite3
+
+# Credentials & local config (use *.example instead)
+.env
+.env.*
+!.env.example
+config.yml
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.secret
+credentials.json
+secrets/
+
+# SvelteKit landing
+landing/node_modules/
+landing/.svelte-kit/
+landing/build/
+landing/.vite/
+
+# Local reference material (unpacked app sources, zips, etc.)
+/context/
+
+# Editor / OS junk
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
