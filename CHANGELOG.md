@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 (2026-08-14)
+
+Release type: **minor**
+
+### Features
+
+- feat: add man page, bash completion, and linux packages
+
 ## 0.1.0 (2026-08-14)
 
 Release type: **minor**
