@@ -32,6 +32,12 @@ permissions:
 jobs:
   deploy:
     name: Swap binary
+    # Secrets stay in the production environment. This job must not run for PRs.
+    if: >
+      github.event_name != 'pull_request' &&
+      github.event_name != 'pull_request_target' &&
+      github.repository == 'omidz4t/portal' &&
+      (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
     runs-on: ubuntu-latest
     environment: production
     steps:

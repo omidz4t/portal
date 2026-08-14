@@ -21,7 +21,7 @@ Binary: `./tgportal` (gitignored).
 | CI | `.github/workflows/ci.yml` | push & PR to `main` |
 | Deploy | `.github/workflows/deploy.yml` | after a version bump, or **Actions → Deploy production** |
 
-CI tests and, on `main`, may tag a release. The deploy job then streams the linux/amd64 binary to the host. SSH secrets live in the **production** environment (`DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_SSH_KEY`, `DEPLOY_KNOWN_HOSTS`). The deploy key is forced-command only (`tgportal-swap`: verify ELF, replace `/usr/bin/tgportal`, restart, roll back if the unit fails).
+CI tests and, on `main`, may tag a release. The deploy job then streams the linux/amd64 binary to the host. SSH secrets live in the **production** environment (`DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_SSH_KEY`, `DEPLOY_KNOWN_HOSTS`). They are **not** available to pull requests. Deploy runs only on `push` to `main` after a version bump, or via **Actions → Deploy production** (write access required). The deploy key is forced-command only (`tgportal-swap`).
 
 ### Version bump (no dependencies)
 

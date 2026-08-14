@@ -168,8 +168,12 @@ jobs:
   deploy:
     name: Deploy production
     needs: release
-    if: needs.release.outputs.bumped == 'true'
+    # Never on pull_request / forks. Only a successful version bump on this repo's main.
+    if: >
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      github.repository == 'omidz4t/portal' &&
+      needs.release.outputs.bumped == 'true'
     uses: ./.github/workflows/deploy.yml
     with:
       tag: ${{ needs.release.outputs.tag }}
-    secrets: inherit
