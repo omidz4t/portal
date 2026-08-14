@@ -8,7 +8,7 @@
 
 <div class="try-page">
 	<div class="try-page-inner">
-		<a href="{basePath(locale)}#try" class="doodle-btn">{tutorial.homeBack}</a>
+		<a href="{basePath(locale)}#try" class="doodle-btn try-page-back">{tutorial.homeBack}</a>
 		<Walkthrough {tutorial} />
 	</div>
 </div>

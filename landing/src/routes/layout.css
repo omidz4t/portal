@@ -581,6 +581,11 @@ footer.doodle-bar {
 	padding: 0 1.25rem;
 }
 
+.try-page-back {
+	align-self: flex-start;
+	width: fit-content;
+}
+
 .try-walk {
 	display: flex;
 	min-height: 0;
