@@ -30,30 +30,35 @@
 </svelte:head>
 
 <div>
-	<section
-		class="hero-band mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2"
-	>
-		<div>
-			<p class="font-mono text-xs tracking-[0.18em] uppercase">{copy.heroEyebrow}</p>
-			<h1 class="mt-3 text-4xl leading-tight font-semibold text-balance sm:text-5xl">
-				{copy.heroTitle}
-			</h1>
-			<p class="mt-5 max-w-xl text-lg leading-relaxed text-mist">{copy.heroLead}</p>
-			<div class="mt-8 flex flex-wrap gap-3">
-				<a href={docsPath(locale, 'self-host')} class="doodle-btn doodle-btn-ink">{copy.ctaHost}</a>
-				<a href={botUrl} rel="noreferrer" class="doodle-btn">{copy.ctaPublic}</a>
-				<a href={docsPath(locale)} class="doodle-btn doodle-btn-ghost">{copy.ctaDocs}</a>
+	<section class="hero-band">
+		<div class="hero-grid mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
+			<div>
+				<p class="font-mono text-xs tracking-[0.18em] uppercase">{copy.heroEyebrow}</p>
+				<h1 class="mt-3 text-4xl leading-tight font-semibold text-balance sm:text-5xl">
+					{copy.heroTitle}
+				</h1>
+				<p class="mt-5 max-w-xl text-lg leading-relaxed text-mist">{copy.heroLead}</p>
+				<div class="mt-8 flex flex-wrap gap-3">
+					<a href={docsPath(locale, 'self-host')} class="doodle-btn doodle-btn-ink"
+						>{copy.ctaHost}</a
+					>
+					<a href={botUrl} rel="noreferrer" class="doodle-btn">{copy.ctaPublic}</a>
+					<a href={docsPath(locale)} class="doodle-btn doodle-btn-ghost">{copy.ctaDocs}</a>
+				</div>
 			</div>
+			<figure class="doodle-card doodle-card-tilt overflow-hidden">
+				<img
+					src="/poster.jpg"
+					alt={copy.posterAlt}
+					width="960"
+					height="640"
+					class="aspect-3/2 h-full w-full object-cover"
+				/>
+			</figure>
 		</div>
-		<figure class="doodle-card doodle-card-tilt overflow-hidden">
-			<img
-				src="/poster.jpg"
-				alt={copy.posterAlt}
-				width="960"
-				height="640"
-				class="aspect-3/2 h-full w-full object-cover"
-			/>
-		</figure>
+		<a href="#hold-on" class="hero-down" aria-label={copy.heroDown}>
+			<KoboyoIcon name="arrow-down" class="h-12 w-12" />
+		</a>
 	</section>
 
 	<section id="hold-on" class="doodle-warn" aria-labelledby="hold-on-heading">
