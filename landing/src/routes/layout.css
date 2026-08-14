@@ -367,6 +367,7 @@ footer.doodle-bar {
 
 .portal-mark {
 	display: inline-flex;
+	flex-wrap: wrap;
 	align-items: center;
 	gap: 0.85rem;
 }
@@ -377,8 +378,11 @@ footer.doodle-bar {
 	line-height: 1;
 }
 
-.portal-mark-flip {
-	transform: scaleX(-1);
+.portal-mark-side {
+	font-size: clamp(1rem, 2.4vw, 1.35rem);
+	font-weight: 700;
+	line-height: 1;
+	letter-spacing: 0.02em;
 }
 
 .hero-down {

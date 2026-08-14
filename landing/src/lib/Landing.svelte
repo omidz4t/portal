@@ -34,9 +34,11 @@
 		<div class="hero-grid mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
 			<div>
 				<p class="portal-mark">
+					<span class="portal-mark-side">{copy.colTelegram}</span>
 					<KoboyoIcon name="mirror-portal" class="h-12 w-12" />
 					<span class="portal-mark-name">{copy.brandName}</span>
-					<KoboyoIcon name="mirror-portal" class="portal-mark-flip h-12 w-12" />
+					<KoboyoIcon name="mirror-portal" class="h-12 w-12" />
+					<span class="portal-mark-side">{copy.colDelta}</span>
 				</p>
 				<h1 class="mt-3 text-4xl leading-tight font-semibold text-balance sm:text-5xl">
 					{copy.heroTitle}
