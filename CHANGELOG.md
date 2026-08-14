@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.2 (2026-08-14)
+
+Release type: **patch**
+
+### Fixes
+
+- fix: finish renaming leftover tgportal copy to portal
+
 ## 0.2.1 (2026-08-14)
 
 Release type: **patch**
