@@ -61,7 +61,6 @@
 	.portal-window {
 		position: relative;
 		overflow: hidden;
-		min-width: 7.25em;
 		min-height: 1.15em;
 	}
 
@@ -80,7 +79,7 @@
 	.portal-sizer {
 		grid-area: 1 / 1;
 		visibility: hidden;
-		padding-inline: 0.55rem;
+		padding-inline: 0.12rem;
 		font-size: clamp(0.7rem, 1.5vw, 0.85rem);
 		font-weight: 700;
 		letter-spacing: 0.02em;
@@ -91,7 +90,7 @@
 	.portal-rider {
 		position: absolute;
 		inset: 0;
-		padding-inline: 0.55rem;
+		padding-inline: 0.12rem;
 		font-size: clamp(0.7rem, 1.5vw, 0.85rem);
 		font-weight: 700;
 		letter-spacing: 0.02em;
