@@ -1,18 +1,51 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+@font-face {
+	font-family: Arad;
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/AradFD-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Arad;
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('/fonts/AradFD-Medium.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Arad;
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('/fonts/AradFD-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Arad;
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('/fonts/AradFD-Bold.woff2') format('woff2');
+}
+
 @theme {
-	--font-sans: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+	--font-sans: 'Patrick Hand', 'Segoe UI', system-ui, sans-serif;
 	--font-mono: 'IBM Plex Mono', ui-monospace, monospace;
-	--color-ink: #0b1220;
-	--color-panel: #121b2d;
-	--color-line: #3a4a66;
-	--color-mist: #c5d0e3;
-	--color-paper: #eef3fb;
-	--color-teal: #3ecfb2;
-	--color-sky: #7ab8ff;
-	--color-warn: #fde68a;
-	--color-warn-bg: #3b2a08;
+	--font-arad: Arad, 'Patrick Hand', Tahoma, sans-serif;
+	--color-ink: #1c1916;
+	--color-panel: #fffdf8;
+	--color-line: #1c1916;
+	--color-mist: #5c564e;
+	--color-paper: #f6f1e6;
+	--color-teal: #2f6f5e;
+	--color-sky: #2a5f8a;
+	--color-warn: #8a4b12;
+	--color-warn-bg: #f3e0b5;
 }
 
 html {
@@ -22,19 +55,28 @@ html {
 body {
 	margin: 0;
 	min-height: 100dvh;
-	background:
-		radial-gradient(900px 420px at 10% -10%, rgba(78, 160, 255, 0.16), transparent 55%),
-		radial-gradient(700px 380px at 100% 0%, rgba(62, 207, 178, 0.1), transparent 50%),
-		var(--color-ink);
-	color: var(--color-paper);
+	background-color: var(--color-paper);
+	background-image:
+		radial-gradient(circle at 1px 1px, #d8d0c2 1px, transparent 0),
+		linear-gradient(#f6f1e6, #f6f1e6);
+	background-size:
+		22px 22px,
+		auto;
+	color: var(--color-ink);
 	font-family: var(--font-sans);
-	font-size: 1rem;
-	line-height: 1.65;
+	font-size: 1.125rem;
+	line-height: 1.55;
 	overflow-wrap: anywhere;
 }
 
+[dir='rtl'] {
+	font-family: var(--font-arad);
+	font-size: 1.05rem;
+	line-height: 1.85;
+}
+
 ::selection {
-	background: rgba(62, 207, 178, 0.35);
+	background: #f2c94c66;
 }
 
 a,
@@ -52,7 +94,7 @@ details > summary::-webkit-details-marker {
 }
 
 :focus-visible {
-	outline: 3px solid var(--color-teal);
+	outline: 3px solid var(--color-ink);
 	outline-offset: 3px;
 }
 
@@ -62,8 +104,9 @@ details > summary::-webkit-details-marker {
 	top: 0.75rem;
 	z-index: 100;
 	transform: translateY(-150%);
+	border: 2px solid var(--color-ink);
 	border-radius: 9999px;
-	background: var(--color-teal);
+	background: #fffdf8;
 	color: var(--color-ink);
 	padding: 0.6rem 1rem;
 	font-weight: 600;
@@ -76,11 +119,103 @@ details > summary::-webkit-details-marker {
 code,
 pre {
 	overflow-wrap: anywhere;
+	font-family: var(--font-mono);
+	font-size: 0.85em;
+}
+
+.doodle-bar {
+	border-bottom: 2px solid var(--color-ink);
+	background: #fffdf8cc;
+	backdrop-filter: blur(6px);
+}
+
+footer.doodle-bar {
+	border-bottom: 0;
+	border-top: 2px solid var(--color-ink);
+}
+
+.doodle-card {
+	border: 2px solid var(--color-ink);
+	border-radius: 1.15rem 1.4rem 1.05rem 1.35rem;
+	background: #fffdf8;
+	box-shadow: 3px 3px 0 var(--color-ink);
+}
+
+.doodle-card-tilt {
+	transform: rotate(-0.4deg);
+}
+
+.doodle-card-tilt-r {
+	transform: rotate(0.5deg);
+}
+
+.doodle-btn {
+	display: inline-flex;
+	min-height: 2.75rem;
+	align-items: center;
+	border: 2px solid var(--color-ink);
+	border-radius: 999px;
+	padding: 0 1.1rem;
+	background: #fffdf8;
+	box-shadow: 2px 2px 0 var(--color-ink);
+	font-weight: 600;
+}
+
+.doodle-btn:hover {
+	transform: translate(1px, 1px);
+	box-shadow: 1px 1px 0 var(--color-ink);
+}
+
+.doodle-btn-ink {
+	background: var(--color-ink);
+	color: #fffdf8;
+}
+
+.doodle-btn-ghost {
+	background: transparent;
+	box-shadow: none;
+}
+
+.doodle-nav {
+	display: inline-flex;
+	min-height: 2.75rem;
+	align-items: center;
+	border-radius: 0.75rem;
+	padding: 0 0.75rem;
+	font-size: 0.95rem;
+}
+
+.doodle-nav:hover,
+.doodle-lang:hover {
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+
+.doodle-nav.is-current,
+.doodle-lang.is-current {
+	font-weight: 700;
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+
+.doodle-lang {
+	padding: 0.25rem;
+}
+
+.doodle-warn {
+	border-bottom: 2px dashed var(--color-ink);
+	background: var(--color-warn-bg);
 }
 
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
+	}
+
+	.doodle-card-tilt,
+	.doodle-card-tilt-r,
+	.doodle-btn:hover {
+		transform: none;
 	}
 
 	*,

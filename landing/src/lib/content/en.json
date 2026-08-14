@@ -1,0 +1,113 @@
+{
+	"metaTitle": "TGPORTAL — Telegram ↔ Delta Chat media bridge",
+	"metaDescription": "Pair once, then stickers, GIFs, Lottie, and short video move both ways. Prefer self-hosting: you trust whoever runs the bot.",
+	"skip": "Skip to main content",
+	"navHow": "How it works",
+	"navPersona": "Persona",
+	"navDocs": "Docs",
+	"navSource": "Source",
+	"navMenu": "Menu",
+	"openBot": "Open Telegram bot",
+	"langEn": "EN",
+	"langFa": "فا",
+	"warnTitle": "Warning.",
+	"warnBody": "A public bot is a relay. Whoever runs tgportal can see pairing data and everything you bridge. Delta Chat encryption does not hide messages from that host. Prefer self-hosting so you are the only operator.",
+	"warnWhy": "Why this matters",
+	"heroEyebrow": "Telegram ↔ Delta Chat",
+	"heroTitle": "Stickers and GIFs that survive the jump to Delta Chat.",
+	"heroLead": "TGPORTAL is a Go bridge. Pair once with a short code. After that, media you send the Telegram bot lands in your Delta Chat conversation — and the other way around — without noisy filenames or “from Telegram” captions.",
+	"ctaHost": "Host your own",
+	"ctaPublic": "Public bot (trust the runner)",
+	"ctaDocs": "Docs",
+	"posterAlt": "TGPORTAL branding poster: dark void with the product mark",
+	"bridgeTitle": "What it bridges",
+	"bridgeLead": "Bidirectional, per-user pairing. Telegram types stay useful on Delta Chat.",
+	"colTelegram": "Telegram",
+	"colDelta": "Delta Chat",
+	"media": [
+		{ "tg": "Static WEBP stickers", "dc": "Sticker / image" },
+		{ "tg": "Lottie TGS", "dc": "File, or GIF if a converter is installed" },
+		{ "tg": "Video stickers (WEBM)", "dc": "Video" },
+		{ "tg": "GIF / animation (GIF or MP4)", "dc": "GIF / video" },
+		{ "tg": "Custom emoji", "dc": "Sticker via getCustomEmojiStickers" },
+		{ "tg": "Text, images, short video", "dc": "Same, both directions" }
+	],
+	"howTitle": "Pair once (personal mode)",
+	"howLead": "Default product: one Telegram user maps to one Delta Chat chat on the portal bot. Use a live instance only if you accept trusting that host. You can also start from Delta Chat and open t.me/…?start=CODE.",
+	"pairingDocs": "Pairing docs",
+	"steps": [
+		{
+			"n": "01",
+			"title": "Open the Telegram bot",
+			"body": "Message @tgdeltabridgebot and send /start in a private chat."
+		},
+		{
+			"n": "02",
+			"title": "Open the Delta Chat invite",
+			"body": "The bot replies with an invite QR/link and a short pairing code (about 30 minutes)."
+		},
+		{
+			"n": "03",
+			"title": "Send the code on Delta Chat",
+			"body": "Accept the chat, send only the code. The pair becomes active: your Telegram user ↔ that DC chat."
+		},
+		{
+			"n": "04",
+			"title": "Send media either way",
+			"body": "Stickers, GIFs, text, images, short video. Filenames stay neutral; source captions are stripped."
+		}
+	],
+	"personaEyebrow": "Persona",
+	"personaTitle": "Persona: they message your Telegram bot. You see them as people on Delta Chat.",
+	"personaLead": "Personal mode is one public portal bot and one chat. Persona is different: you plug in a bot you created with BotFather. Friends never join a shared dump. Each Telegram user becomes a ghost — a real Delta Chat account with their name and photo — that opens a normal 1:1 with you. Replies you type there leave as your bot.",
+	"personalCardTitle": "Personal pairing",
+	"personalCardBody": "You talk to the portal bot. Stickers and text land in one Delta Chat conversation with that bot. Fine for “my media, my chat.”",
+	"personaCardTitle": "Persona",
+	"personaCardBody": "They talk to your bot. On Delta Chat, Alice looks like Alice, Bob looks like Bob — separate chats, reused forever for the same Telegram id.",
+	"flowTitle": "How a message travels",
+	"flowLead": "Read along the row on a wide screen, or top to bottom on a phone. Same story.",
+	"flow": [
+		{
+			"n": "1 · they write",
+			"title": "Alice DMs your bot",
+			"body": "She never opens Delta Chat. She only knows the Telegram bot you published."
+		},
+		{
+			"n": "2 · your bot",
+			"title": "TGPORTAL is polling it",
+			"body": "You registered the BotFather token with /pair-bot on the portal (after you /paired yourself)."
+		},
+		{
+			"n": "3 · a ghost is born",
+			"title": "One DC account per Telegram id",
+			"body": "Missing? Create with PERSONA_ACCOUNT_QR, copy name and photo. Exists? Reuse. Not the same table as personal pairs."
+		},
+		{
+			"n": "4 · you read and reply",
+			"title": "Normal 1:1 on Delta Chat",
+			"body": "No “via Telegram” label. Your reply goes back out through the bot. Telegram cannot puppet Alice as Alice."
+		}
+	],
+	"setupTitle": "You set it up once",
+	"setupBody": "mode: persona or both. Pair the portal so TGPORTAL has your DC public key. Then /pair-bot <TOKEN> in a private chat. Token stays in SQLite under ./data.",
+	"groupsTitle": "Groups are optional",
+	"groupsBody": "Turn on persona.allow_groups, add the bot, disable BotFather group privacy. Posts become a Delta Chat group TG: … with each speaker as their ghost. You are a member; your replies are the bot.",
+	"hostTitle": "The host is the bot",
+	"hostBody": "Whoever runs tgportal holds the token and the ghost keys. Do not /pair-bot on a public instance you do not operate.",
+	"personaDocs": "persona docs",
+	"personaCommands": "Commands: /bots, /unpair-bot.",
+	"selfTitle": "Run your own instance",
+	"selfLead": "This is the recommended way to use TGPORTAL. Open source (MIT). One Go binary plus deltachat-rpc-server on PATH. You hold the token, the SQLite DB, and the ghost keys.",
+	"selfNeeds": [
+		"Go 1.22+ and a Telegram BotFather token",
+		"Chatmail / Delta Chat provider (e.g. nine.testrun.org for tests)",
+		"Optional SOCKS5 / HTTP proxies",
+		"Makefile is the supported entrypoint"
+	],
+	"selfWalk": "Self-host walkthrough",
+	"footerCredit": "TGPORTAL · MIT · themadorg · icons",
+	"footerIcons": "Koboyo",
+	"navTrust": "Trust",
+	"navPersonaShort": "Persona",
+	"navTelegram": "Telegram"
+}

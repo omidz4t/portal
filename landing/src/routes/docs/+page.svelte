@@ -38,11 +38,8 @@
 		<ul class="not-prose mt-8 grid gap-4">
 			{#each pages as p}
 				<li>
-					<a
-						href={p.href}
-						class="block rounded-2xl border border-line bg-panel p-5 hover:border-mist"
-					>
-						<h2 class="text-lg font-semibold text-paper">{p.title}</h2>
+					<a href={p.href} class="doodle-card block p-5">
+						<h2 class="text-lg font-semibold text-ink">{p.title}</h2>
 						<p class="mt-1 text-sm text-mist">{p.body}</p>
 					</a>
 				</li>
