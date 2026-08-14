@@ -1,0 +1,102 @@
+# Deploy the linux/amd64 release binary to production over SSH.
+#
+# Secrets live in the GitHub Environment "production" (not in the repo):
+#   DEPLOY_HOST, DEPLOY_USER, DEPLOY_SSH_KEY, DEPLOY_KNOWN_HOSTS
+#
+# The deploy key is forced-command on the host: it can only run
+# /usr/local/sbin/tgportal-swap (atomic replace + restart + rollback).
+
+name: Deploy production
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to deploy (empty = latest)
+        required: false
+        type: string
+  workflow_call:
+    inputs:
+      tag:
+        description: Release tag to deploy
+        required: true
+        type: string
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Swap binary
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Resolve tag
+        id: rel
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          if [ -n "${INPUT_TAG:-}" ]; then
+            TAG="$INPUT_TAG"
+          else
+            TAG=$(gh release view --repo "${{ github.repository }}" --json tagName --jq .tagName)
+          fi
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "Deploying ${TAG}"
+
+      - name: Download linux amd64 archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/rel"
+          gh release download "${{ steps.rel.outputs.tag }}" \
+            --repo "${{ github.repository }}" \
+            --pattern '*linux_amd64.tar.gz' \
+            --dir "$HOME/rel"
+          tar -xzf "$HOME/rel"/*linux_amd64.tar.gz -C "$HOME/rel"
+          BIN=$(find "$HOME/rel" -maxdepth 1 -type f ! -name '*.tar.gz' | head -1)
+          test -n "$BIN"
+          chmod +x "$BIN"
+          "$BIN" --version
+          echo "BIN=$BIN" >> "$GITHUB_ENV"
+
+      - name: Install SSH key
+        run: |
+          set -euo pipefail
+          umask 077
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy
+          printf '%s\n' "${{ secrets.DEPLOY_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/deploy ~/.ssh/known_hosts
+
+      - name: Atomic swap over SSH
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          set -euo pipefail
+          test -n "$HOST"
+          test -n "$USER"
+          ssh -i ~/.ssh/deploy \
+            -o IdentitiesOnly=yes \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            "${USER}@${HOST}" \
+            < "$BIN"
+
+      - name: Summary
+        run: |
+          {
+            echo "### Production"
+            echo ""
+            echo "- tag: \`${{ steps.rel.outputs.tag }}\`"
+            echo "- host: (environment secret)"
+          } >> "$GITHUB_STEP_SUMMARY"

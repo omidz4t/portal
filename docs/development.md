@@ -19,9 +19,9 @@ Binary: `./tgportal` (gitignored).
 | Workflow | File | Trigger |
 |----------|------|---------|
 | CI | `.github/workflows/ci.yml` | push & PR to `main` |
-| Release | `.github/workflows/release.yml` | tags `v*` |
+| Deploy | `.github/workflows/deploy.yml` | after a version bump, or **Actions → Deploy production** |
 
-CI runs `go mod tidy` check, `go vet`, `go test`, and cross-builds. After a green push to `main`, it bumps `VERSION` from conventional commits, prepends `CHANGELOG.md`, tags `vX.Y.Z`, and publishes the GitHub Release (token tag pushes do not start a second workflow). Commits starting with `chore(release):` are skipped. Manual tags still use `.github/workflows/release.yml`.
+CI tests and, on `main`, may tag a release. The deploy job then streams the linux/amd64 binary to the host. SSH secrets live in the **production** environment (`DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_SSH_KEY`, `DEPLOY_KNOWN_HOSTS`). The deploy key is forced-command only (`tgportal-swap`: verify ELF, replace `/usr/bin/tgportal`, restart, roll back if the unit fails).
 
 ### Version bump (no dependencies)
 
