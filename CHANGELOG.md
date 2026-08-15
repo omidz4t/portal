@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.1 (2026-08-15)
+
+Release type: **patch**
+
+### Fixes
+
+- fix(landing): rewrite Farsi self-host copy in a spoken tone
+
 ## 0.3.0 (2026-08-15)
 
 Release type: **minor**
