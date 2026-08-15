@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.1 (2026-08-15)
+
+Release type: **patch**
+
+### Fixes
+
+- fix(landing): rewrite Farsi homepage and use پرسونا
+
 ## 0.4.0 (2026-08-15)
 
 Release type: **minor**
