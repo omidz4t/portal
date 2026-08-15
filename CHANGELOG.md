@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.0 (2026-08-15)
+
+Release type: **minor**
+
+### Features
+
+- feat(landing): add a versions page and show the current release
+
+### Fixes
+
+- fix(landing): clarify run-landing is only for the website
+
 ## 0.2.2 (2026-08-14)
 
 Release type: **patch**
