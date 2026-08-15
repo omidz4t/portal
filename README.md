@@ -80,6 +80,14 @@ docker pull ghcr.io/omidz4t/portal:latest
 | [docs/trust.md](docs/trust.md) | Why self-host |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contributing |
 
+## Disclaimer
+
+The product vision, architecture, and operator docs were defined and reviewed by humans. Most of the Go (and related) source in this repository was written with AI assistance under that direction — not as an unattended dump of generated code, but as an iterative, human-guided process.
+
+Use at your own risk. Portal is **MIT** software in **beta**; it may lose messages, break pairing, or change without notice. The host can read everything you bridge. Run it in production only after you have validated it for your threat model. See [docs/trust.md](docs/trust.md) and [SECURITY.md](SECURITY.md).
+
+We welcome criticism, bug reports, and discussion — please use [GitHub Discussions](https://github.com/omidz4t/portal/discussions) or [Issues](https://github.com/omidz4t/portal/issues).
+
 ## License
 
 [MIT](LICENSE)
