@@ -121,7 +121,7 @@
 	"selfLatest": "آخرین انتشار",
 	"selfList": "فهرست انتشارها",
 	"selfWay2Note": "اگر نام فایل آن شکل است، VERSION را تگ بدون v اول بگذارید (یادداشت انتشار را ببینید). هنوز deltachat-rpc-server روی PATH لازم است؛ انتشار فقط ربات Go است.",
-	"selfPreview": "پیش‌نمایش لندینگ در توسعه: make run-landing → http://127.0.0.1:5173.",
+	"selfPreview": "این اجرای پورتال است. اگر بخواهید این وب‌سایت را عوض کنید (نه ربات)، make run-landing بزنید و http://127.0.0.1:5173 را باز کنید.",
 	"selfMore": "بیشتر: نصب، پیکربندی، امنیت، اعتماد.",
 	"selfLinkConfig": "پیکربندی",
 	"cfgTitle": "config.yml",

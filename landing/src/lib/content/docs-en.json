@@ -121,7 +121,7 @@
 	"selfLatest": "latest release",
 	"selfList": "releases list",
 	"selfWay2Note": "Replace VERSION with the tag without the leading v if the asset name uses that form (see the release notes). You still need deltachat-rpc-server on PATH; the release is only the Go bot.",
-	"selfPreview": "Landing preview while developing: make run-landing → http://127.0.0.1:5173.",
+	"selfPreview": "That is how you run Portal. To edit this website (not the bot), use make run-landing and open http://127.0.0.1:5173.",
 	"selfMore": "More: installation, configuration, security, trust.",
 	"selfLinkConfig": "configuration",
 	"cfgTitle": "config.yml",
