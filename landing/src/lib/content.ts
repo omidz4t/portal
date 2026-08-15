@@ -8,7 +8,6 @@ import tutorialFa from './content/tutorial-fa.json';
 
 export type Copy = typeof en;
 export type DocsCopy = typeof docsEn;
-export type TutorialCopy = typeof tutorialEn;
 
 export type InboxRow = {
 	name: string;
@@ -30,11 +29,44 @@ export type TutorialScene = {
 	inboxDc?: InboxRow[];
 	bubbles: { side: string; who: string; text: string; kind?: string; link?: string }[];
 };
+
+export type TutorialStory = {
+	id: string;
+	label: string;
+	group: string;
+	intro: string;
+	telegram?: string;
+	scenes: TutorialScene[];
+};
+
+export type TutorialCopy = {
+	title: string;
+	homeTitle: string;
+	lead: string;
+	open: string;
+	close: string;
+	homeBack: string;
+	next: string;
+	back: string;
+	restart: string;
+	stepOf: string;
+	whyLabel: string;
+	telegram: string;
+	delta: string;
+	you: string;
+	emptyTg: string;
+	emptyDc: string;
+	stories: TutorialStory[];
+};
+
 export type Locale = 'en' | 'fa';
 
 export const copies: Record<Locale, Copy> = { en, fa };
 export const docsCopies: Record<Locale, DocsCopy> = { en: docsEn, fa: docsFa };
-export const tutorialCopies: Record<Locale, TutorialCopy> = { en: tutorialEn, fa: tutorialFa };
+export const tutorialCopies: Record<Locale, TutorialCopy> = {
+	en: tutorialEn as TutorialCopy,
+	fa: tutorialFa as TutorialCopy
+};
 
 /** Pathname without SvelteKit `paths.base` (e.g. `/portal`). */
 export function appPathname(pathname: string): string {

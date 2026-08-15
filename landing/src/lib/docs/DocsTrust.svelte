@@ -1,30 +1,18 @@
 <script lang="ts">
 	import DocLayout from '$lib/DocLayout.svelte';
-	import { botUrl } from '$lib/links';
 	import type { DocsCopy, Locale } from '$lib/content';
-	import { docsPath } from '$lib/content';
+	import { renderMarkdown, splitMarkdown } from '$lib/md';
+	import enMd from './trust.en.md?raw';
+	import faMd from './trust.fa.md?raw';
 
 	let { docs, locale }: { docs: DocsCopy; locale: Locale } = $props();
+
+	const parsed = $derived(splitMarkdown(locale === 'fa' ? faMd : enMd));
+	const html = $derived(renderMarkdown(parsed.body));
 </script>
 
 <div class="mx-auto max-w-3xl px-5 py-16">
-	<DocLayout title={docs.trustTitle} lede={docs.trustLede} {docs} {locale}>
-		<p>{docs.trustP1}</p>
-		<p>{docs.trustIncludes}</p>
-		<ul>
-			{#each docs.trustItems as item}
-				<li>{item}</li>
-			{/each}
-		</ul>
-		<p>{docs.trustP2}</p>
-		<p>
-			{docs.trustP3}
-			<a href={botUrl}>@tgdeltabridgebot</a>
-		</p>
-		<p>
-			<strong>{docs.trustP4Lead}</strong>
-			{docs.trustP4}
-			<a href={docsPath(locale, 'self-host')}>{docs.trustLinkSelf}</a>
-		</p>
+	<DocLayout title={parsed.title || docs.trustTitle} lede={parsed.lede} {docs} {locale}>
+		{@html html}
 	</DocLayout>
 </div>

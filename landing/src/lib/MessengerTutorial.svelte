@@ -49,7 +49,7 @@
 </script>
 
 <section id="try" class="try-band">
-	<div class="try-sparkle-stage" bind:this={band} onpointermove={onPointerMove}>
+	<div class="try-sparkle-stage" bind:this={band} role="presentation" onpointermove={onPointerMove}>
 		<div class="try-sparkles" aria-hidden="true">
 			{#each sparkles as sparkle (sparkle.id)}
 				<span

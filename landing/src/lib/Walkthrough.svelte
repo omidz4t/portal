@@ -161,9 +161,10 @@
 		void whyPacks;
 		const root = whyMeasure;
 		if (!root) return;
+		const box = root;
 		function measure() {
 			let max = 0;
-			for (const child of root.children) {
+			for (const child of box.children) {
 				max = Math.max(max, (child as HTMLElement).offsetHeight);
 			}
 			if (max > 0) whyMin = max;

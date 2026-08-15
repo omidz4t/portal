@@ -42,9 +42,8 @@
 		setMenuLock(false);
 	}
 
-	function onMenuNavClick(event: MouseEvent) {
-		const target = event.target;
-		if (target instanceof Element && target.closest('a')) closeMenu();
+	function onMenuLink() {
+		closeMenu();
 	}
 
 	$effect(() => {
@@ -126,7 +125,7 @@
 			</button>
 		</div>
 		<div class="site-menu-panel">
-			<nav class="site-menu-nav" aria-label="Mobile" onclick={onMenuNavClick}>
+			<nav class="site-menu-nav" aria-label="Mobile">
 				{#each links as link}
 					<a
 						href={link.href}
@@ -134,6 +133,7 @@
 						class:is-current={current === link.id}
 						aria-current={current === link.id ? 'page' : undefined}
 						rel={link.external ? 'noreferrer' : undefined}
+						onclick={onMenuLink}
 					>
 						{link.label}
 					</a>
@@ -143,17 +143,24 @@
 						class="doodle-lang"
 						class:is-current={locale === 'en'}
 						href={twinPath(pathname, 'en')}
-						hreflang="en">{copy.langEn}</a
+						hreflang="en"
+						onclick={onMenuLink}>{copy.langEn}</a
 					>
 					<span aria-hidden="true">·</span>
 					<a
 						class="doodle-lang"
 						class:is-current={locale === 'fa'}
 						href={twinPath(pathname, 'fa')}
-						hreflang="fa">{copy.langFa}</a
+						hreflang="fa"
+						onclick={onMenuLink}>{copy.langFa}</a
 					>
 				</div>
-				<a href={botUrl} rel="noreferrer" class="doodle-btn doodle-btn-ink site-menu-bot">
+				<a
+					href={botUrl}
+					rel="noreferrer"
+					class="doodle-btn doodle-btn-ink site-menu-bot"
+					onclick={onMenuLink}
+				>
 					{copy.openBot}
 				</a>
 			</nav>
