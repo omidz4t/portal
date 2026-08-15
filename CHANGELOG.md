@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 (2026-08-15)
+
+Release type: **minor**
+
+### Features
+
+- feat(landing): serve docs from markdown with OS picker and sitemap
+
 ## 0.3.1 (2026-08-15)
 
 Release type: **patch**
