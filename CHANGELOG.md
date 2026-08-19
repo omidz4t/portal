@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0 (2026-08-19)
+
+Release type: **minor**
+
+### Features
+
+- feat: add two-step /delete_my_data for Portal records
+
 ## 0.4.1 (2026-08-15)
 
 Release type: **patch**
