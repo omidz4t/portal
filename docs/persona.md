@@ -56,6 +56,7 @@ No `/persona-invite`. Key material comes from step 1.
 | `/pair-bot <TOKEN> [url]` | Register persona bot (re-run after `/unpair-bot` to start the same bot again) |
 | `/bots` | List |
 | `/unpair-bot [id\|@user]` | Stop polling |
+| `/delete_my_data` then `/delete_my_data_approve` | Erase your pairing, persona bots, and ghost Delta Chat accounts |
 
 ## If it fails
 

@@ -374,6 +374,118 @@ func (s *Store) DisablePersonaBotByOwner(ownerTG int64, botID int64, username st
 	return res.RowsAffected()
 }
 
+const ghostSelect = `id, persona_bot_id, telegram_user_id, telegram_username, display_name,
+		        dc_account_id, dc_address, owner_chat_id, avatar_file_id, created_at`
+
+// ListGhostsByPersonaBot returns ghosts bound to a persona bot.
+func (s *Store) ListGhostsByPersonaBot(personaBotID int64) ([]GhostAccount, error) {
+	rows, err := s.db.Query(
+		`SELECT `+ghostSelect+` FROM ghost_accounts WHERE persona_bot_id = ?`,
+		personaBotID,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	return scanGhosts(rows)
+}
+
+// ListGhostsByTelegramUser returns ghost rows for a Telegram user (any persona bot).
+func (s *Store) ListGhostsByTelegramUser(tgUserID int64) ([]GhostAccount, error) {
+	rows, err := s.db.Query(
+		`SELECT `+ghostSelect+` FROM ghost_accounts WHERE telegram_user_id = ?`,
+		tgUserID,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	return scanGhosts(rows)
+}
+
+// GhostAccountsForPurge lists unique ghost accounts to remove for a Telegram user:
+// ghosts they own via persona bots, plus ghosts that represent them on others' bots.
+func (s *Store) GhostAccountsForPurge(tgUserID int64) ([]GhostAccount, error) {
+	seen := map[int64]struct{}{}
+	var out []GhostAccount
+	add := func(list []GhostAccount) {
+		for _, g := range list {
+			if _, ok := seen[g.ID]; ok {
+				continue
+			}
+			seen[g.ID] = struct{}{}
+			out = append(out, g)
+		}
+	}
+	bots, err := s.ListPersonaBotsByOwner(tgUserID)
+	if err != nil {
+		return nil, err
+	}
+	for _, b := range bots {
+		gs, err := s.ListGhostsByPersonaBot(b.ID)
+		if err != nil {
+			return nil, err
+		}
+		add(gs)
+	}
+	own, err := s.ListGhostsByTelegramUser(tgUserID)
+	if err != nil {
+		return nil, err
+	}
+	add(own)
+	return out, nil
+}
+
+// PurgeTelegramUser deletes pairing, persona bots, ghosts, and group rows for a Telegram user.
+func (s *Store) PurgeTelegramUser(tgUserID int64) error {
+	bots, err := s.ListPersonaBotsByOwner(tgUserID)
+	if err != nil {
+		return err
+	}
+	tx, err := s.db.Begin()
+	if err != nil {
+		return err
+	}
+	defer func() { _ = tx.Rollback() }()
+
+	for _, b := range bots {
+		if _, err := tx.Exec(
+			`DELETE FROM ghost_group_members WHERE ghost_group_id IN (SELECT id FROM ghost_groups WHERE persona_bot_id = ?)`,
+			b.ID,
+		); err != nil {
+			return err
+		}
+		if _, err := tx.Exec(`DELETE FROM ghost_groups WHERE persona_bot_id = ?`, b.ID); err != nil {
+			return err
+		}
+		if _, err := tx.Exec(`DELETE FROM ghost_accounts WHERE persona_bot_id = ?`, b.ID); err != nil {
+			return err
+		}
+		if _, err := tx.Exec(`DELETE FROM persona_bots WHERE id = ?`, b.ID); err != nil {
+			return err
+		}
+	}
+	if _, err := tx.Exec(`DELETE FROM ghost_group_members WHERE telegram_user_id = ?`, tgUserID); err != nil {
+		return err
+	}
+	if _, err := tx.Exec(`DELETE FROM ghost_accounts WHERE telegram_user_id = ?`, tgUserID); err != nil {
+		return err
+	}
+	if _, err := tx.Exec(`DELETE FROM pairs WHERE telegram_user_id = ?`, tgUserID); err != nil {
+		return err
+	}
+	return tx.Commit()
+}
+
+// PurgeDCChatPairs deletes pair rows for a Delta Chat conversation.
+func (s *Store) PurgeDCChatPairs(accID, chatID uint32) error {
+	_, err := s.db.Exec(
+		`DELETE FROM pairs WHERE dc_account_id = ? AND dc_chat_id = ?`,
+		accID, chatID,
+	)
+	return err
+}
+
 // GetGhostByTG returns the ghost for (persona bot, telegram user).
 func (s *Store) GetGhostByTG(personaBotID, tgUserID int64) (*GhostAccount, error) {
 	row := s.db.QueryRow(
@@ -604,6 +716,24 @@ func (s *Store) unsealPersona(b *PersonaBot) error {
 }
 
 func scanGhost(row *sql.Row) (*GhostAccount, error) {
+	return scanGhostScanner(row)
+}
+
+func scanGhosts(rows *sql.Rows) ([]GhostAccount, error) {
+	var out []GhostAccount
+	for rows.Next() {
+		g, err := scanGhostScanner(rows)
+		if err != nil {
+			return nil, err
+		}
+		if g != nil {
+			out = append(out, *g)
+		}
+	}
+	return out, rows.Err()
+}
+
+func scanGhostScanner(row pairScanner) (*GhostAccount, error) {
 	var g GhostAccount
 	var created int64
 	err := row.Scan(

@@ -2,7 +2,10 @@ package bot
 
 import (
 	"errors"
+	"strings"
 	"testing"
+
+	"github.com/omidz4t/portal/internal/config"
 )
 
 func TestShouldTreatAsPairingCode(t *testing.T) {
@@ -25,6 +28,15 @@ func TestShouldAttemptPairing(t *testing.T) {
 	}
 	if shouldAttemptPairing(true, true) {
 		t.Fatal("already paired")
+	}
+}
+
+func TestDCHelpTextIncludesDeleteCommands(t *testing.T) {
+	text := dcHelpText(config.Config{})
+	for _, s := range []string{"/delete_my_data", "/delete_my_data_approve"} {
+		if !strings.Contains(text, s) {
+			t.Fatalf("dc help missing %s:\n%s", s, text)
+		}
 	}
 }
 

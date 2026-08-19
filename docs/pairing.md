@@ -55,6 +55,8 @@ Reply to a sticker on Telegram with `/send_pack` to push the **whole pack** (if 
 | `/pair` / `/connect` | Invite QR + link + new code |
 | `/status` | Whether this Telegram user is paired |
 | `/disconnect` | Unlink this Telegram user (bridge stops) |
+| `/delete_my_data` | Request deletion of pairing, persona bots, and ghost accounts |
+| `/delete_my_data_approve` | Confirm deletion (must follow `/delete_my_data` within 10 minutes) |
 | `/send_pack` | Reply to a sticker → full pack |
 | `/help` | Command list |
 
@@ -67,6 +69,8 @@ Persona (only if `mode` is `persona` or `both`):
 | `/unpair-bot [id\|@user]` | Stop a persona bot |
 
 You must finish **personal** `/pair` before `/pair-bot`. Details: [persona.md](persona.md).
+
+The same `/delete_my_data` then `/delete_my_data_approve` sequence works in the **paired Delta Chat** 1:1 with the portal bot. `/disconnect` only unlinks; deletion removes stored rows and ghost Delta Chat accounts created for you. Private 1:1 only.
 
 ## Codes and database
 

@@ -214,7 +214,9 @@ These parties process data under **their** policies. Developer does not control 
 
 8.2. **No security measure is perfect.** Compromise of the host, bot token, or your devices may expose bridged content. If a Telegram bot token leaks, regenerate it in BotFather immediately.
 
-8.3. Temporary media files are **not** intended as a permanent library of your chats. Pairing records remain until you disconnect or the operator deletes them.
+8.3. Temporary media files are **not** intended as a permanent library of your chats. Pairing records remain until you disconnect, run `/delete_my_data` + `/delete_my_data_approve`, or the operator deletes them.
+
+`/delete_my_data_approve` removes Portal SQLite rows for you, stops persona bots you registered, deletes ghost Delta Chat accounts created for you, and forgets the local 1:1 on the portal bot account. It does **not** erase Telegram’s copies, your mail provider’s copies, other people’s devices, or application logs if the operator enabled logging.
 
 ---
 
@@ -222,7 +224,7 @@ These parties process data under **their** policies. Developer does not control 
 
 | Data | Retention |
 |------|-----------|
-| Active pairing | Until `/disconnect`, operator deletion, or instance wipe |
+| Active pairing | Until `/disconnect`, `/delete_my_data` + `/delete_my_data_approve`, operator deletion, or instance wipe |
 | Pending pairing codes | Until used, replaced, or invalidated |
 | Temporary download caches | Intended deletion after bridge attempt |
 | Application logs | Only if enabled; duration depends on operator configuration |
@@ -256,7 +258,7 @@ Subject to applicable law (including GDPR-style rights where they apply), you ma
 | **Deletion** | Request deletion of stored personal data (subject to limited legal exceptions) |
 | **Rectification** | Ask to correct inaccurate pairing data |
 | **Restrict / object** | Object to certain processing where the law allows |
-| **Withdraw / stop** | Stop using the Service; use `/disconnect`; revoke consent where processing was based on consent |
+| **Withdraw / stop** | Stop using the Service; use `/disconnect`; or `/delete_my_data` + `/delete_my_data_approve` to erase stored Portal records |
 | **Complaint** | Lodge a complaint with a competent data protection authority |
 
 Telegram’s Standard Bot Privacy Policy also expects that Users may request a copy of data the bot stored and request deletion (except essential data the law allows the Developer to keep).
@@ -266,6 +268,7 @@ Telegram’s Standard Bot Privacy Policy also expects that Users may request a c
 | Action | Command / step |
 |--------|----------------|
 | Stop bridging | `/disconnect` on Telegram and/or Delta Chat |
+| Delete stored data | `/delete_my_data` then `/delete_my_data_approve` (Telegram or paired Delta Chat, 1:1, 10-minute window) |
 | See link info | `/status` (may show Telegram id and Delta Chat address) |
 | Pair / re-pair | `/pair`, `/connect`, or Delta Chat pairing link |
 

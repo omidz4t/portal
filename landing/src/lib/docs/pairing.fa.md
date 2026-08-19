@@ -27,6 +27,7 @@
 
 - `/status` — وضعیت اتصال
 - `/disconnect` — قطع اتصال
+- `/delete_my_data` سپس `/delete_my_data_approve` — حذف داده‌های شما در پورتال (اتصال، بات‌های پرسونا، حساب‌های شبح). دو مرحله، ۱۰ دقیقه، فقط گفتگوی دونفره در تلگرام یا بات دلتا چت
 - `/send_pack` — پاسخ (Reply) به یک استیکر برای انتقال کل بستهٔ استیکر (در صورتی که گزینهٔ `bridge.sticker_packs` فعال باشد)
 
 راهنمای کامل و گام‌به‌گام در مخزن پروژه: [docs/pairing.md](https://github.com/omidz4t/portal/blob/main/docs/pairing.md).

@@ -26,6 +26,25 @@ Write completion script for bash, zsh, or fish.
 .TP
 .B version
 Print the binary version.
+.SH BOT COMMANDS
+These are sent to the Telegram portal bot or the paired Delta Chat bot in a private 1:1, not on the CLI.
+.TP
+.B /pair
+Issue an invite and pairing code.
+.TP
+.B /disconnect
+Unlink Telegram and Delta Chat without deleting stored rows.
+.TP
+.B /delete_my_data
+Request erasure of Portal data for you (pairing, persona bots you registered, ghost Delta Chat accounts, and the local bot chat).
+.TP
+.B /delete_my_data_approve
+Confirm erasure. Must follow
+.B /delete_my_data
+within ten minutes. This cannot be undone.
+.TP
+.B /help
+List bot commands.
 .SH OPTIONS
 .TP
 .BR \-c ", " \-\-config " " \fIpath\fR

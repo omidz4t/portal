@@ -23,6 +23,8 @@ make serve
 
 Pair: Telegram `/start` → open the Delta Chat invite → send the code to the bot.
 
+Erase stored data: `/delete_my_data` then `/delete_my_data_approve` (Telegram or paired Delta Chat, private 1:1).
+
 ## Docker (GHCR)
 
 Public image (amd64 + arm64). Includes `portal` and `deltachat-rpc-server`. Do not bake tokens into the image.

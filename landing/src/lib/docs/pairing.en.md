@@ -23,6 +23,7 @@ Using a hosted bot means you trust that runner. Prefer your own instance. See [t
 
 - `/status` — pairing state
 - `/disconnect` — unlink
+- `/delete_my_data` then `/delete_my_data_approve` — erase your Portal data (pairing, persona bots, ghost accounts). Two-step, 10 minutes, private 1:1 on Telegram or the paired Delta Chat bot
 - `/send_pack` — reply to a sticker to bridge the whole pack (if `bridge.sticker_packs` is on)
 
 Full walkthrough in the repo: [docs/pairing.md](https://github.com/omidz4t/portal/blob/main/docs/pairing.md).

@@ -149,6 +149,16 @@ func TestPersonaBotAndGhostBind(t *testing.T) {
 	if err != nil || len(all) != 1 {
 		t.Fatalf("must not insert a second row: %v n=%d", err, len(all))
 	}
+
+	if err := s.PurgeTelegramUser(100); err != nil {
+		t.Fatal(err)
+	}
+	if bots, err := s.ListPersonaBotsByOwner(100); err != nil || len(bots) != 0 {
+		t.Fatalf("purge bots: %v %d", err, len(bots))
+	}
+	if g, err := s.GetGhostByDCAccount(10); err != nil || g != nil {
+		t.Fatalf("purge ghost: %v %+v", err, g)
+	}
 }
 
 func TestPairOwnerVcard(t *testing.T) {

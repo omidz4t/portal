@@ -108,6 +108,12 @@ func (s *Store) Close() error {
 	return s.db.Close()
 }
 
+// Vacuum rebuilds the SQLite file so deleted rows are not left in free pages.
+func (s *Store) Vacuum() error {
+	_, err := s.db.Exec(`VACUUM`)
+	return err
+}
+
 func (s *Store) migrate() error {
 	_, err := s.db.Exec(`
 CREATE TABLE IF NOT EXISTS pairs (
@@ -677,8 +683,57 @@ func (s *Store) DisconnectByDCChat(accID, chatID uint32) (int64, error) {
 	return res.RowsAffected()
 }
 
+// ListPairsByTelegram returns all pair rows for a Telegram user (any status).
+func (s *Store) ListPairsByTelegram(tgUserID int64) ([]Pair, error) {
+	rows, err := s.db.Query(
+		`SELECT id, code, telegram_user_id, telegram_username, telegram_chat_id,
+		        dc_account_id, dc_chat_id, owner_vcard, status, created_at, paired_at
+		 FROM pairs WHERE telegram_user_id = ?`,
+		tgUserID,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	return s.scanMany(rows)
+}
+
+// ListPairsByDCChat returns pair rows for a Delta Chat conversation (any status).
+func (s *Store) ListPairsByDCChat(accID, chatID uint32) ([]Pair, error) {
+	rows, err := s.db.Query(
+		`SELECT id, code, telegram_user_id, telegram_username, telegram_chat_id,
+		        dc_account_id, dc_chat_id, owner_vcard, status, created_at, paired_at
+		 FROM pairs WHERE dc_account_id = ? AND dc_chat_id = ?`,
+		accID, chatID,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	return s.scanMany(rows)
+}
+
+func (s *Store) scanMany(rows *sql.Rows) ([]Pair, error) {
+	var out []Pair
+	for rows.Next() {
+		p, err := s.scanPair(rows)
+		if err != nil {
+			return nil, err
+		}
+		out = append(out, *p)
+	}
+	return out, rows.Err()
+}
+
+type pairScanner interface {
+	Scan(dest ...any) error
+}
+
 func (s *Store) scanOne(query string, args ...any) (*Pair, error) {
-	row := s.db.QueryRow(query, args...)
+	return s.scanPair(s.db.QueryRow(query, args...))
+}
+
+func (s *Store) scanPair(row pairScanner) (*Pair, error) {
 	var p Pair
 	var created, paired sql.NullInt64
 	var username string

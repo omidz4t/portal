@@ -442,6 +442,39 @@ func (s *Session) RemoveAccount(accID uint32) error {
 	})
 }
 
+// DeleteChat removes a chat and its local messages from an account.
+func (s *Session) DeleteChat(accID, chatID uint32) error {
+	if accID == 0 || chatID == 0 {
+		return nil
+	}
+	return s.Do(func() error {
+		return s.Bot.Rpc.DeleteChat(accID, chatID)
+	})
+}
+
+// ForgetChat deletes a chat, local messages, and the peer contact on this account.
+func (s *Session) ForgetChat(accID, chatID uint32) error {
+	if accID == 0 || chatID == 0 {
+		return nil
+	}
+	return s.Do(func() error {
+		contacts, err := s.Bot.Rpc.GetChatContacts(accID, chatID)
+		if err != nil {
+			contacts = nil
+		}
+		if err := s.Bot.Rpc.DeleteChat(accID, chatID); err != nil {
+			return err
+		}
+		for _, cid := range contacts {
+			if cid <= deltachat.ContactLastSpecial {
+				continue
+			}
+			_ = s.Bot.Rpc.DeleteContact(accID, cid)
+		}
+		return nil
+	})
+}
+
 // ConfigureAccountFromQR provisions transport from a dcaccount:/dclogin: QR and starts IO.
 // Long-running: does not hold Session.mu so other sends/receives can proceed
 // (jrpc2 is concurrent-safe on the wire).

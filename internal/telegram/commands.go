@@ -21,6 +21,8 @@ var supportedCommands = []botCommand{
 	{Command: "pair", Description: "Get Delta Chat invite, QR, and pairing code"},
 	{Command: "connect", Description: "Same as /pair — invite link + QR + code"},
 	{Command: "disconnect", Description: "Unlink Telegram from Delta Chat"},
+	{Command: "delete_my_data", Description: "Request deletion of your Portal data"},
+	{Command: "delete_my_data_approve", Description: "Confirm data deletion (two-step)"},
 	{Command: "pair_bot", Description: "Register your BotFather bot (persona mode)"},
 	{Command: "unpair_bot", Description: "Disable your persona bot"},
 	{Command: "bots", Description: "List your persona bots"},
@@ -50,7 +52,9 @@ func commandsHelpText(cfg config.Config) string {
 	s := "Delta ↔️ TG commands\n\n" +
 		"/start — welcome (or /start CODE from a Delta Chat link)\n" +
 		"/pair or /connect — Delta Chat invite link + QR + pairing code\n" +
-		"/disconnect — unlink this Telegram from Delta Chat\n"
+		"/disconnect — unlink this Telegram from Delta Chat\n" +
+		"/delete_my_data — request deletion of your Portal data\n" +
+		"/delete_my_data_approve — confirm deletion (expires in 10 minutes)\n"
 	if cfg.PersonaEnabled() {
 		s += "/pair-bot <TOKEN> [url] — register your own bot (persona mode)\n" +
 			"/unpair-bot [id|@user] — disable persona bot(s)\n" +

@@ -14,6 +14,7 @@ import (
 
 	"github.com/omidz4t/portal/internal/bridge"
 	"github.com/omidz4t/portal/internal/config"
+	"github.com/omidz4t/portal/internal/erasure"
 	"github.com/omidz4t/portal/internal/proxy"
 	"github.com/omidz4t/portal/internal/ratelimit"
 	"github.com/omidz4t/portal/internal/safemedia"
@@ -42,11 +43,12 @@ type Bot struct {
 	tmpdir  string
 	persona PersonaHooks
 	limits  *ratelimit.Set
+	erase   *erasure.Service
 }
 
 // Start creates the API client, begins polling, and returns the Bot for DC→TG sends.
 // persona may be nil when mode is personal-only.
-func Start(log *zap.SugaredLogger, cfg config.Config, br *bridge.Bridge, st *store.Store, persona PersonaHooks, limits *ratelimit.Set) (*Bot, error) {
+func Start(log *zap.SugaredLogger, cfg config.Config, br *bridge.Bridge, st *store.Store, persona PersonaHooks, limits *ratelimit.Set, erase *erasure.Service) (*Bot, error) {
 	if !cfg.Telegram.Enabled {
 		log.Info("Telegram bot disabled in config")
 		return nil, nil
@@ -90,6 +92,7 @@ func Start(log *zap.SugaredLogger, cfg config.Config, br *bridge.Bridge, st *sto
 		tmpdir:  tmpdir,
 		persona: persona,
 		limits:  limits,
+		erase:   erase,
 	}
 
 	if pc.IsEnabled() {
@@ -273,6 +276,10 @@ func (b *Bot) handleCommand(msg *tgbotapi.Message) error {
 		return b.cmdPair(msg)
 	case "/disconnect":
 		return b.cmdDisconnect(msg)
+	case "/delete_my_data":
+		return b.cmdDeleteMyData(msg)
+	case "/delete_my_data_approve":
+		return b.cmdDeleteMyDataApprove(msg)
 	case "/send_pack":
 		return b.requirePairThen(msg, func() error { return b.cmdSendPack(msg) })
 	case "/help":
@@ -417,6 +424,39 @@ func (b *Bot) cmdDisconnect(msg *tgbotapi.Message) error {
 	}
 	_, err = b.api.Send(tgbotapi.NewMessage(msg.Chat.ID, text))
 	return err
+}
+
+func (b *Bot) cmdDeleteMyData(msg *tgbotapi.Message) error {
+	if !IsPrivatePairingChat(msg) {
+		_, err := b.api.Send(tgbotapi.NewMessage(msg.Chat.ID, erasure.PrivateOnly))
+		return err
+	}
+	if b.erase == nil {
+		_, err := b.api.Send(tgbotapi.NewMessage(msg.Chat.ID, usermsg.Generic))
+		return err
+	}
+	b.erase.Request(erasure.TelegramKey(msg.From.ID))
+	_, err := b.api.Send(tgbotapi.NewMessage(msg.Chat.ID, erasure.WarnText))
+	return err
+}
+
+func (b *Bot) cmdDeleteMyDataApprove(msg *tgbotapi.Message) error {
+	if !IsPrivatePairingChat(msg) {
+		_, err := b.api.Send(tgbotapi.NewMessage(msg.Chat.ID, erasure.PrivateOnly))
+		return err
+	}
+	if b.erase == nil || !b.erase.Consume(erasure.TelegramKey(msg.From.ID)) {
+		_, err := b.api.Send(tgbotapi.NewMessage(msg.Chat.ID, erasure.NeedRequestText))
+		return err
+	}
+	if _, err := b.api.Send(tgbotapi.NewMessage(msg.Chat.ID, erasure.DoneText)); err != nil {
+		return err
+	}
+	if err := b.erase.PurgeTelegramUser(msg.From.ID); err != nil {
+		_, err2 := b.api.Send(tgbotapi.NewMessage(msg.Chat.ID, usermsg.Generic))
+		return err2
+	}
+	return nil
 }
 
 func (b *Bot) sendLogo(chatID int64) error {

@@ -14,6 +14,7 @@ import (
 	"github.com/omidz4t/portal/internal/bridge"
 	"github.com/omidz4t/portal/internal/config"
 	"github.com/omidz4t/portal/internal/dc"
+	"github.com/omidz4t/portal/internal/erasure"
 	"github.com/omidz4t/portal/internal/persona"
 	"github.com/omidz4t/portal/internal/ratelimit"
 	"github.com/omidz4t/portal/internal/safemedia"
@@ -37,6 +38,7 @@ func Run() error {
 		pm         *persona.Manager
 		phooks     *persona.PortalHooks
 		limits     *ratelimit.Set
+		erase      *erasure.Service
 	)
 
 	cli.RootCmd.PersistentFlags().StringVarP(
@@ -47,6 +49,14 @@ func Run() error {
 		"path to YAML config file",
 	)
 	cli.RootCmd.AddCommand(completionCmd())
+	cli.RootCmd.Long = cli.RootCmd.Short + `
+
+Bot commands (Telegram or paired Delta Chat, private 1:1):
+  /pair                     invite + pairing code
+  /disconnect               unlink without deleting stored data
+  /delete_my_data           request erasure of your Portal data
+  /delete_my_data_approve   confirm erasure (within 10 minutes)
+  /help                     list bot commands`
 
 	cli.RootCmd.PersistentPreRunE = func(cmd *cobra.Command, args []string) error {
 		var err error
@@ -109,7 +119,8 @@ func Run() error {
 			phooks = &persona.PortalHooks{M: pm, DC: sess, St: st}
 		}
 		limits = ratelimit.Defaults()
-		registerHandlers(cli, sess, cfg, st, br, pm, limits)
+		erase = erasure.New(cli.Logger, st, sess, pm)
+		registerHandlers(cli, sess, cfg, st, br, pm, limits, erase)
 	})
 
 	cli.OnBotStart(func(cli *botcli.BotCli, bot *deltachat.Bot, cmd *cobra.Command, args []string) {
@@ -123,6 +134,9 @@ func Run() error {
 		if pm == nil && cfg.PersonaEnabled() && st != nil {
 			pm = persona.New(cli.Logger, cfg, sess, st)
 			phooks = &persona.PortalHooks{M: pm, DC: sess, St: st}
+		}
+		if erase == nil && st != nil {
+			erase = erasure.New(cli.Logger, st, sess, pm)
 		}
 		ApplyProfile(cli, sess, cfg)
 		if err := sess.ApplyShortDeviceRetention("60"); err != nil {
@@ -156,7 +170,7 @@ func Run() error {
 		if limits == nil {
 			limits = ratelimit.Defaults()
 		}
-		tgBot, err := telegram.Start(cli.Logger, cfg, br, st, hooks, limits)
+		tgBot, err := telegram.Start(cli.Logger, cfg, br, st, hooks, limits, erase)
 		if err != nil {
 			cli.Logger.Errorf("telegram bridge: %v", err)
 			return
@@ -187,11 +201,11 @@ func setDefaultDataDir(cli *botcli.BotCli, dir string) {
 	}
 }
 
-func registerHandlers(cli *botcli.BotCli, sess *dc.Session, cfg config.Config, st *store.Store, br *bridge.Bridge, pm *persona.Manager, limits *ratelimit.Set) {
+func registerHandlers(cli *botcli.BotCli, sess *dc.Session, cfg config.Config, st *store.Store, br *bridge.Bridge, pm *persona.Manager, limits *ratelimit.Set, erase *erasure.Service) {
 	bot := sess.Bot
 
 	pool := newDCWorkPool(dcWorkers, dcQueue, func(accId, msgId uint32) {
-		if err := handleIncomingDC(cli, sess, st, br, cfg, pm, limits, accId, msgId); err != nil {
+		if err := handleIncomingDC(cli, sess, st, br, cfg, pm, limits, erase, accId, msgId); err != nil {
 			cli.GetLogger(accId).Errorf("dc handler: %v", err)
 		}
 	})
@@ -203,7 +217,7 @@ func registerHandlers(cli *botcli.BotCli, sess *dc.Session, cfg config.Config, s
 	})
 }
 
-func handleIncomingDC(cli *botcli.BotCli, sess *dc.Session, st *store.Store, br *bridge.Bridge, cfg config.Config, pm *persona.Manager, limits *ratelimit.Set, accId, msgId uint32) error {
+func handleIncomingDC(cli *botcli.BotCli, sess *dc.Session, st *store.Store, br *bridge.Bridge, cfg config.Config, pm *persona.Manager, limits *ratelimit.Set, erase *erasure.Service, accId, msgId uint32) error {
 	msg, err := sess.GetMessage(accId, msgId)
 	if err != nil {
 		return err
@@ -227,7 +241,7 @@ func handleIncomingDC(cli *botcli.BotCli, sess *dc.Session, st *store.Store, br 
 
 	// Slash commands on Delta Chat (both paired and unpaired).
 	if text != "" && strings.HasPrefix(text, "/") {
-		return handleDCCommand(cli, sess, st, br, cfg, pm, accId, msg, text)
+		return handleDCCommand(cli, sess, st, br, cfg, pm, erase, accId, msg, text)
 	}
 
 	// Pairing codes only in unpaired 1:1 chats (groups leak codes; active chats
@@ -336,7 +350,7 @@ func handleGhostDCMessage(cli *botcli.BotCli, sess *dc.Session, st *store.Store,
 	return nil
 }
 
-func handleDCCommand(cli *botcli.BotCli, sess *dc.Session, st *store.Store, br *bridge.Bridge, cfg config.Config, _ *persona.Manager, accId uint32, msg deltachat.Message, text string) error {
+func handleDCCommand(cli *botcli.BotCli, sess *dc.Session, st *store.Store, br *bridge.Bridge, cfg config.Config, _ *persona.Manager, erase *erasure.Service, accId uint32, msg deltachat.Message, text string) error {
 	fields := strings.Fields(text)
 	if len(fields) == 0 {
 		return nil
@@ -354,6 +368,10 @@ func handleDCCommand(cli *botcli.BotCli, sess *dc.Session, st *store.Store, br *
 		return dcCmdPair(cli, sess, st, br, cfg, accId, chatID)
 	case "/disconnect":
 		return dcCmdDisconnect(sess, st, accId, chatID)
+	case "/delete_my_data":
+		return dcCmdDeleteMyData(sess, erase, accId, chatID)
+	case "/delete_my_data_approve":
+		return dcCmdDeleteMyDataApprove(sess, erase, accId, chatID)
 	case "/status":
 		return dcCmdStatus(sess, st, br, accId, chatID)
 	default:
@@ -367,6 +385,8 @@ func dcHelpText(cfg config.Config) string {
 	return "Delta ↔️ TG\n\n" +
 		"/pair — get a Telegram link to connect this chat\n" +
 		"/disconnect — unlink this chat from Telegram\n" +
+		"/delete_my_data — request deletion of your Portal data\n" +
+		"/delete_my_data_approve — confirm deletion (two-step)\n" +
 		"/status — pairing status\n" +
 		"/help — this list\n\n" +
 		"After pairing, send stickers, images, GIFs, text, or short videos either way.\n" +
@@ -432,6 +452,33 @@ func dcCmdDisconnect(sess *dc.Session, st *store.Store, accId, chatID uint32) er
 	}
 	return sess.SendTextWithRetry(accId, chatID,
 		"Disconnected ✅\nThis Delta Chat is no longer linked to Telegram.\n\n/pair for instructions.", 10)
+}
+
+func dcCmdDeleteMyData(sess *dc.Session, erase *erasure.Service, accId, chatID uint32) error {
+	if ok, _ := dcPairingAllowed(sess, accId, chatID); !ok {
+		return sess.SendTextWithRetry(accId, chatID, erasure.PrivateOnly, 5)
+	}
+	if erase == nil {
+		return sess.SendTextWithRetry(accId, chatID, usermsg.Generic, 5)
+	}
+	erase.Request(erasure.DCKey(accId, chatID))
+	return sess.SendTextWithRetry(accId, chatID, erasure.WarnText, 10)
+}
+
+func dcCmdDeleteMyDataApprove(sess *dc.Session, erase *erasure.Service, accId, chatID uint32) error {
+	if ok, _ := dcPairingAllowed(sess, accId, chatID); !ok {
+		return sess.SendTextWithRetry(accId, chatID, erasure.PrivateOnly, 5)
+	}
+	if erase == nil || !erase.Consume(erasure.DCKey(accId, chatID)) {
+		return sess.SendTextWithRetry(accId, chatID, erasure.NeedRequestText, 10)
+	}
+	if err := sess.SendTextWithRetry(accId, chatID, erasure.DoneText, 10); err != nil {
+		return err
+	}
+	if err := erase.PurgeFromDCChat(accId, chatID); err != nil {
+		return sess.SendTextWithRetry(accId, chatID, usermsg.Generic, 5)
+	}
+	return nil
 }
 
 func dcCmdStatus(sess *dc.Session, _ *store.Store, br *bridge.Bridge, accId, chatID uint32) error {
